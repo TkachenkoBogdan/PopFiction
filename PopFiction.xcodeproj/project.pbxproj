@@ -14,6 +14,7 @@
 		BD869627231818EC00D248E9 /* PopFiction.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD869625231818EC00D248E9 /* PopFiction.xcdatamodeld */; };
 		BD869629231818ED00D248E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD869628231818ED00D248E9 /* Assets.xcassets */; };
 		BD86962C231818ED00D248E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD86962A231818ED00D248E9 /* LaunchScreen.storyboard */; };
+		BDB4AD1423182CC6004FF50B /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB4AD1323182CC6004FF50B /* ArticleService.swift */; };
 		F01D6EFF74CB74793165B275 /* Pods_PopFiction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899EC5F08F7DE3AA3D9B4639 /* Pods_PopFiction.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		BD869628231818ED00D248E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD86962B231818ED00D248E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD86962D231818ED00D248E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BDB4AD1323182CC6004FF50B /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				BD86961E231818EC00D248E9 /* AppDelegate.swift */,
+				BDB4AD1323182CC6004FF50B /* ArticleService.swift */,
 				BD31DC2C231827CE002523AC /* Model */,
 				BD31DC2D231827DE002523AC /* View */,
 				BD31DC2B231827C2002523AC /* Controller */,
@@ -273,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDB4AD1423182CC6004FF50B /* ArticleService.swift in Sources */,
 				BD869621231818EC00D248E9 /* MainViewController.swift in Sources */,
 				BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */,
 				BD869627231818EC00D248E9 /* PopFiction.xcdatamodeld in Sources */,
