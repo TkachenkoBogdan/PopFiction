@@ -10,9 +10,20 @@ import Foundation
 import Alamofire
 
 
+//typealias completionHandler = () -> [String]
+
 class ArticleService {
     
     public static let shared = ArticleService()
+    
+    func fetchArticles() {
+        
+     //AF.request(<#T##url: URLConvertible##URLConvertible#>, method: <#T##HTTPMethod#>, parameters: <#T##Parameters?#>,
+        // encoding: <#T##ParameterEncoding#>, headers: <#T##HTTPHeaders?#>, interceptor: <#T##RequestInterceptor?#>)
+        
+    }
+    
+    
     
     
     
