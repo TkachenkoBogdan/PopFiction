@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD31DC32231828A6002523AC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BD31DC31231828A6002523AC /* .swiftlint.yml */; };
 		BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD86961E231818EC00D248E9 /* AppDelegate.swift */; };
-		BD869621231818EC00D248E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD869620231818EC00D248E9 /* ViewController.swift */; };
+		BD869621231818EC00D248E9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD869620231818EC00D248E9 /* MainViewController.swift */; };
 		BD869624231818EC00D248E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD869622231818EC00D248E9 /* Main.storyboard */; };
 		BD869627231818EC00D248E9 /* PopFiction.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD869625231818EC00D248E9 /* PopFiction.xcdatamodeld */; };
 		BD869629231818ED00D248E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD869628231818ED00D248E9 /* Assets.xcassets */; };
@@ -20,9 +21,10 @@
 		3C5B332B4ADDF3CF328B493F /* Pods-PopFiction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.debug.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.debug.xcconfig"; sourceTree = "<group>"; };
 		5F26293688AF7E63F6BEB2E2 /* Pods-PopFiction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.release.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.release.xcconfig"; sourceTree = "<group>"; };
 		899EC5F08F7DE3AA3D9B4639 /* Pods_PopFiction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopFiction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD31DC31231828A6002523AC /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		BD86961B231818EC00D248E9 /* PopFiction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopFiction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86961E231818EC00D248E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BD869620231818EC00D248E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BD869620231818EC00D248E9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BD869623231818EC00D248E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BD869626231818EC00D248E9 /* PopFiction.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PopFiction.xcdatamodel; sourceTree = "<group>"; };
 		BD869628231818ED00D248E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +52,47 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BD31DC2B231827C2002523AC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BD869620231818EC00D248E9 /* MainViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		BD31DC2C231827CE002523AC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BD31DC2D231827DE002523AC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		BD31DC2E231827E3002523AC /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				BD869628231818ED00D248E9 /* Assets.xcassets */,
+				BD31DC31231828A6002523AC /* .swiftlint.yml */,
+				BD86962A231818ED00D248E9 /* LaunchScreen.storyboard */,
+				BD86962D231818ED00D248E9 /* Info.plist */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		BD31DC33231828C5002523AC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BD869625231818EC00D248E9 /* PopFiction.xcdatamodeld */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		BD869612231818EC00D248E9 = {
 			isa = PBXGroup;
 			children = (
@@ -72,12 +115,12 @@
 			isa = PBXGroup;
 			children = (
 				BD86961E231818EC00D248E9 /* AppDelegate.swift */,
-				BD869620231818EC00D248E9 /* ViewController.swift */,
+				BD31DC2C231827CE002523AC /* Model */,
+				BD31DC2D231827DE002523AC /* View */,
+				BD31DC2B231827C2002523AC /* Controller */,
+				BD31DC33231828C5002523AC /* CoreData */,
 				BD869622231818EC00D248E9 /* Main.storyboard */,
-				BD869628231818ED00D248E9 /* Assets.xcassets */,
-				BD86962A231818ED00D248E9 /* LaunchScreen.storyboard */,
-				BD86962D231818ED00D248E9 /* Info.plist */,
-				BD869625231818EC00D248E9 /* PopFiction.xcdatamodeld */,
+				BD31DC2E231827E3002523AC /* Support */,
 			);
 			path = PopFiction;
 			sourceTree = "<group>";
@@ -152,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD31DC32231828A6002523AC /* .swiftlint.yml in Resources */,
 				BD86962C231818ED00D248E9 /* LaunchScreen.storyboard in Resources */,
 				BD869629231818ED00D248E9 /* Assets.xcassets in Resources */,
 				BD869624231818EC00D248E9 /* Main.storyboard in Resources */,
@@ -229,7 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD869621231818EC00D248E9 /* ViewController.swift in Sources */,
+				BD869621231818EC00D248E9 /* MainViewController.swift in Sources */,
 				BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */,
 				BD869627231818EC00D248E9 /* PopFiction.xcdatamodeld in Sources */,
 			);
