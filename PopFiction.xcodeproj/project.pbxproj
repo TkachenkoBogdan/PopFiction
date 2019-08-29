@@ -13,9 +13,13 @@
 		BD869627231818EC00D248E9 /* PopFiction.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD869625231818EC00D248E9 /* PopFiction.xcdatamodeld */; };
 		BD869629231818ED00D248E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD869628231818ED00D248E9 /* Assets.xcassets */; };
 		BD86962C231818ED00D248E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD86962A231818ED00D248E9 /* LaunchScreen.storyboard */; };
+		F01D6EFF74CB74793165B275 /* Pods_PopFiction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899EC5F08F7DE3AA3D9B4639 /* Pods_PopFiction.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C5B332B4ADDF3CF328B493F /* Pods-PopFiction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.debug.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.debug.xcconfig"; sourceTree = "<group>"; };
+		5F26293688AF7E63F6BEB2E2 /* Pods-PopFiction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.release.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.release.xcconfig"; sourceTree = "<group>"; };
+		899EC5F08F7DE3AA3D9B4639 /* Pods_PopFiction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopFiction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86961B231818EC00D248E9 /* PopFiction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopFiction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86961E231818EC00D248E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD869620231818EC00D248E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01D6EFF74CB74793165B275 /* Pods_PopFiction.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		212F6AF96938586450A7D8DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				899EC5F08F7DE3AA3D9B4639 /* Pods_PopFiction.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BD869612231818EC00D248E9 = {
 			isa = PBXGroup;
 			children = (
 				BD86961D231818EC00D248E9 /* PopFiction */,
 				BD86961C231818EC00D248E9 /* Products */,
+				EAFE86DBE1929E07E0EF2525 /* Pods */,
+				212F6AF96938586450A7D8DA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,15 @@
 			path = PopFiction;
 			sourceTree = "<group>";
 		};
+		EAFE86DBE1929E07E0EF2525 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C5B332B4ADDF3CF328B493F /* Pods-PopFiction.debug.xcconfig */,
+				5F26293688AF7E63F6BEB2E2 /* Pods-PopFiction.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BD869630231818ED00D248E9 /* Build configuration list for PBXNativeTarget "PopFiction" */;
 			buildPhases = (
+				95F1A286B105575852A5B4BF /* [CP] Check Pods Manifest.lock */,
 				BD869617231818EC00D248E9 /* Sources */,
 				BD869618231818EC00D248E9 /* Frameworks */,
 				BD869619231818EC00D248E9 /* Resources */,
+				3EFC088AB358C68F0B5C176E /* [CP] Embed Pods Frameworks */,
+				BD31DC2A23181B79002523AC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3EFC088AB358C68F0B5C176E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PopFiction/Pods-PopFiction-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PopFiction/Pods-PopFiction-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95F1A286B105575852A5B4BF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PopFiction-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD31DC2A23181B79002523AC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BD869617231818EC00D248E9 /* Sources */ = {
@@ -284,6 +375,7 @@
 		};
 		BD869631231818ED00D248E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C5B332B4ADDF3CF328B493F /* Pods-PopFiction.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -301,6 +393,7 @@
 		};
 		BD869632231818ED00D248E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F26293688AF7E63F6BEB2E2 /* Pods-PopFiction.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
