@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 
 //typealias completionHandler = () -> [String]
@@ -39,8 +40,29 @@ class ArticleService {
                    parameters: nil,
                    encoding: JSONEncoding.default,
                    headers: HEADER).responseJSON { responce in
-                    print(responce.error)
-                    print(responce)
+                   
+                    guard responce.error == nil, let data = responce.data else { return }
+                    
+                    if let json = try? JSON.init(data: data) {
+                        guard let articles = json["results"].array else { return }
+                        guard let firstArticle = articles.first else { return }
+                        
+                        let title = firstArticle["title"].string
+                        let abstract = firstArticle["abstract"].string
+                        let byline = firstArticle["byline"].string
+                        
+                        
+                        
+                        if let context = (UIApplication.shared.delegate
+                            as? AppDelegate)?.persistentContainer.viewContext {
+                            
+                           let article = Article(context: context)
+                            article.title = title
+                            article.abstract = abstract
+                            article.byline = byline
+                            
+                        }
+                    }
         }
         
     }
