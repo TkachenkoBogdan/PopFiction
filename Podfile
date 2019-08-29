@@ -7,4 +7,5 @@ target 'PopFiction' do
 
   # Pods for PopFiction
    pod 'Alamofire', '~> 5.0.0-beta.5'
+   pod 'SwiftyJSON'
 end

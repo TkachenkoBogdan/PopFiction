@@ -7,13 +7,13 @@
 //
 
 import Foundation
+import Alamofire
 
 typealias CompletionHandler = (_ Success: Bool) -> Void
 
 // URL Constants
 let BASE_URL = "https://api.nytimes.com/svc/mostpopular/v2"
-
-//let API_Key =
+let API_Key = "ZDGO1GbINnwODAofUGwMWYOeKl7GOT76"
 
 //let URL_REGISTER = "\(BASE_URL)account/register"
 //let URL_LOGIN = "\(BASE_URL)account/login"
@@ -37,9 +37,7 @@ let LOGGED_IN_KEY = "loggedIn"
 let USER_EMAIL = "userEmail"
 
 // Headers
-let HEADER = [
-    "Content-Type": "application/json; charset=utf-8"
-]
+let HEADER = HTTPHeaders(["Content-Type": "application/json; charset=utf-8"]) 
 
 //let BEARER_HEADER = [
 //    "Authorization":"Bearer \(AuthService.instance.authToken)",

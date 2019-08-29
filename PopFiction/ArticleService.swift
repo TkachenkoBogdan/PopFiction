@@ -16,10 +16,32 @@ class ArticleService {
     
     public static let shared = ArticleService()
     
+    
+//    ## Example Calls
+//    ```
+//    https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=yourkey
+//    ```
+//
+//    ```
+//    https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=yourkey
+//    ```
+//
+//    ```
+//    https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=yourkey
+    
+    
     func fetchArticles() {
+        let url = URL(string: BASE_URL.appending("/viewed/1.json?api-key=\(API_Key)"))
+        let parameters: Parameters = ["api-key": API_Key]
         
-     //AF.request(<#T##url: URLConvertible##URLConvertible#>, method: <#T##HTTPMethod#>, parameters: <#T##Parameters?#>,
-        // encoding: <#T##ParameterEncoding#>, headers: <#T##HTTPHeaders?#>, interceptor: <#T##RequestInterceptor?#>)
+        guard let validURL = url  else { return }
+        AF.request(validURL, method: .get,
+                   parameters: nil,
+                   encoding: JSONEncoding.default,
+                   headers: HEADER).responseJSON { responce in
+                    print(responce.error)
+                    print(responce)
+        }
         
     }
     
