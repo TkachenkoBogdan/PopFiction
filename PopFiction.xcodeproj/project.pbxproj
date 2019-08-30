@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD141D0E23193DB300BAF23F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD141D0D23193DB300BAF23F /* DetailViewController.swift */; };
+		BD141D1023193F9000BAF23F /* ArticleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD141D0F23193F9000BAF23F /* ArticleListViewController.swift */; };
 		BD31DC32231828A6002523AC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BD31DC31231828A6002523AC /* .swiftlint.yml */; };
 		BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD86961E231818EC00D248E9 /* AppDelegate.swift */; };
 		BD869621231818EC00D248E9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD869620231818EC00D248E9 /* MainViewController.swift */; };
@@ -25,6 +27,8 @@
 		3C5B332B4ADDF3CF328B493F /* Pods-PopFiction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.debug.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.debug.xcconfig"; sourceTree = "<group>"; };
 		5F26293688AF7E63F6BEB2E2 /* Pods-PopFiction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.release.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.release.xcconfig"; sourceTree = "<group>"; };
 		899EC5F08F7DE3AA3D9B4639 /* Pods_PopFiction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopFiction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD141D0D23193DB300BAF23F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BD141D0F23193F9000BAF23F /* ArticleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
 		BD31DC31231828A6002523AC /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		BD86961B231818EC00D248E9 /* PopFiction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopFiction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86961E231818EC00D248E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 			isa = PBXGroup;
 			children = (
 				BD869620231818EC00D248E9 /* MainViewController.swift */,
+				BD141D0F23193F9000BAF23F /* ArticleListViewController.swift */,
+				BD141D0D23193DB300BAF23F /* DetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -78,6 +84,7 @@
 		BD31DC2D231827DE002523AC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BD869622231818EC00D248E9 /* Main.storyboard */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -124,13 +131,12 @@
 		BD86961D231818EC00D248E9 /* PopFiction */ = {
 			isa = PBXGroup;
 			children = (
-				BDB4AD1523182DE3004FF50B /* Networkinng */,
 				BD86961E231818EC00D248E9 /* AppDelegate.swift */,
+				BDB4AD1523182DE3004FF50B /* Networkinng */,
 				BD31DC2C231827CE002523AC /* Model */,
 				BD31DC2D231827DE002523AC /* View */,
 				BD31DC2B231827C2002523AC /* Controller */,
 				BD31DC33231828C5002523AC /* CoreData */,
-				BD869622231818EC00D248E9 /* Main.storyboard */,
 				BD31DC2E231827E3002523AC /* Support */,
 			);
 			path = PopFiction;
@@ -301,7 +307,9 @@
 				BD869621231818EC00D248E9 /* MainViewController.swift in Sources */,
 				BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */,
 				BD869627231818EC00D248E9 /* PopFiction.xcdatamodeld in Sources */,
+				BD141D1023193F9000BAF23F /* ArticleListViewController.swift in Sources */,
 				BDB4AD1F231836AA004FF50B /* Article+CoreDataProperties.swift in Sources */,
+				BD141D0E23193DB300BAF23F /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
