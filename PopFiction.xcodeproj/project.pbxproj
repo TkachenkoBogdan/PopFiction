@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD141D122319413100BAF23F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD141D112319413100BAF23F /* CoreDataStack.swift */; };
 		BD31DC32231828A6002523AC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BD31DC31231828A6002523AC /* .swiftlint.yml */; };
 		BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD86961E231818EC00D248E9 /* AppDelegate.swift */; };
 		BD869621231818EC00D248E9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD869620231818EC00D248E9 /* MainViewController.swift */; };
@@ -21,6 +22,7 @@
 		3C5B332B4ADDF3CF328B493F /* Pods-PopFiction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.debug.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.debug.xcconfig"; sourceTree = "<group>"; };
 		5F26293688AF7E63F6BEB2E2 /* Pods-PopFiction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.release.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.release.xcconfig"; sourceTree = "<group>"; };
 		899EC5F08F7DE3AA3D9B4639 /* Pods_PopFiction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopFiction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD141D112319413100BAF23F /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		BD31DC31231828A6002523AC /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		BD86961B231818EC00D248E9 /* PopFiction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopFiction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86961E231818EC00D248E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		BD31DC33231828C5002523AC /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				BD141D112319413100BAF23F /* CoreDataStack.swift */,
 				BD869625231818EC00D248E9 /* PopFiction.xcdatamodeld */,
 			);
 			name = CoreData;
@@ -276,6 +279,7 @@
 				BD869621231818EC00D248E9 /* MainViewController.swift in Sources */,
 				BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */,
 				BD869627231818EC00D248E9 /* PopFiction.xcdatamodeld in Sources */,
+				BD141D122319413100BAF23F /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
