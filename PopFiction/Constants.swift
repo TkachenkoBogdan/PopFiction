@@ -21,6 +21,8 @@ let API_Key = "ZDGO1GbINnwODAofUGwMWYOeKl7GOT76"
 //let URL_USER_BY_EMAIL = "\(BASE_URL)user/byEmail/"
 //let URL_GET_CHANNELS = "\(BASE_URL)channel/"
 
+// Cell Identifiers:
+let articleCellIdentifier = "articleCell"
 
 // Notification Constants
 let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("notifUserDataChanged")

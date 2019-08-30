@@ -15,23 +15,16 @@ import SwiftyJSON
 
 class ArticleService {
     
+    enum ArticleCategory {
+        case mostEmailed,mostShared,mostViewed
+    }
     public static let shared = ArticleService()
     
+    private init() {
+    }
     
-//    ## Example Calls
-//    ```
-//    https://api.nytimes.com/svc/mostpopular/v2/emailed/7.json?api-key=yourkey
-//    ```
-//
-//    ```
-//    https://api.nytimes.com/svc/mostpopular/v2/shared/1/facebook.json?api-key=yourkey
-//    ```
-//
-//    ```
-//    https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=yourkey
-    
-    
-    func fetchArticles() {
+     func getArticles(for category: ArticleCategory = .mostViewed,
+                      completionHandler: @escaping (Result<[Article], Error>) -> Void) {
         let url = URL(string: BASE_URL.appending("/viewed/1.json?api-key=\(API_Key)"))
         let parameters: Parameters = ["api-key": API_Key]
         
@@ -42,26 +35,30 @@ class ArticleService {
                    headers: HEADER).responseJSON { responce in
                    
                     guard responce.error == nil, let data = responce.data else { return }
+                    var articlesArray = [Article]()
                     
                     if let json = try? JSON.init(data: data) {
                         guard let articles = json["results"].array else { return }
-                        guard let firstArticle = articles.first else { return }
-                        
-                        let title = firstArticle["title"].string
-                        let abstract = firstArticle["abstract"].string
-                        let byline = firstArticle["byline"].string
                         
                         
-                        
-                        if let context = (UIApplication.shared.delegate
-                            as? AppDelegate)?.persistentContainer.viewContext {
+                        for article in articles {
                             
-                           let article = Article(context: context)
-                            article.title = title
-                            article.abstract = abstract
-                            article.byline = byline
+                            let title = article["title"].string
+                            let abstract = article["abstract"].string
+                            let byline = article["byline"].string
                             
+                            if let context = (UIApplication.shared.delegate
+                                as? AppDelegate)?.coreDataStack.managedContext {
+                                
+                                let article = Article(context: context)
+                                article.title = title
+                                article.abstract = abstract
+                                article.byline = byline
+                                
+                                articlesArray.append(article)
+                            }
                         }
+                        completionHandler(Result.success(articlesArray))
                     }
         }
         
