@@ -21,8 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         
         if let root = window?.rootViewController as? UITabBarController {
-            guard let mostEmailed = root.viewControllers?.first as? ArticleListViewController else { return true }
-        //mostEmailed.tableView.reloadData()
+            guard let mostEmailed = root.viewControllers?[0] as? ArticleListViewController else { return true }
+            guard let mostShared = root.viewControllers?[1] as? ArticleListViewController else { return true }
+            guard let mostViewed = root.viewControllers?[2] as? ArticleListViewController else { return true }
+            mostEmailed.category = .mostEmailed
+            mostShared.category = .mostShared(.facebook)
+            mostViewed.category = .mostViewed
         }
         
         

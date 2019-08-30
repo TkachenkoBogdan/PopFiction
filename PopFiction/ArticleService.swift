@@ -16,8 +16,13 @@ import SwiftyJSON
 class ArticleService {
     
     enum ArticleCategory {
-        case mostEmailed,mostShared,mostViewed
+        case mostEmailed, mostShared(ShareType), mostViewed
     }
+    
+    enum ShareType: String {
+        case email, facebook, twitter
+    }
+    
     public static let shared = ArticleService()
     
     private init() {
@@ -25,8 +30,22 @@ class ArticleService {
     
      func getArticles(for category: ArticleCategory = .mostViewed,
                       completionHandler: @escaping (Result<[Article], Error>) -> Void) {
-        let url = URL(string: BASE_URL.appending("/viewed/1.json?api-key=\(API_Key)"))
-        let parameters: Parameters = ["api-key": API_Key]
+        var url: URL?
+        switch category {
+        case .mostEmailed:
+            url = URL(string: BASE_URL.appending("/emailed/30.json?api-key=\(API_Key)"))
+        case .mostShared(let shareType):
+            url = URL(string: BASE_URL.appending("/shared/30/\(shareType.rawValue).json?api-key=\(API_Key)"))
+        case .mostViewed:
+            url = URL(string: BASE_URL.appending("/viewed/30.json?api-key=\(API_Key)"))
+        }
+        
+//        let urlEmailed = URL(string: BASE_URL.appending("/emailed/30.json?api-key=\(API_Key)"))
+//        let urlShared = URL(string: BASE_URL.appending("/shared/30/facebook.json?api-key=\(API_Key)"))
+//        let urlViewed = URL(string: BASE_URL.appending("/viewed/30.json?api-key=\(API_Key)"))
+       
+
+        //let parameters: Parameters = ["api-key": API_Key]
         
         guard let validURL = url  else { return }
         AF.request(validURL, method: .get,

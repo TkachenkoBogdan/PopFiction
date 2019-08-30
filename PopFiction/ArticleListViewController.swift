@@ -8,22 +8,22 @@
 
 import UIKit
 
-
-
 class ArticleListViewController: UITableViewController {
 
     let service = ArticleService.shared
+    var category: ArticleService.ArticleCategory!
     var articles = [Article]() {
         didSet {
             self.tableView.reloadData()
         }
     }
+
     
     // MARK: - Lifecycle:
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        service.getArticles { result in
+        service.getArticles(for: self.category, completionHandler: { result in
             
             switch result {
             case .success(let articles):
@@ -32,7 +32,7 @@ class ArticleListViewController: UITableViewController {
             case .failure:
                 print("Failure")
             }
-        }
+        })
     }
     
         
