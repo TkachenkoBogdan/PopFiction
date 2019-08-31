@@ -56,12 +56,15 @@ class ArticleService {
         }
 
         let parameters: Parameters = ["api-key": API_Key]
+        let queue = DispatchQueue(label: "com.test.api",
+                                  qos: .background,
+                                  attributes: .concurrent)
         
         guard let validURL = url  else { return }
         AF.request(validURL, method: .get,
                    parameters: parameters,
                    encoding: URLEncoding.default,
-                   headers: HEADER).responseJSON { responce in
+                   headers: HEADER).responseJSON(queue: queue) { responce in
                    
                     guard responce.error == nil, let data = responce.data else { return }
                     var articlesArray = [Article]()
@@ -92,7 +95,9 @@ class ArticleService {
                                 articlesArray.append(article)
                             }
                         }
-                        completionHandler(Result.success(articlesArray))
+                        DispatchQueue.main.async {
+                             completionHandler(Result.success(articlesArray))
+                        }
                     }
         }
         

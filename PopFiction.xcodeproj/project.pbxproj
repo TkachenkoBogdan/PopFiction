@@ -147,14 +147,14 @@
 		BD86961D231818EC00D248E9 /* PopFiction */ = {
 			isa = PBXGroup;
 			children = (
-				BD554703231A4FDC00804DCA /* Factories */,
 				BD86961E231818EC00D248E9 /* AppDelegate.swift */,
-				BDB4AD1523182DE3004FF50B /* Networkinng */,
-				BD31DC2C231827CE002523AC /* Model */,
-				BD31DC2D231827DE002523AC /* View */,
 				BD31DC2B231827C2002523AC /* Controller */,
 				BD31DC33231828C5002523AC /* CoreData */,
+				BD554703231A4FDC00804DCA /* Factories */,
+				BD31DC2C231827CE002523AC /* Model */,
+				BDB4AD1523182DE3004FF50B /* Networkinng */,
 				BD31DC2E231827E3002523AC /* Support */,
+				BD31DC2D231827DE002523AC /* View */,
 			);
 			path = PopFiction;
 			sourceTree = "<group>";
