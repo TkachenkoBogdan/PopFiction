@@ -29,7 +29,6 @@ class ArticleListController: UIViewController {
     
            self.tableView?.dataSource = self
            self.tableView?.delegate = self
-           self.tabBarItem.title = "Art"
         
         service.getArticles(for: self.category, completionHandler: { result in
             

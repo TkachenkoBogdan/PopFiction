@@ -17,6 +17,17 @@ class ArticleService {
     
     enum ArticleCategory {
         case mostEmailed, mostShared(ShareType), mostViewed
+        
+        var title: String {
+            switch self {
+            case .mostEmailed:
+                return "Most Emailed"
+            case .mostShared:
+                return "Most Shared"
+            case .mostViewed:
+                return "Most Viewed"
+            }
+        }
     }
     
     enum ShareType: String {
