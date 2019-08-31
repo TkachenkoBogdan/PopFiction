@@ -10,6 +10,7 @@
 		BD141D0E23193DB300BAF23F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD141D0D23193DB300BAF23F /* DetailViewController.swift */; };
 		BD141D1023193F9000BAF23F /* ArticleListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD141D0F23193F9000BAF23F /* ArticleListViewController.swift */; };
 		BD31DC32231828A6002523AC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BD31DC31231828A6002523AC /* .swiftlint.yml */; };
+		BD554700231A370E00804DCA /* ArticleListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5546FF231A370E00804DCA /* ArticleListController.swift */; };
 		BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD86961E231818EC00D248E9 /* AppDelegate.swift */; };
 		BD869624231818EC00D248E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD869622231818EC00D248E9 /* Main.storyboard */; };
 		BD869627231818EC00D248E9 /* PopFiction.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD869625231818EC00D248E9 /* PopFiction.xcdatamodeld */; };
@@ -31,6 +32,7 @@
 		BD141D0D23193DB300BAF23F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BD141D0F23193F9000BAF23F /* ArticleListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListViewController.swift; sourceTree = "<group>"; };
 		BD31DC31231828A6002523AC /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
+		BD5546FF231A370E00804DCA /* ArticleListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListController.swift; sourceTree = "<group>"; };
 		BD86961B231818EC00D248E9 /* PopFiction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopFiction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86961E231818EC00D248E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD869623231818EC00D248E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				BD141D0F23193F9000BAF23F /* ArticleListViewController.swift */,
+				BD5546FF231A370E00804DCA /* ArticleListController.swift */,
 				BD141D0D23193DB300BAF23F /* DetailViewController.swift */,
 			);
 			name = Controller;
@@ -313,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDB4AD1E231836AA004FF50B /* Article+CoreDataClass.swift in Sources */,
+				BD554700231A370E00804DCA /* ArticleListController.swift in Sources */,
 				BDB4AD1723182DF7004FF50B /* Constants.swift in Sources */,
 				BDB4AD1423182CC6004FF50B /* ArticleService.swift in Sources */,
 				BDBBC672231948DD006F8C02 /* CoreDataStack.swift in Sources */,

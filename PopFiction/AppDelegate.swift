@@ -24,9 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guard let mostEmailed = root.viewControllers?[0] as? ArticleListViewController else { return true }
             guard let mostShared = root.viewControllers?[1] as? ArticleListViewController else { return true }
             guard let mostViewed = root.viewControllers?[2] as? ArticleListViewController else { return true }
+            guard let favorites = root.viewControllers?[3] as? ArticleListViewController else { return true }
             mostEmailed.category = .mostEmailed
             mostShared.category = .mostShared(.facebook)
             mostViewed.category = .mostViewed
+            favorites.category = .mostShared(.twitter)
         }
         
         

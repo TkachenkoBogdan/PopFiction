@@ -25,32 +25,35 @@ class ArticleService {
     
     public static let shared = ArticleService()
     
+    private let context = (UIApplication.shared.delegate
+        as? AppDelegate)?.coreDataStack.managedContext
+    
     private init() {
     }
     
      func getArticles(for category: ArticleCategory = .mostViewed,
                       completionHandler: @escaping (Result<[Article], Error>) -> Void) {
         var url: URL?
+        
         switch category {
         case .mostEmailed:
-            url = URL(string: BASE_URL.appending("/emailed/30.json?api-key=\(API_Key)"))
+            url = URL(string: BASE_URL.appending("/emailed/30.json"))
         case .mostShared(let shareType):
-            url = URL(string: BASE_URL.appending("/shared/30/\(shareType.rawValue).json?api-key=\(API_Key)"))
+            url = URL(string: BASE_URL.appending("/shared/30/\(shareType.rawValue).json"))
         case .mostViewed:
-            url = URL(string: BASE_URL.appending("/viewed/30.json?api-key=\(API_Key)"))
+            url = URL(string: BASE_URL.appending("/viewed/30.json"))
         }
         
 //        let urlEmailed = URL(string: BASE_URL.appending("/emailed/30.json?api-key=\(API_Key)"))
 //        let urlShared = URL(string: BASE_URL.appending("/shared/30/facebook.json?api-key=\(API_Key)"))
 //        let urlViewed = URL(string: BASE_URL.appending("/viewed/30.json?api-key=\(API_Key)"))
-       
-
-        //let parameters: Parameters = ["api-key": API_Key]
+    
+        let parameters: Parameters = ["api-key": API_Key]
         
         guard let validURL = url  else { return }
         AF.request(validURL, method: .get,
-                   parameters: nil,
-                   encoding: JSONEncoding.default,
+                   parameters: parameters,
+                   encoding: URLEncoding.default,
                    headers: HEADER).responseJSON { responce in
                    
                     guard responce.error == nil, let data = responce.data else { return }
@@ -65,15 +68,20 @@ class ArticleService {
                             let title = article["title"].string
                             let abstract = article["abstract"].string
                             let byline = article["byline"].string
+                            let url = article["url"].url
+                            let id = article["id"].int64 ?? 0
                             
-                            if let context = (UIApplication.shared.delegate
-                                as? AppDelegate)?.coreDataStack.managedContext {
-                                
-                                let article = Article(context: context)
+                                print(json)
+                            
+                            if let context = self.context {
+                               let article = Article(context: context)
                                 article.title = title
                                 article.abstract = abstract
                                 article.byline = byline
-                                
+                
+                                article.id = id
+                                article.url = url
+                        
                                 articlesArray.append(article)
                             }
                         }

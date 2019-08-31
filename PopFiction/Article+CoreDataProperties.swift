@@ -22,6 +22,6 @@ extension Article {
     @NSManaged public var publishedDate: NSDate?
     @NSManaged public var title: String?
     @NSManaged public var url: URL?
-    @NSManaged public var views: Int32
+    @NSManaged public var id: Int64
 
 }
