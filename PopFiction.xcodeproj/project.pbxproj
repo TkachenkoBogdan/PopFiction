@@ -148,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				BD86961E231818EC00D248E9 /* AppDelegate.swift */,
+				BDB4AD1323182CC6004FF50B /* ArticleService.swift */,
 				BD31DC2B231827C2002523AC /* Controller */,
 				BD31DC33231828C5002523AC /* CoreData */,
 				BD554703231A4FDC00804DCA /* Factories */,
@@ -162,7 +163,6 @@
 		BDB4AD1523182DE3004FF50B /* Networkinng */ = {
 			isa = PBXGroup;
 			children = (
-				BDB4AD1323182CC6004FF50B /* ArticleService.swift */,
 			);
 			name = Networkinng;
 			sourceTree = "<group>";
@@ -266,6 +266,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PopFiction/Pods-PopFiction-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -273,6 +274,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

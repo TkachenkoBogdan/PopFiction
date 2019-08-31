@@ -109,14 +109,18 @@ extension ArticleListController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: articleCellIdentifier, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: articleCellIdentifier, for: indexPath) as? ArticleCell else { return UITableViewCell() }
         
         let article = articles[indexPath.row]
-        cell.textLabel?.text = article.title
+        cell.configureWith(article: article)
         return cell
     }
 }
+
+
+
+
 // MARK: - UITableViewDelegate:
 extension ArticleListController: UITableViewDelegate {
     

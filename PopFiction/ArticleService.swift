@@ -80,8 +80,13 @@ class ArticleService {
                             let byline = article["byline"].string
                             let url = article["url"].url
                             let id = article["id"].int64 ?? 0
+                           
+                            guard let mediaContainer = article["media"].array?.first  else { return } //["url"].url
+                            guard let mediaInfo = mediaContainer["media-metadata"].first?.1 else { return }
+                            guard let imageUrlString = mediaInfo["url"].string,
+                                let imageUrl = URL(string: imageUrlString) else { return }
                             
-                                print(json)
+                            
                             
                             if let context = self.context {
                                let article = Article(context: context)
@@ -91,6 +96,7 @@ class ArticleService {
                 
                                 article.id = id
                                 article.url = url
+                                article.imageUrl = imageUrl
                         
                                 articlesArray.append(article)
                             }
