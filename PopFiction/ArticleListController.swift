@@ -28,7 +28,7 @@ class ArticleListController: UIViewController {
         super.viewDidLoad()
     
            self.tableView?.dataSource = self
-            
+           self.tableView?.delegate = self
            self.tabBarItem.title = "Art"
         
         service.getArticles(for: self.category, completionHandler: { result in
@@ -102,7 +102,7 @@ class ArticleListController: UIViewController {
      */
     
 }
-// MARK: - Table view data source:
+// MARK: - UITableViewDataSource:
 extension ArticleListController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,7 +110,6 @@ extension ArticleListController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(
             withIdentifier: articleCellIdentifier, for: indexPath)
         
@@ -118,5 +117,18 @@ extension ArticleListController: UITableViewDataSource {
         cell.textLabel?.text = article.title
         return cell
     }
-
+}
+// MARK: - UITableViewDelegate:
+extension ArticleListController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let article = self.articles[indexPath.row]
+        if let url = article.url {
+            UIApplication.shared.open(url) { _ in
+                print("opened URL: \(url)")
+            }
+        }
+    }
+    
+    
 }
