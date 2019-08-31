@@ -21,14 +21,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         
         if let root = window?.rootViewController as? UITabBarController {
-            guard let mostEmailed = root.viewControllers?[0] as? ArticleListViewController else { return true }
-            guard let mostShared = root.viewControllers?[1] as? ArticleListViewController else { return true }
-            guard let mostViewed = root.viewControllers?[2] as? ArticleListViewController else { return true }
-            guard let favorites = root.viewControllers?[3] as? ArticleListViewController else { return true }
-            mostEmailed.category = .mostEmailed
-            mostShared.category = .mostShared(.facebook)
-            mostViewed.category = .mostViewed
-            favorites.category = .mostShared(.twitter)
+            
+            let sb = UIStoryboard.init(name: "Main", bundle: nil)
+            
+            guard let mostEmailed = sb.instantiateViewController(
+                withIdentifier: articleListControllerIdentifier) as? UINavigationController else { return true }
+            guard let mostShared = sb.instantiateViewController(
+                withIdentifier: articleListControllerIdentifier) as? UINavigationController else { return true }
+            guard let mostViewed = sb.instantiateViewController(
+                withIdentifier: articleListControllerIdentifier) as? UINavigationController else { return true }
+            guard let favorites = sb.instantiateViewController(
+                withIdentifier: articleListControllerIdentifier) as? UINavigationController else { return true }
+            
+            
+//            mostEmailed.category = .mostEmailed
+//            mostShared.category = .mostShared(.facebook)
+//            mostViewed.category = .mostViewed
+//            favorites.category = .mostShared(.twitter)
+//
+            root.viewControllers = [mostEmailed,mostShared,mostViewed,favorites]
         }
         
         

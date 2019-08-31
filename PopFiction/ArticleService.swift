@@ -43,11 +43,7 @@ class ArticleService {
         case .mostViewed:
             url = URL(string: BASE_URL.appending("/viewed/30.json"))
         }
-        
-//        let urlEmailed = URL(string: BASE_URL.appending("/emailed/30.json?api-key=\(API_Key)"))
-//        let urlShared = URL(string: BASE_URL.appending("/shared/30/facebook.json?api-key=\(API_Key)"))
-//        let urlViewed = URL(string: BASE_URL.appending("/viewed/30.json?api-key=\(API_Key)"))
-    
+
         let parameters: Parameters = ["api-key": API_Key]
         
         guard let validURL = url  else { return }
