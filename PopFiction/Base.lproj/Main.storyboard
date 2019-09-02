@@ -95,7 +95,7 @@
                         <viewLayoutGuide key="safeArea" id="d9L-Uy-GJe"/>
                     </view>
                     <navigationItem key="navigationItem" title="New York Times" id="qVq-oW-2En">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="heart" id="GHu-WZ-fSy">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="favorites" id="GHu-WZ-fSy">
                             <connections>
                                 <segue destination="2te-4V-LaB" kind="show" id="i3p-nA-W1G"/>
                             </connections>
@@ -251,7 +251,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" width="30" height="30"/>
+        <image name="favorites" width="25" height="25"/>
         <image name="img_placeholder" width="75" height="75"/>
     </resources>
 </document>
