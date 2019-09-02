@@ -13,6 +13,7 @@
 		BD554702231A4A0900804DCA /* UIStoryboard+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */; };
 		BD554705231A500100804DCA /* ControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD554704231A500100804DCA /* ControllerFactory.swift */; };
 		BD62CFB8231D1B0D009E78EA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62CFB7231D1B0D009E78EA /* FavoritesViewController.swift */; };
+		BD62CFBB231D3634009E78EA /* PopFiction.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD62CFB9231D3634009E78EA /* PopFiction.xcdatamodeld */; };
 		BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD86961E231818EC00D248E9 /* AppDelegate.swift */; };
 		BD869624231818EC00D248E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD869622231818EC00D248E9 /* Main.storyboard */; };
 		BD869629231818ED00D248E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD869628231818ED00D248E9 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Ext.swift"; sourceTree = "<group>"; };
 		BD554704231A500100804DCA /* ControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerFactory.swift; sourceTree = "<group>"; };
 		BD62CFB7231D1B0D009E78EA /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		BD62CFBA231D3634009E78EA /* PopFiction.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PopFiction.xcdatamodel; sourceTree = "<group>"; };
 		BD86961B231818EC00D248E9 /* PopFiction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopFiction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86961E231818EC00D248E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD869623231818EC00D248E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				BDBBC671231948DC006F8C02 /* CoreDataStack.swift */,
+				BD62CFB9231D3634009E78EA /* PopFiction.xcdatamodeld */,
 				BDBBC673231948E2006F8C02 /* Entities */,
 			);
 			name = CoreData;
@@ -329,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD62CFB8231D1B0D009E78EA /* FavoritesViewController.swift in Sources */,
+				BD62CFBB231D3634009E78EA /* PopFiction.xcdatamodeld in Sources */,
 				BDB4AD1E231836AA004FF50B /* Article+CoreDataClass.swift in Sources */,
 				BD554700231A370E00804DCA /* ArticleListController.swift in Sources */,
 				BDB4AD1723182DF7004FF50B /* Constants.swift in Sources */,
@@ -539,6 +543,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BD62CFB9231D3634009E78EA /* PopFiction.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BD62CFBA231D3634009E78EA /* PopFiction.xcdatamodel */,
+			);
+			currentVersion = BD62CFBA231D3634009E78EA /* PopFiction.xcdatamodel */;
+			name = PopFiction.xcdatamodeld;
+			path = ../../../PopFiction.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BD869613231818EC00D248E9 /* Project object */;
 }

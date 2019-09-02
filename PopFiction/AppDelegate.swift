@@ -37,10 +37,8 @@ extension AppDelegate {
                 .embeddedInNavigatioController()
             let mostViewed = ArticleControllerFactory.makeControllerFor(category: .mostViewed)
                 .embeddedInNavigatioController()
-            let favorites = ArticleControllerFactory.makeControllerFor(category: .mostShared(.twitter))
-                .embeddedInNavigatioController()
             
-            root.viewControllers = [mostEmailed, mostShared, mostViewed, favorites]
+            root.viewControllers = [mostEmailed, mostShared, mostViewed]
         }
     }
 }
