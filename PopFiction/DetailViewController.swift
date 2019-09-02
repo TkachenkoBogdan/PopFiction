@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import WebKit
 
 class DetailViewController: UIViewController {
 
+    var urlToLoad: URL?
+    @IBOutlet var webView: WKWebView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        guard let url = self.urlToLoad else { return }
+        let request = URLRequest(url: url)
+        webView?.load(request)
     }
     
 

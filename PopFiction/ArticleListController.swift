@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class ArticleListController: UIViewController {
     
     
@@ -31,7 +33,6 @@ class ArticleListController: UIViewController {
            self.tableView?.delegate = self
         
         service.getArticles(for: self.category, completionHandler: { result in
-            
             switch result {
             case .success(let articles):
                 self.articles = articles
@@ -42,63 +43,17 @@ class ArticleListController: UIViewController {
         })
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard "toDetailVC" == segue.identifier,
+            let destination = segue.destination as? DetailViewController else { return }
+        
+       
+        let article = self.articles[self.tableView?.indexPathForSelectedRow?.row ?? 0]
+        guard let url = article.url else { return } 
+        
+        destination.urlToLoad = url
+    }
     
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = false
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    
-    
-    
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle:
-     UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class,
-     insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 // MARK: - UITableViewDataSource:
@@ -118,9 +73,6 @@ extension ArticleListController: UITableViewDataSource {
     }
 }
 
-
-
-
 // MARK: - UITableViewDelegate:
 extension ArticleListController: UITableViewDelegate {
     
@@ -131,6 +83,29 @@ extension ArticleListController: UITableViewDelegate {
                 print("opened URL: \(url)")
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // Get current state from data source
+        let article = self.articles[indexPath.row]
+        let favorite = article.isFavorite
+        
+        let title = favorite ?
+            NSLocalizedString("Unfavorite", comment: "Unfavorite") :
+            NSLocalizedString("Favorite", comment: "Favorite")
+        
+        let action = UIContextualAction(style: .normal, title: title,
+                                        handler: { (action, view, completionHandler) in
+                                            // Update data source when user taps action
+                                            article.isFavorite = !favorite
+                                            completionHandler(true)
+        })
+        
+        action.image = UIImage(named: "heart")
+        action.backgroundColor = favorite ? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1) : .green
+        let configuration = UISwipeActionsConfiguration(actions: [action])
+        return configuration
     }
     
     

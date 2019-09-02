@@ -24,5 +24,7 @@ extension Article {
     @NSManaged public var url: URL?
     @NSManaged public var id: Int64
     @NSManaged public var imageUrl: URL?
+    @NSManaged public var isFavorite: Bool
+
 
 }
