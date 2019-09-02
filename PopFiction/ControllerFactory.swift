@@ -15,7 +15,7 @@ struct ArticleControllerFactory {
         
         
         let item = UITabBarItem(title: category.title,
-                                image: UIImage(named: "window"),
+                                image: category.image,
                                 selectedImage: nil)
         controller.dataSource = ArticleDataSource(withCategory: category)
         controller.category = category

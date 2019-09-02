@@ -28,6 +28,19 @@ class ArticleService {
                 return "Most Viewed"
             }
         }
+        
+        var image: UIImage {
+            var image: UIImage?
+                switch self {
+                case .mostEmailed:
+                    image = UIImage(named: "emailed")
+                case .mostShared:
+                    image = UIImage(named: "shared")
+                case .mostViewed:
+                    image = UIImage(named: "viewed")
+                }
+            return image ?? UIImage()
+        }
     }
     
     enum ShareType: String {
