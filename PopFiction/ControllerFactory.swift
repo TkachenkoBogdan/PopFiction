@@ -18,7 +18,6 @@ struct ArticleControllerFactory {
                                 image: category.image,
                                 selectedImage: nil)
         controller.dataSource = ArticleDataSource(withCategory: category)
-        controller.category = category
         controller.tabBarItem = item
         
         return controller

@@ -19,16 +19,6 @@ class ArticleListController: UIViewController {
     var dataSource: ArticleDataSource?
     var notificationToken: NSObjectProtocol?
     
-    
-    private let service = ArticleService.shared
-    var category: ArticleService.ArticleCategory = .mostViewed
-    
-    private var articles = [Article]() {
-        didSet {
-            self.tableView?.reloadData()
-        }
-    }
-    
     // MARK: - Lifecycle:
     
     override func viewDidLoad() {
@@ -57,16 +47,7 @@ class ArticleListController: UIViewController {
 
 // MARK: - Helpers:
 extension ArticleListController {
-    private func fetchArticles() {
-        service.loadArticles(for: self.category, completionHandler: { result in
-            switch result {
-            case .success(let articles):
-                self.articles = articles
-            case .failure:
-                print("Failure to fetch articles :(")
-            }
-        })
-    }
+
     
     private func setFavorite(_ article: Article) {
         let attKeys = article.entity.attributesByName.keys
@@ -107,8 +88,8 @@ extension ArticleListController {
         guard "toDetailVC" == segue.identifier,
             let destination = segue.destination as? DetailViewController else { return }
         
-        let article = self.articles[self.tableView?.indexPathForSelectedRow?.row ?? 0]
-        guard let url = article.url else { return }
+        guard let article = self.dataSource?.articles[self.tableView?.indexPathForSelectedRow?.row ?? 0],
+            let url = article.url else { return }
         
         destination.urlToLoad = url
     }
@@ -116,29 +97,11 @@ extension ArticleListController {
 
 
 
-
-// MARK: - UITableViewDataSource:
-extension ArticleListController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articles.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: articleCellIdentifier, for: indexPath) as? ArticleCell else { return UITableViewCell() }
-        
-        let article = articles[indexPath.row]
-        cell.configureWith(article: article)
-        return cell
-    }
-}
-
 // MARK: - UITableViewDelegate:
 extension ArticleListController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let article = self.articles[indexPath.row]
+        guard let article = self.dataSource?.articles[indexPath.row] else { return }
         if let url = article.url {
             UIApplication.shared.open(url) { _ in
                 print("opened URL: \(url)")
@@ -148,7 +111,7 @@ extension ArticleListController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let article = self.articles[indexPath.row]
+        guard let article = self.dataSource?.articles[indexPath.row] else { return nil }
         
         let title = article.isFavorite ? "Unfavorite": "Favorite"
         

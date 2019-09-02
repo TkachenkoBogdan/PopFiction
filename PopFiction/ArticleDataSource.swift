@@ -22,7 +22,7 @@ class ArticleDataSource: NSObject, UITableViewDataSource {
             }
         })
     }
-    var articles = [Article]() {
+    private(set) var articles = [Article]() {
         didSet {
             NotificationCenter.default.post(name: dataSourceDidChangeNotification, object: self)
         }
