@@ -22,6 +22,9 @@ let articleListControllerIdentifier = "articleListNavigationController"
 let articleCellIdentifier = "articleCell"
 let favoritesArticleCellIdentifier = "favoritesCell"
 
+//Notifications:
+let dataSourceDidChangeNotification = Notification.Name(rawValue: "DataSourceDidChange")
+
 // Segues
 let TO_LOGIN = "toLogin"
 let TO_CREATE_ACCOUNT = "toCreateAccount"

@@ -16,6 +16,10 @@ class ArticleListController: UIViewController {
     
     @IBOutlet private var tableView: UITableView?
     
+    var dataSource: ArticleDataSource?
+    var notificationToken: NSObjectProtocol?
+    
+    
     private let service = ArticleService.shared
     var category: ArticleService.ArticleCategory = .mostViewed
     
@@ -30,10 +34,23 @@ class ArticleListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-           self.tableView?.dataSource = self
+           self.tableView?.dataSource = self.dataSource
            self.tableView?.delegate = self
         
-        fetchArticles()
+       // fetchArticles()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        notificationToken = NotificationCenter.default.addObserver(forName: dataSourceDidChangeNotification,
+                                               object: dataSource,
+                                               queue: nil) { [weak self] _ in
+        
+            self?.tableView?.reloadData()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        notificationToken = nil
     }
 
 }

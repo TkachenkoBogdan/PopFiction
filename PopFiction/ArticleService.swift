@@ -75,7 +75,7 @@ class ArticleService {
         }
     }
     
-    func parseArticles(from data: Data) -> [Article]? {
+    private func parseArticles(from data: Data) -> [Article]? {
         if let json = try? JSON.init(data: data) {
             var articles: [Article] = []
             
