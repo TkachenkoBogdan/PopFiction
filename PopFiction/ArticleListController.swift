@@ -41,7 +41,7 @@ class ArticleListController: UIViewController {
 // MARK: - Helpers:
 extension ArticleListController {
     private func fetchArticles() {
-        service.getArticles(for: self.category, completionHandler: { result in
+        service.loadArticles(for: self.category, completionHandler: { result in
             switch result {
             case .success(let articles):
                 self.articles = articles

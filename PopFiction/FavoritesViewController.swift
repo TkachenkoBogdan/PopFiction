@@ -62,7 +62,8 @@ extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: favoritesArticleCellIdentifier, for: indexPath) as? ArticleCell else { return UITableViewCell() }
+            withIdentifier: favoritesArticleCellIdentifier,
+            for: indexPath) as? ArticleCell else { return UITableViewCell() }
         
         let article = articles[indexPath.row]
         cell.configureWith(article: article)

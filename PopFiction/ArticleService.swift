@@ -42,7 +42,7 @@ class ArticleService {
     private init() {
     }
     
-     func getArticles(for category: ArticleCategory = .mostViewed,
+    func loadArticles(for category: ArticleCategory = .mostViewed,
                       completionHandler: @escaping (Result<[Article], Error>) -> Void) {
         var url: URL?
         
@@ -54,7 +54,7 @@ class ArticleService {
         case .mostViewed:
             url = URL(string: BASE_URL.appending("/viewed/30.json"))
         }
-
+        
         let parameters: Parameters = ["api-key": API_Key]
         let queue = DispatchQueue(label: "com.test.api",
                                   qos: .background,
@@ -65,47 +65,47 @@ class ArticleService {
                    parameters: parameters,
                    encoding: URLEncoding.default,
                    headers: HEADER).responseJSON(queue: queue) { responce in
-                   
-                    guard responce.error == nil, let data = responce.data else { return }
-                    var articlesArray = [Article]()
                     
-                    if let json = try? JSON.init(data: data) {
-                        guard let articles = json["results"].array else { return }
-                        
-                        
-                        for article in articles {
-                            
-                            let title = article["title"].string
-                            let abstract = article["abstract"].string
-                            let byline = article["byline"].string
-                            let url = article["url"].url
-                            let id = article["id"].int64 ?? 0
-                           
-                            guard let mediaContainer = article["media"].array?.first  else { return } //["url"].url
-                            guard let mediaInfo = mediaContainer["media-metadata"].first?.1 else { return }
-                            guard let imageUrlString = mediaInfo["url"].string,
-                                let imageUrl = URL(string: imageUrlString) else { return }
-                            if let context = self.context {
-                               let article = Article(context: context)
-                                article.title = title
-                                article.abstract = abstract
-                                article.byline = byline
-                                article.id = id
-                                article.url = url
-                                article.imageUrl = imageUrl
-                                articlesArray.append(article)
-                            }
-                        }
-                        DispatchQueue.main.async {
-                             print(self.context?.insertedObjects.count)
-                             completionHandler(Result.success(articlesArray))
-                        }
+                    guard responce.error == nil, let data = responce.data else { return }
+                    guard let articlesArray = self.parseArticles(from: data) else { return }
+                    
+                    DispatchQueue.main.async {
+                        completionHandler(Result.success(articlesArray))
                     }
         }
     }
     
-    
-    
-    
+    func parseArticles(from data: Data) -> [Article]? {
+        if let json = try? JSON.init(data: data) {
+            var articles: [Article] = []
+            
+            guard let topContainer = json["results"].array else { return nil }
+            
+            for article in topContainer {
+                let title = article["title"].string
+                let abstract = article["abstract"].string
+                let byline = article["byline"].string
+                let url = article["url"].url
+                let id = article["id"].int64 ?? 0
+                
+                guard let mediaContainer = article["media"].array?.first  else { return nil}
+                guard let mediaInfo = mediaContainer["media-metadata"].first?.1 else { return nil}
+                guard let imageUrlString = mediaInfo["url"].string,
+                    let imageUrl = URL(string: imageUrlString) else { return nil }
+                if let context = self.context {
+                    let article = Article(context: context)
+                    article.title = title
+                    article.abstract = abstract
+                    article.byline = byline
+                    article.id = id
+                    article.url = url
+                    article.imageUrl = imageUrl
+                    articles.append(article)
+                }
+            }
+            return articles
+        }
+        return nil
+    }
     
 }
