@@ -20,7 +20,7 @@ let articleListControllerIdentifier = "articleListNavigationController"
 
 // Cell Identifiers:
 let articleCellIdentifier = "articleCell"
-
+let favoritesArticleCellIdentifier = "favoritesCell"
 
 // Segues
 let TO_LOGIN = "toLogin"

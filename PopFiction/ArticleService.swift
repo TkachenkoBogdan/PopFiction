@@ -85,28 +85,23 @@ class ArticleService {
                             guard let mediaInfo = mediaContainer["media-metadata"].first?.1 else { return }
                             guard let imageUrlString = mediaInfo["url"].string,
                                 let imageUrl = URL(string: imageUrlString) else { return }
-                            
-                            
-                            
                             if let context = self.context {
                                let article = Article(context: context)
                                 article.title = title
                                 article.abstract = abstract
                                 article.byline = byline
-                
                                 article.id = id
                                 article.url = url
                                 article.imageUrl = imageUrl
-                        
                                 articlesArray.append(article)
                             }
                         }
                         DispatchQueue.main.async {
+                             print(self.context?.insertedObjects.count)
                              completionHandler(Result.success(articlesArray))
                         }
                     }
         }
-        
     }
     
     

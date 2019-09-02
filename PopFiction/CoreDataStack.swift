@@ -40,6 +40,10 @@ class CoreDataStack {
   lazy var managedContext: NSManagedObjectContext = {
     return self.storeContainer.viewContext
   }()
+    
+  lazy var persistentContext: NSManagedObjectContext = {
+        return self.storeContainer.newBackgroundContext()
+  }()
 
   private lazy var storeContainer: NSPersistentContainer = {
 
@@ -53,10 +57,10 @@ class CoreDataStack {
   }()
 
   func saveContext () {
-    guard managedContext.hasChanges else { return }
+    guard persistentContext.hasChanges else { return }
 
     do {
-      try managedContext.save()
+      try persistentContext.save()
     } catch let error as NSError {
       print("Unresolved error \(error), \(error.userInfo)")
     }

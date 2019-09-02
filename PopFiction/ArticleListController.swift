@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 
 
 class ArticleListController: UIViewController {
-    
+    private let persistantContext = (UIApplication.shared.delegate
+        as? AppDelegate)?.coreDataStack.persistentContext
     
     @IBOutlet private var tableView: UITableView?
     
@@ -96,9 +98,40 @@ extension ArticleListController: UITableViewDelegate {
             NSLocalizedString("Favorite", comment: "Favorite")
         
         let action = UIContextualAction(style: .normal, title: title,
-                                        handler: { (action, view, completionHandler) in
+                                        handler: { [unowned self] action, view, completionHandler in
                                             // Update data source when user taps action
                                             article.isFavorite = !favorite
+         
+                                            if article.isFavorite {
+                let attKeys = article.entity.attributesByName.keys
+                    .map {
+                        String($0)
+                }
+                
+                let attributes = article.dictionaryWithValues(forKeys: attKeys)
+                
+                if let persistantContext = self.persistantContext {
+                    let newArticle = Article(context: persistantContext)
+                    newArticle.setValuesForKeys(attributes)
+                    print(newArticle)
+                    
+                    guard let coreDataStack = (UIApplication.shared.delegate
+                        as? AppDelegate)?.coreDataStack else { return }
+                    coreDataStack.saveContext()
+                }
+                                            } else {
+                                               
+                                                let request: NSFetchRequest<Article> = Article.fetchRequest()
+                                                
+                                                request.predicate = NSPredicate(
+                                                    format: "%K = %@", argumentArray: [#keyPath(Article.id),article.id])
+                                                
+                                                if let artToDelete = try? self.persistantContext?.fetch(request).first {
+                                                    self.persistantContext?.delete(artToDelete)
+                                                }
+                                            }
+                                            
+                                            
                                             completionHandler(true)
         })
         

@@ -12,9 +12,9 @@
 		BD554700231A370E00804DCA /* ArticleListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5546FF231A370E00804DCA /* ArticleListController.swift */; };
 		BD554702231A4A0900804DCA /* UIStoryboard+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */; };
 		BD554705231A500100804DCA /* ControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD554704231A500100804DCA /* ControllerFactory.swift */; };
+		BD62CFB8231D1B0D009E78EA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62CFB7231D1B0D009E78EA /* FavoritesViewController.swift */; };
 		BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD86961E231818EC00D248E9 /* AppDelegate.swift */; };
 		BD869624231818EC00D248E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD869622231818EC00D248E9 /* Main.storyboard */; };
-		BD869627231818EC00D248E9 /* PopFiction.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD869625231818EC00D248E9 /* PopFiction.xcdatamodeld */; };
 		BD869629231818ED00D248E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD869628231818ED00D248E9 /* Assets.xcassets */; };
 		BD86962C231818ED00D248E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD86962A231818ED00D248E9 /* LaunchScreen.storyboard */; };
 		BDB4AD1423182CC6004FF50B /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB4AD1323182CC6004FF50B /* ArticleService.swift */; };
@@ -35,10 +35,10 @@
 		BD5546FF231A370E00804DCA /* ArticleListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListController.swift; sourceTree = "<group>"; };
 		BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Ext.swift"; sourceTree = "<group>"; };
 		BD554704231A500100804DCA /* ControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerFactory.swift; sourceTree = "<group>"; };
+		BD62CFB7231D1B0D009E78EA /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		BD86961B231818EC00D248E9 /* PopFiction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopFiction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86961E231818EC00D248E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD869623231818EC00D248E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BD869626231818EC00D248E9 /* PopFiction.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PopFiction.xcdatamodel; sourceTree = "<group>"; };
 		BD869628231818ED00D248E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD86962B231818ED00D248E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD86962D231818ED00D248E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				BD5546FF231A370E00804DCA /* ArticleListController.swift */,
+				BD62CFB7231D1B0D009E78EA /* FavoritesViewController.swift */,
 				BD141D0D23193DB300BAF23F /* DetailViewController.swift */,
 			);
 			name = Controller;
@@ -113,7 +114,6 @@
 			children = (
 				BDBBC671231948DC006F8C02 /* CoreDataStack.swift */,
 				BDBBC673231948E2006F8C02 /* Entities */,
-				BD869625231818EC00D248E9 /* PopFiction.xcdatamodeld */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -328,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD62CFB8231D1B0D009E78EA /* FavoritesViewController.swift in Sources */,
 				BDB4AD1E231836AA004FF50B /* Article+CoreDataClass.swift in Sources */,
 				BD554700231A370E00804DCA /* ArticleListController.swift in Sources */,
 				BDB4AD1723182DF7004FF50B /* Constants.swift in Sources */,
@@ -336,7 +337,6 @@
 				BDBBC672231948DD006F8C02 /* CoreDataStack.swift in Sources */,
 				BD554705231A500100804DCA /* ControllerFactory.swift in Sources */,
 				BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */,
-				BD869627231818EC00D248E9 /* PopFiction.xcdatamodeld in Sources */,
 				BDB4AD1F231836AA004FF50B /* Article+CoreDataProperties.swift in Sources */,
 				BDBBC6752319542F006F8C02 /* ArticleCell.swift in Sources */,
 				BD141D0E23193DB300BAF23F /* DetailViewController.swift in Sources */,
@@ -539,19 +539,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		BD869625231818EC00D248E9 /* PopFiction.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				BD869626231818EC00D248E9 /* PopFiction.xcdatamodel */,
-			);
-			currentVersion = BD869626231818EC00D248E9 /* PopFiction.xcdatamodel */;
-			path = PopFiction.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = BD869613231818EC00D248E9 /* Project object */;
 }
