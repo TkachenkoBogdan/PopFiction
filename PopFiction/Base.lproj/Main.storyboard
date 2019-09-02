@@ -49,8 +49,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="2c4-Zv-XtR">
-                                                    <rect key="frame" x="11" y="46" width="75" height="75"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shared" translatesAutoresizingMaskIntoConstraints="NO" id="2c4-Zv-XtR">
+                                                    <rect key="frame" x="11" y="46.5" width="75" height="75"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="75" id="mM5-ss-clu"/>
                                                         <constraint firstAttribute="width" secondItem="2c4-Zv-XtR" secondAttribute="height" multiplier="50:50" id="yiy-cX-qUN"/>
@@ -74,8 +74,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bylineLabel" destination="KEZ-Fc-kXb" id="vbR-pc-hmg"/>
-                                            <outlet property="imageView" destination="2c4-Zv-XtR" id="HIO-1I-TTr"/>
                                             <outlet property="summaryLabel" destination="gwx-G8-SXs" id="LyG-cw-4Hy"/>
+                                            <outlet property="thumnailImageView" destination="2c4-Zv-XtR" id="HYw-Kx-e0Y"/>
                                             <outlet property="titleLabel" destination="cBV-0k-Vme" id="AzL-qm-t2F"/>
                                         </connections>
                                     </tableViewCell>
@@ -116,6 +116,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="img_placeholder" width="75" height="75"/>
+        <image name="shared" width="30" height="30"/>
     </resources>
 </document>
