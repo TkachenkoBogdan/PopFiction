@@ -15,11 +15,14 @@ class ArticleCell: UITableViewCell {
     @IBOutlet private var summaryLabel: UILabel?
     @IBOutlet private var bylineLabel: UILabel?
     @IBOutlet private var thumnailImageView: UIImageView?
-
+    @IBOutlet private var favoriteImageView: UIImageView?
+    
     func configureWith(article: Article) {
         self.titleLabel?.text = article.title
         self.summaryLabel?.text = article.abstract
         self.bylineLabel?.text = article.byline
+        self.favoriteImageView?.image = article.isFavorite ?
+            UIImage(named: "heart_filled") : nil
      
         guard let imageURL = article.imageUrl else { return }
         self.thumnailImageView?.sd_setImage(with: imageURL)

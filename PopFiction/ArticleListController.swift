@@ -118,6 +118,7 @@ extension ArticleListController: UITableViewDelegate {
         let action = UIContextualAction(style: .normal, title: title,
                                         handler: { [unowned self] _, _, completionHandler in
             article.isFavorite.toggle()
+            self.tableView?.reloadRows(at: [indexPath], with: .automatic)
             if article.isFavorite {
                 self.setFavorite(article)
             } else {
@@ -127,7 +128,7 @@ extension ArticleListController: UITableViewDelegate {
         })
         
         action.image = UIImage(named: "heart")
-        action.backgroundColor = article.isFavorite ? #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1) : .green
+        action.backgroundColor = article.isFavorite ? unfavoriteColor : favoriteColor
         let configuration = UISwipeActionsConfiguration(actions: [action])
         return configuration
     }

@@ -58,6 +58,10 @@
                                                     <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_empty" translatesAutoresizingMaskIntoConstraints="NO" id="5OH-Ht-0w3">
+                                                    <rect key="frame" x="369" y="132" width="25" height="25"/>
+                                                    <color key="tintColor" red="1" green="0.22572666750000001" blue="0.40745575420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="gwx-G8-SXs" firstAttribute="trailing" secondItem="RjS-kE-uLm" secondAttribute="trailingMargin" id="5PY-RW-cJP"/>
@@ -72,11 +76,14 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="KEZ-Fc-kXb" secondAttribute="bottom" constant="1.5" id="ec8-wa-lpV"/>
                                                 <constraint firstItem="2c4-Zv-XtR" firstAttribute="top" secondItem="cBV-0k-Vme" secondAttribute="bottom" constant="5" id="fRk-sd-C4V"/>
                                                 <constraint firstItem="cBV-0k-Vme" firstAttribute="top" secondItem="RjS-kE-uLm" secondAttribute="topMargin" id="gE2-Ab-6DT"/>
+                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="bottom" secondItem="RjS-kE-uLm" secondAttribute="bottomMargin" id="gf2-mb-nVh"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="KEZ-Fc-kXb" secondAttribute="trailing" id="jz8-Dy-WCa"/>
+                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="trailing" secondItem="RjS-kE-uLm" secondAttribute="trailingMargin" id="wdI-B2-bU0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bylineLabel" destination="KEZ-Fc-kXb" id="vbR-pc-hmg"/>
+                                            <outlet property="favoriteImageView" destination="5OH-Ht-0w3" id="pl9-tI-bmL"/>
                                             <outlet property="summaryLabel" destination="gwx-G8-SXs" id="LyG-cw-4Hy"/>
                                             <outlet property="thumnailImageView" destination="2c4-Zv-XtR" id="HYw-Kx-e0Y"/>
                                             <outlet property="titleLabel" destination="cBV-0k-Vme" id="AzL-qm-t2F"/>
@@ -252,6 +259,7 @@
     </scenes>
     <resources>
         <image name="favorites" width="25" height="25"/>
+        <image name="heart_empty" width="25" height="25"/>
         <image name="img_placeholder" width="75" height="75"/>
     </resources>
 </document>
