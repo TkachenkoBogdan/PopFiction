@@ -37,6 +37,10 @@ class FavoritesViewController: UIViewController {
             self.articles = articles
         }
     }
+    
+    @IBAction func backButtonPressed(_ sender: Any) {
+      dismissFavorites()
+    }
 }
 
 extension FavoritesViewController: UITableViewDataSource {
