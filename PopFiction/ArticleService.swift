@@ -98,6 +98,7 @@ class ArticleService {
                 let byline = article["byline"].string
                 let url = article["url"].url
                 let id = article["id"].int64 ?? 0
+                let publishDate = article["published_date"].stringValue
                 
                 guard let mediaContainer = article["media"].array?.first  else { return nil}
                 guard let mediaInfo = mediaContainer["media-metadata"].first?.1 else { return nil}
@@ -111,6 +112,15 @@ class ArticleService {
                     article.id = id
                     article.url = url
                     article.imageUrl = imageUrl
+                    
+                    // FIXME: - Refactor this:
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    if let date: Date = dateFormatter.date(from: publishDate) {
+                    print(date)
+                    // "published_date": "2019-08-10",
+                    article.publishedDate = date as NSDate
+                    }
                     synchronizeFavorite(with: article)
                     
                     articles.append(article)

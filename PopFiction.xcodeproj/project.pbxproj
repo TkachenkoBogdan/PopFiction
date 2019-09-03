@@ -26,6 +26,7 @@
 		BDBBC672231948DD006F8C02 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBBC671231948DC006F8C02 /* CoreDataStack.swift */; };
 		BDBBC6752319542F006F8C02 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDBBC6742319542F006F8C02 /* ArticleCell.swift */; };
 		BDDE43EC231E432F001AD156 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDE43EB231E432F001AD156 /* UIViewController+Ext.swift */; };
+		BDDE43EE231E453F001AD156 /* FavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDE43ED231E453F001AD156 /* FavoritesCell.swift */; };
 		F01D6EFF74CB74793165B275 /* Pods_PopFiction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899EC5F08F7DE3AA3D9B4639 /* Pods_PopFiction.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		BDBBC671231948DC006F8C02 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		BDBBC6742319542F006F8C02 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		BDDE43EB231E432F001AD156 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		BDDE43ED231E453F001AD156 /* FavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				BD869622231818EC00D248E9 /* Main.storyboard */,
 				BDBBC6742319542F006F8C02 /* ArticleCell.swift */,
+				BDDE43ED231E453F001AD156 /* FavoritesCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD62CFB8231D1B0D009E78EA /* FavoritesViewController.swift in Sources */,
+				BDDE43EE231E453F001AD156 /* FavoritesCell.swift in Sources */,
 				BD62CFC1231D42BD009E78EA /* PopFiction.xcdatamodeld in Sources */,
 				BDDE43EC231E432F001AD156 /* UIViewController+Ext.swift in Sources */,
 				BDB4AD1E231836AA004FF50B /* Article+CoreDataClass.swift in Sources */,
