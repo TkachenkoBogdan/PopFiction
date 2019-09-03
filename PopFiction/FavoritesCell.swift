@@ -18,8 +18,9 @@ class FavoritesCell: ArticleCell {
         super.configureWith(article: article)
         self.dateLabel?.text = dateToString(article.publishedDate as? Date ?? Date())
         
-//        guard let imageURL = article.largeImageUrl else { return }
-//        self.largeImageView?.sd_setImage(with: imageURL)
+        guard let imageURL = article.largeImageUrl else { return }
+        self.largeImageView?.sd_setImage(with: imageURL,
+                                         placeholderImage: UIImage(named: "placeholder_large"))
         
    }
     
