@@ -10,6 +10,8 @@ import UIKit
 
 class FavoritesCell: ArticleCell {
 
-
+   override func configureWith(article: Article) {
+        
+   }
     
 }

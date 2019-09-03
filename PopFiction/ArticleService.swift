@@ -117,12 +117,11 @@ class ArticleService {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     if let date: Date = dateFormatter.date(from: publishDate) {
-                    print(date)
-                    // "published_date": "2019-08-10",
+                        dateFormatter.dateStyle = .short
+                        let shortDate = dateFormatter.date(from:)
                     article.publishedDate = date as NSDate
                     }
                     synchronizeFavorite(with: article)
-                    
                     articles.append(article)
                 }
             }

@@ -9,23 +9,14 @@
 import UIKit
 import SDWebImage
 
-class ArticleCell: UITableViewCell {
+class ArticleCell: BaseCell {
 
-    @IBOutlet private var titleLabel: UILabel?
-    @IBOutlet private var summaryLabel: UILabel?
-    @IBOutlet private var bylineLabel: UILabel?
-    @IBOutlet private var thumnailImageView: UIImageView?
     @IBOutlet private var favoriteImageView: UIImageView?
     
-    func configureWith(article: Article) {
-        self.titleLabel?.text = article.title
-        self.summaryLabel?.text = article.abstract
-        self.bylineLabel?.text = article.byline
+    override func configureWith(article: Article) {
+        super.configureWith(article: article)
         self.favoriteImageView?.image = article.isFavorite ?
             UIImage(named: "heart_filled") : nil
-     
-        guard let imageURL = article.imageUrl else { return }
-        self.thumnailImageView?.sd_setImage(with: imageURL)
     }
 
 }
