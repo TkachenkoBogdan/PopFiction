@@ -13,10 +13,12 @@ class FavoritesCell: ArticleCell {
 
     @IBOutlet private var dateLabel: UILabel?
     @IBOutlet private var largeImageView: UIImageView?
+    @IBOutlet private var summaryLabel: UILabel?
     
     override func configureWith(article: Article) {
         super.configureWith(article: article)
         self.dateLabel?.text = dateToString(article.publishedDate as? Date ?? Date())
+        self.summaryLabel?.text = article.abstract
         
         guard let imageURL = article.largeImageUrl else { return }
         self.largeImageView?.sd_setImage(with: imageURL,

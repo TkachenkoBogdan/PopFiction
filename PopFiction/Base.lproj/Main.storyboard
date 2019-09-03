@@ -25,66 +25,55 @@
                                 <color key="separatorColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="articleCell" rowHeight="168" id="LCP-ul-Bgy" customClass="ArticleCell" customModule="PopFiction" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="168"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="articleCell" rowHeight="91" id="LCP-ul-Bgy" customClass="ArticleCell" customModule="PopFiction" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LCP-ul-Bgy" id="RjS-kE-uLm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="167.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwx-G8-SXs">
-                                                    <rect key="frame" x="98" y="52" width="262" height="80"/>
-                                                    <string key="text">Our founding ideals of liberty and equality were false when they were written. For generations, black Americans have fought to make them true.</string>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Texas Is a Leader in Mass Shootings. Why Is the Governor Silent?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBV-0k-Vme">
-                                                    <rect key="frame" x="15" y="11" width="345" height="41"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Texas Is a Leader in Mass Shootings. Why Is the Governor Silent?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBV-0k-Vme">
+                                                    <rect key="frame" x="98" y="11" width="262" height="51"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="2c4-Zv-XtR">
-                                                    <rect key="frame" x="15" y="57" width="75" height="75"/>
+                                                    <rect key="frame" x="15" y="11" width="75" height="75"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="75" id="Mpd-oH-HLX"/>
-                                                        <constraint firstAttribute="height" constant="75" id="mp5-Ul-3kE"/>
+                                                        <constraint firstAttribute="height" constant="75" id="W29-D1-bap"/>
+                                                        <constraint firstAttribute="width" constant="75" id="heJ-xL-EJ8"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Byline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEZ-Fc-kXb">
-                                                    <rect key="frame" x="15" y="142" width="307" height="13.666666666666657"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="11"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="By Annie Karni and Maggie Haberman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMo-DQ-rP8">
+                                                    <rect key="frame" x="98" y="67" width="237" height="13"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_empty" translatesAutoresizingMaskIntoConstraints="NO" id="5OH-Ht-0w3">
-                                                    <rect key="frame" x="335" y="132" width="25" height="25"/>
+                                                    <rect key="frame" x="335" y="55" width="25" height="25"/>
                                                     <color key="tintColor" red="1" green="0.22572666750000001" blue="0.40745575420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="gwx-G8-SXs" firstAttribute="trailing" secondItem="RjS-kE-uLm" secondAttribute="trailingMargin" id="5PY-RW-cJP"/>
-                                                <constraint firstItem="KEZ-Fc-kXb" firstAttribute="leading" secondItem="RjS-kE-uLm" secondAttribute="leadingMargin" id="Ado-mF-zhI"/>
-                                                <constraint firstItem="2c4-Zv-XtR" firstAttribute="leading" secondItem="RjS-kE-uLm" secondAttribute="leadingMargin" id="Ncy-ND-b0I"/>
-                                                <constraint firstItem="gwx-G8-SXs" firstAttribute="leading" secondItem="2c4-Zv-XtR" secondAttribute="trailing" constant="8" id="STS-FW-KJi"/>
-                                                <constraint firstItem="KEZ-Fc-kXb" firstAttribute="top" secondItem="2c4-Zv-XtR" secondAttribute="bottom" constant="10" id="SZe-Ny-geF"/>
-                                                <constraint firstItem="gwx-G8-SXs" firstAttribute="top" secondItem="cBV-0k-Vme" secondAttribute="bottom" id="VHQ-nY-Ydf"/>
-                                                <constraint firstItem="cBV-0k-Vme" firstAttribute="leading" secondItem="RjS-kE-uLm" secondAttribute="leadingMargin" id="Xgc-8V-4ZG"/>
-                                                <constraint firstItem="KEZ-Fc-kXb" firstAttribute="top" secondItem="gwx-G8-SXs" secondAttribute="bottom" constant="10" id="ZCw-nu-ayd"/>
-                                                <constraint firstItem="cBV-0k-Vme" firstAttribute="trailing" secondItem="RjS-kE-uLm" secondAttribute="trailingMargin" id="dYw-kF-f0e"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="KEZ-Fc-kXb" secondAttribute="bottom" constant="1.5" id="ec8-wa-lpV"/>
-                                                <constraint firstItem="2c4-Zv-XtR" firstAttribute="top" secondItem="cBV-0k-Vme" secondAttribute="bottom" constant="5" id="fRk-sd-C4V"/>
-                                                <constraint firstItem="cBV-0k-Vme" firstAttribute="top" secondItem="RjS-kE-uLm" secondAttribute="topMargin" id="gE2-Ab-6DT"/>
-                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="bottom" secondItem="RjS-kE-uLm" secondAttribute="bottomMargin" id="gf2-mb-nVh"/>
-                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="trailingMargin" secondItem="KEZ-Fc-kXb" secondAttribute="trailing" constant="30" id="jz8-Dy-WCa"/>
-                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="trailing" secondItem="RjS-kE-uLm" secondAttribute="trailingMargin" id="wdI-B2-bU0"/>
+                                                <constraint firstItem="cBV-0k-Vme" firstAttribute="leading" secondItem="2c4-Zv-XtR" secondAttribute="trailing" constant="8" id="3wT-1b-kzk"/>
+                                                <constraint firstItem="cBV-0k-Vme" firstAttribute="trailing" secondItem="5OH-Ht-0w3" secondAttribute="trailing" id="4e1-wy-tg4"/>
+                                                <constraint firstItem="2c4-Zv-XtR" firstAttribute="leading" secondItem="RjS-kE-uLm" secondAttribute="leadingMargin" id="6ql-gu-jE8"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="5OH-Ht-0w3" secondAttribute="bottom" id="8fg-Mg-EOW"/>
+                                                <constraint firstItem="2c4-Zv-XtR" firstAttribute="top" secondItem="RjS-kE-uLm" secondAttribute="topMargin" id="9Bk-X8-gUe"/>
+                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="trailing" secondItem="RjS-kE-uLm" secondAttribute="trailingMargin" id="E49-C8-8Jz"/>
+                                                <constraint firstItem="qMo-DQ-rP8" firstAttribute="top" secondItem="cBV-0k-Vme" secondAttribute="bottom" constant="5" id="LyK-Yq-Kbo"/>
+                                                <constraint firstItem="cBV-0k-Vme" firstAttribute="top" secondItem="RjS-kE-uLm" secondAttribute="top" constant="11" id="Mca-3S-CdX"/>
+                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="leading" secondItem="qMo-DQ-rP8" secondAttribute="trailing" id="fXz-k9-M4C"/>
+                                                <constraint firstItem="qMo-DQ-rP8" firstAttribute="leading" secondItem="2c4-Zv-XtR" secondAttribute="trailing" constant="8" id="q3m-pt-433"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="2c4-Zv-XtR" secondAttribute="bottom" constant="-6" id="uWn-De-UiG"/>
+                                                <constraint firstItem="qMo-DQ-rP8" firstAttribute="bottom" secondItem="RjS-kE-uLm" secondAttribute="bottomMargin" id="vLa-hu-RMJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="bylineLabel" destination="KEZ-Fc-kXb" id="vbR-pc-hmg"/>
+                                            <outlet property="bylineLabel" destination="qMo-DQ-rP8" id="DAC-Mk-MnN"/>
                                             <outlet property="favoriteImageView" destination="5OH-Ht-0w3" id="pl9-tI-bmL"/>
-                                            <outlet property="summaryLabel" destination="gwx-G8-SXs" id="LyG-cw-4Hy"/>
                                             <outlet property="thumnailImageView" destination="2c4-Zv-XtR" id="HYw-Kx-e0Y"/>
                                             <outlet property="titleLabel" destination="cBV-0k-Vme" id="AzL-qm-t2F"/>
                                         </connections>
@@ -117,41 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pio-La-an3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="474" y="108"/>
-        </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="8Xf-yO-jwP">
-            <objects>
-                <viewController storyboardIdentifier="detailVC" id="QKO-Zu-5lV" customClass="DetailViewController" customModule="PopFiction" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="rve-hB-02v">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q3K-1i-5pI">
-                                <rect key="frame" x="0.0" y="76" width="414" height="761"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Q3K-1i-5pI" firstAttribute="top" secondItem="6pt-OB-pTx" secondAttribute="top" constant="56" id="SxQ-pU-EBP"/>
-                            <constraint firstAttribute="bottom" secondItem="Q3K-1i-5pI" secondAttribute="bottom" id="cZP-kG-0kw"/>
-                            <constraint firstAttribute="trailing" secondItem="Q3K-1i-5pI" secondAttribute="trailing" id="h3y-Zw-hxN"/>
-                            <constraint firstItem="Q3K-1i-5pI" firstAttribute="leading" secondItem="6pt-OB-pTx" secondAttribute="leading" id="wzK-ed-Xf3"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6pt-OB-pTx"/>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="Q3K-1i-5pI" id="Rpt-SG-BLB"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HeS-Ns-iXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1201" y="30"/>
+            <point key="canvasLocation" x="472.80000000000001" y="107.88177339901478"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="NHM-5j-zxh">

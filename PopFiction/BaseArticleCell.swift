@@ -12,13 +12,10 @@ import SDWebImage
 class BaseCell: UITableViewCell {
     
     @IBOutlet private var titleLabel: UILabel?
-    @IBOutlet private var summaryLabel: UILabel?
     @IBOutlet private var bylineLabel: UILabel?
-    
     
     func configureWith(article: Article) {
         self.titleLabel?.text = article.title
-        self.summaryLabel?.text = article.abstract
         self.bylineLabel?.text = article.byline
     }
     

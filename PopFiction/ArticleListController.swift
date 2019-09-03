@@ -81,22 +81,6 @@ extension ArticleListController {
     }
 }
 
-// MARK: - Navigation:
-extension ArticleListController {
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard "toDetailVC" == segue.identifier,
-            let destination = segue.destination as? DetailViewController else { return }
-        
-        guard let article = self.dataSource?.articles[self.tableView?.indexPathForSelectedRow?.row ?? 0],
-            let url = article.url else { return }
-        
-        destination.urlToLoad = url
-    }
-}
-
-
-
 // MARK: - UITableViewDelegate:
 extension ArticleListController: UITableViewDelegate {
     
