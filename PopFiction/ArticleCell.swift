@@ -20,7 +20,8 @@ class ArticleCell: BaseCell {
             UIImage(named: "heart_filled") : nil
         
         guard let imageURL = article.imageUrl else { return }
-        self.thumnailImageView?.sd_setImage(with: imageURL)
+        self.thumnailImageView?.sd_setImage(with: imageURL,
+                                            placeholderImage: UIImage(named: "img_placeholder"))
     }
 
 }

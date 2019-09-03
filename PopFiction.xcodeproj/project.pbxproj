@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD141D0E23193DB300BAF23F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD141D0D23193DB300BAF23F /* DetailViewController.swift */; };
 		BD31DC32231828A6002523AC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BD31DC31231828A6002523AC /* .swiftlint.yml */; };
 		BD554700231A370E00804DCA /* ArticleListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5546FF231A370E00804DCA /* ArticleListController.swift */; };
 		BD554702231A4A0900804DCA /* UIStoryboard+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */; };
@@ -35,7 +34,6 @@
 		3C5B332B4ADDF3CF328B493F /* Pods-PopFiction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.debug.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.debug.xcconfig"; sourceTree = "<group>"; };
 		5F26293688AF7E63F6BEB2E2 /* Pods-PopFiction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.release.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.release.xcconfig"; sourceTree = "<group>"; };
 		899EC5F08F7DE3AA3D9B4639 /* Pods_PopFiction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopFiction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD141D0D23193DB300BAF23F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BD31DC31231828A6002523AC /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		BD5546FF231A370E00804DCA /* ArticleListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListController.swift; sourceTree = "<group>"; };
 		BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Ext.swift"; sourceTree = "<group>"; };
@@ -85,8 +83,7 @@
 			children = (
 				BD5546FF231A370E00804DCA /* ArticleListController.swift */,
 				BD62CFB7231D1B0D009E78EA /* FavoritesViewController.swift */,
-				BD141D0D23193DB300BAF23F /* DetailViewController.swift */,
-				BD62CFC2231D42FD009E78EA /* ArticleDataSource.swift */,
+				BD67EFB9231E74840069A29D /* DataSources */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -130,6 +127,14 @@
 				BD554704231A500100804DCA /* ControllerFactory.swift */,
 			);
 			name = Factories;
+			sourceTree = "<group>";
+		};
+		BD67EFB9231E74840069A29D /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				BD62CFC2231D42FD009E78EA /* ArticleDataSource.swift */,
+			);
+			name = DataSources;
 			sourceTree = "<group>";
 		};
 		BD869612231818EC00D248E9 = {
@@ -351,7 +356,6 @@
 				BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */,
 				BDB4AD1F231836AA004FF50B /* Article+CoreDataProperties.swift in Sources */,
 				BDBBC6752319542F006F8C02 /* ArticleCell.swift in Sources */,
-				BD141D0E23193DB300BAF23F /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
