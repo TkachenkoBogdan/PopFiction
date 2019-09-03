@@ -10,23 +10,32 @@ import UIKit
 
 class ArticleDataSource: NSObject, UITableViewDataSource {
     
+    typealias Completion = ( (Bool) -> Void )
+    private let category: ArticleService.ArticleCategory
+    
     init(withCategory category: ArticleService.ArticleCategory) {
+        self.category = category
         super.init()
-
-        ArticleService.shared.loadArticles(for: category, completionHandler: { result in
-            switch result {
-            case .success(let articles):
-                self.articles = articles
-            case .failure:
-                print("Failure to fetch articles :(")
-            }
-        })
+        fetchArticles(nil)
     }
+    
     private(set) var articles = [Article]() {
         didSet {
             NotificationCenter.default.post(name: dataSourceDidChangeNotification, object: self)
         }
-
+    }
+    
+    func fetchArticles(_ completion: Completion?) {
+        ArticleService.shared.loadArticles(for: self.category, completionHandler: { result in
+            switch result {
+            case .success(let articles):
+                self.articles = articles
+                completion?(true)
+            case .failure:
+                print("Failure to fetch articles :(")
+                 completion?(false)
+            }
+        })
     }
     
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -18,23 +18,34 @@ class ArticleListController: UIViewController {
     
     var dataSource: ArticleDataSource?
     var notificationToken: NSObjectProtocol?
+    let control = UIRefreshControl()
     
     // MARK: - Lifecycle:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                    
+           control.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+           self.tableView?.refreshControl = control
+            
            self.tableView?.dataSource = self.dataSource
            self.tableView?.delegate = self
-        
-       // fetchArticles()
+    }
+    
+    @objc private func refreshData(_ sender: Any) {
+        dataSource?.fetchArticles { success in
+            DispatchQueue.main.async {
+                if success {
+                    self.tableView?.reloadData()
+                }
+                self.control.endRefreshing()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         notificationToken = NotificationCenter.default.addObserver(forName: dataSourceDidChangeNotification,
                                                object: dataSource,
                                                queue: nil) { [weak self] _ in
-        
             self?.tableView?.reloadData()
         }
     }

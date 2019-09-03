@@ -77,7 +77,9 @@ class ArticleService {
                    encoding: URLEncoding.default,
                    headers: HEADER).responseJSON(queue: queue) { responce in
                     
-                    guard responce.error == nil, let data = responce.data else { return }
+                    guard responce.error == nil, let data = responce.data else {
+                        completionHandler(Result.failure(responce.error ?? NSError()))
+                        return }
                     guard let articlesArray = self.parseArticles(from: data) else { return }
                     
                     DispatchQueue.main.async {
