@@ -25,50 +25,66 @@
                                 <color key="separatorColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="articleCell" rowHeight="91" id="LCP-ul-Bgy" customClass="ArticleCell" customModule="PopFiction" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="91"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="articleCell" rowHeight="86" id="LCP-ul-Bgy" customClass="ArticleCell" customModule="PopFiction" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LCP-ul-Bgy" id="RjS-kE-uLm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Texas Is a Leader in Mass Shootings. Why Is the Governor Silent?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBV-0k-Vme">
-                                                    <rect key="frame" x="98" y="11" width="262" height="51"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="2c4-Zv-XtR">
-                                                    <rect key="frame" x="15" y="11" width="75" height="75"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="es3-kv-7FE">
+                                                    <rect key="frame" x="75" y="0.0" width="245" height="85.666666666666671"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Texas Is a Leader in Mass Shootings. Why Is the Governor Silent?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBV-0k-Vme">
+                                                            <rect key="frame" x="8" y="0.0" width="237" height="66"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="15"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="By Annie Karni and Maggie Haberman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMo-DQ-rP8">
+                                                            <rect key="frame" x="8" y="66" width="232" height="13"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="75" id="W29-D1-bap"/>
-                                                        <constraint firstAttribute="width" constant="75" id="heJ-xL-EJ8"/>
+                                                        <constraint firstItem="qMo-DQ-rP8" firstAttribute="leading" secondItem="es3-kv-7FE" secondAttribute="leading" constant="8" id="9dg-ts-nbe"/>
+                                                        <constraint firstAttribute="bottom" secondItem="qMo-DQ-rP8" secondAttribute="bottom" constant="6.6699999999999999" id="IHV-EW-lF2"/>
+                                                        <constraint firstItem="cBV-0k-Vme" firstAttribute="leading" secondItem="es3-kv-7FE" secondAttribute="leading" constant="8" id="Ulw-ed-D6K"/>
+                                                        <constraint firstAttribute="trailing" secondItem="cBV-0k-Vme" secondAttribute="trailing" id="VL5-wU-d66"/>
+                                                        <constraint firstItem="qMo-DQ-rP8" firstAttribute="top" secondItem="cBV-0k-Vme" secondAttribute="bottom" id="dC2-rl-9PK"/>
+                                                        <constraint firstItem="cBV-0k-Vme" firstAttribute="top" secondItem="es3-kv-7FE" secondAttribute="top" id="mv4-TN-YP8"/>
+                                                        <constraint firstAttribute="trailing" secondItem="qMo-DQ-rP8" secondAttribute="trailing" constant="5" id="yGi-l1-GaB"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_empty" translatesAutoresizingMaskIntoConstraints="NO" id="5OH-Ht-0w3">
+                                                    <rect key="frame" x="335" y="30.333333333333329" width="25" height="25"/>
+                                                    <color key="tintColor" red="1" green="0.22572666750000001" blue="0.40745575420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="9Z7-h3-dre"/>
+                                                        <constraint firstAttribute="width" secondItem="5OH-Ht-0w3" secondAttribute="height" multiplier="1:1" id="XHG-PM-TJM"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="By Annie Karni and Maggie Haberman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMo-DQ-rP8">
-                                                    <rect key="frame" x="98" y="67" width="237" height="13"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="11"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart_empty" translatesAutoresizingMaskIntoConstraints="NO" id="5OH-Ht-0w3">
-                                                    <rect key="frame" x="335" y="55" width="25" height="25"/>
-                                                    <color key="tintColor" red="1" green="0.22572666750000001" blue="0.40745575420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="2c4-Zv-XtR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="85.666666666666671"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="85.666666666666671" id="eYG-8L-ygh"/>
+                                                        <constraint firstAttribute="width" constant="75" id="zpd-Af-igi"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="cBV-0k-Vme" firstAttribute="leading" secondItem="2c4-Zv-XtR" secondAttribute="trailing" constant="8" id="3wT-1b-kzk"/>
-                                                <constraint firstItem="cBV-0k-Vme" firstAttribute="trailing" secondItem="5OH-Ht-0w3" secondAttribute="trailing" id="4e1-wy-tg4"/>
-                                                <constraint firstItem="2c4-Zv-XtR" firstAttribute="leading" secondItem="RjS-kE-uLm" secondAttribute="leadingMargin" id="6ql-gu-jE8"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="5OH-Ht-0w3" secondAttribute="bottom" id="8fg-Mg-EOW"/>
-                                                <constraint firstItem="2c4-Zv-XtR" firstAttribute="top" secondItem="RjS-kE-uLm" secondAttribute="topMargin" id="9Bk-X8-gUe"/>
-                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="trailing" secondItem="RjS-kE-uLm" secondAttribute="trailingMargin" id="E49-C8-8Jz"/>
-                                                <constraint firstItem="qMo-DQ-rP8" firstAttribute="top" secondItem="cBV-0k-Vme" secondAttribute="bottom" constant="5" id="LyK-Yq-Kbo"/>
-                                                <constraint firstItem="cBV-0k-Vme" firstAttribute="top" secondItem="RjS-kE-uLm" secondAttribute="top" constant="11" id="Mca-3S-CdX"/>
-                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="leading" secondItem="qMo-DQ-rP8" secondAttribute="trailing" id="fXz-k9-M4C"/>
-                                                <constraint firstItem="qMo-DQ-rP8" firstAttribute="leading" secondItem="2c4-Zv-XtR" secondAttribute="trailing" constant="8" id="q3m-pt-433"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="2c4-Zv-XtR" secondAttribute="bottom" constant="-6" id="uWn-De-UiG"/>
-                                                <constraint firstItem="qMo-DQ-rP8" firstAttribute="bottom" secondItem="RjS-kE-uLm" secondAttribute="bottomMargin" id="vLa-hu-RMJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="2c4-Zv-XtR" secondAttribute="bottom" id="0lv-Sv-C59"/>
+                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="trailing" secondItem="RjS-kE-uLm" secondAttribute="trailingMargin" id="7cE-7C-8ki"/>
+                                                <constraint firstItem="es3-kv-7FE" firstAttribute="top" secondItem="RjS-kE-uLm" secondAttribute="top" id="K27-wc-wbK"/>
+                                                <constraint firstItem="es3-kv-7FE" firstAttribute="leading" secondItem="2c4-Zv-XtR" secondAttribute="trailing" id="K6I-JP-AnG"/>
+                                                <constraint firstItem="2c4-Zv-XtR" firstAttribute="leading" secondItem="RjS-kE-uLm" secondAttribute="leading" id="cOb-w9-9mQ"/>
+                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="centerY" secondItem="es3-kv-7FE" secondAttribute="centerY" id="e0O-UR-3Nr"/>
+                                                <constraint firstItem="2c4-Zv-XtR" firstAttribute="top" secondItem="RjS-kE-uLm" secondAttribute="top" id="hcC-8T-AGP"/>
+                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="leading" secondItem="es3-kv-7FE" secondAttribute="trailing" constant="15" id="uaJ-rj-tjN"/>
+                                                <constraint firstAttribute="bottom" secondItem="es3-kv-7FE" secondAttribute="bottom" id="yHX-PD-3Jd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
