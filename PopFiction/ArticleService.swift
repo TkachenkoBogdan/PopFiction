@@ -101,9 +101,13 @@ class ArticleService {
                 let publishDate = article["published_date"].stringValue
                 
                 guard let mediaContainer = article["media"].array?.first  else { return nil}
-                guard let mediaInfo = mediaContainer["media-metadata"].first?.1 else { return nil}
-                guard let imageUrlString = mediaInfo["url"].string,
-                    let imageUrl = URL(string: imageUrlString) else { return nil }
+                
+                guard let stringUrlThumbnail = mediaContainer["media-metadata"][0]["url"].string,
+                    let thumbnailUrl = URL(string: stringUrlThumbnail) else { return nil }
+        
+                guard let stringUrlLarge = mediaContainer["media-metadata"][2]["url"].string,
+                    let largeUrl = URL(string: stringUrlLarge) else { return nil}
+                
                 if let context = self.context {
                     let article = Article(context: context)
                     article.title = title
@@ -111,7 +115,8 @@ class ArticleService {
                     article.byline = byline
                     article.id = id
                     article.url = url
-                    article.imageUrl = imageUrl
+                    article.imageUrl = thumbnailUrl
+                    article.largeImageUrl = largeUrl
                     
                     // FIXME: - Refactor this:
                     let dateFormatter = DateFormatter()
@@ -122,6 +127,7 @@ class ArticleService {
                     article.publishedDate = date as NSDate
                     }
                     synchronizeFavorite(with: article)
+        
                     articles.append(article)
                 }
             }

@@ -127,8 +127,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3K-1i-5pI">
-                                <rect key="frame" x="0.0" y="100" width="375" height="712"/>
+                            <wkWebView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q3K-1i-5pI">
+                                <rect key="frame" x="0.0" y="76" width="414" height="761"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -199,60 +199,53 @@
                                 <color key="separatorColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoritesCell" rowHeight="168" id="EWU-2N-cn9" customClass="ArticleCell" customModule="PopFiction" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="168"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoritesCell" rowHeight="227" id="EWU-2N-cn9" customClass="FavoritesCell" customModule="PopFiction" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="227"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EWU-2N-cn9" id="DR5-Vd-h5s">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="167.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="226.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQz-9Y-L96">
-                                                    <rect key="frame" x="98" y="52" width="207" height="80"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQz-9Y-L96">
+                                                    <rect key="frame" x="199" y="45" width="161" height="133"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <string key="text">Our founding ideals of liberty and equality were false when they were written. For generations, black Americans have fought to make them true.</string>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Texas Is a Leader in Mass Shootings. Why Is the Governor Silent?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6Z-YR-Jpr">
-                                                    <rect key="frame" x="15" y="11" width="290" height="41"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" text="Texas Is a Leader in Mass Shootings. Why Is the Governor Silent?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6Z-YR-Jpr">
+                                                    <rect key="frame" x="15" y="11" width="345" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="CyR-x5-K7a">
-                                                    <rect key="frame" x="15" y="57" width="75" height="75"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="75" id="8ot-5r-DbK"/>
-                                                        <constraint firstAttribute="width" constant="75" id="s95-8C-vlb"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="88c14c25-ba2e-47a2-b4fc-3491d9b468dc-response" translatesAutoresizingMaskIntoConstraints="NO" id="CyR-x5-K7a">
+                                                    <rect key="frame" x="15" y="57" width="170" height="112"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Byline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4N-kT-Uhz">
-                                                    <rect key="frame" x="15" y="142" width="290" height="13.666666666666657"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" fixedFrame="YES" text="Byline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4N-kT-Uhz">
+                                                    <rect key="frame" x="15" y="192" width="152" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="11"/>
                                                     <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2018-10-12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnO-pe-zRB">
+                                                    <rect key="frame" x="199" y="184" width="142" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="CyR-x5-K7a" firstAttribute="top" secondItem="U6Z-YR-Jpr" secondAttribute="bottom" constant="5" id="0tO-XN-tNf"/>
-                                                <constraint firstItem="U6Z-YR-Jpr" firstAttribute="top" secondItem="DR5-Vd-h5s" secondAttribute="topMargin" id="222-2p-LZh"/>
-                                                <constraint firstItem="U6Z-YR-Jpr" firstAttribute="trailing" secondItem="DR5-Vd-h5s" secondAttribute="trailingMargin" id="5Ls-gH-xC7"/>
-                                                <constraint firstItem="e4N-kT-Uhz" firstAttribute="leading" secondItem="DR5-Vd-h5s" secondAttribute="leadingMargin" id="97X-XG-bM4"/>
-                                                <constraint firstItem="e4N-kT-Uhz" firstAttribute="top" secondItem="CyR-x5-K7a" secondAttribute="bottom" constant="10" id="DgR-Gc-ALZ"/>
-                                                <constraint firstItem="U6Z-YR-Jpr" firstAttribute="leading" secondItem="DR5-Vd-h5s" secondAttribute="leadingMargin" id="GME-Tu-WIP"/>
-                                                <constraint firstItem="mQz-9Y-L96" firstAttribute="trailing" secondItem="DR5-Vd-h5s" secondAttribute="trailingMargin" id="RbV-Mb-nka"/>
-                                                <constraint firstItem="mQz-9Y-L96" firstAttribute="leading" secondItem="CyR-x5-K7a" secondAttribute="trailing" constant="8" id="ayP-YN-XaF"/>
-                                                <constraint firstItem="CyR-x5-K7a" firstAttribute="leading" secondItem="DR5-Vd-h5s" secondAttribute="leadingMargin" id="jm9-tr-Ty4"/>
-                                                <constraint firstItem="e4N-kT-Uhz" firstAttribute="top" secondItem="mQz-9Y-L96" secondAttribute="bottom" constant="10" id="sMO-aA-shi"/>
-                                                <constraint firstItem="mQz-9Y-L96" firstAttribute="top" secondItem="U6Z-YR-Jpr" secondAttribute="bottom" id="uzr-qY-He7"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="e4N-kT-Uhz" secondAttribute="trailing" id="wy2-Yd-uML"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="e4N-kT-Uhz" secondAttribute="bottom" constant="1.5" id="xWT-1z-EiF"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bylineLabel" destination="e4N-kT-Uhz" id="oTI-PN-aCs"/>
+                                            <outlet property="dateLabel" destination="dnO-pe-zRB" id="2Um-4g-xaE"/>
+                                            <outlet property="largeImageView" destination="CyR-x5-K7a" id="Ltb-3O-3fB"/>
                                             <outlet property="summaryLabel" destination="mQz-9Y-L96" id="TtC-PD-VhJ"/>
-                                            <outlet property="thumnailImageView" destination="CyR-x5-K7a" id="Obs-GG-Qk9"/>
                                             <outlet property="titleLabel" destination="U6Z-YR-Jpr" id="bDz-hL-c9e"/>
                                         </connections>
                                     </tableViewCell>
@@ -286,7 +279,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggQ-D5-FE9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1200" y="849"/>
+            <point key="canvasLocation" x="1199.2" y="848.27586206896558"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="43k-hb-ZQq">
@@ -308,6 +301,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="88c14c25-ba2e-47a2-b4fc-3491d9b468dc-response" width="440" height="293"/>
         <image name="favorites" width="25" height="25"/>
         <image name="heart_empty" width="25" height="25"/>
         <image name="img_placeholder" width="75" height="75"/>
