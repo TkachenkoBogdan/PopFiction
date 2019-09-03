@@ -53,7 +53,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Byline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEZ-Fc-kXb">
-                                                    <rect key="frame" x="20" y="142" width="374" height="13.5"/>
+                                                    <rect key="frame" x="20" y="142" width="336" height="13.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="11"/>
                                                     <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                     <nil key="highlightedColor"/>
@@ -77,7 +77,7 @@
                                                 <constraint firstItem="2c4-Zv-XtR" firstAttribute="top" secondItem="cBV-0k-Vme" secondAttribute="bottom" constant="5" id="fRk-sd-C4V"/>
                                                 <constraint firstItem="cBV-0k-Vme" firstAttribute="top" secondItem="RjS-kE-uLm" secondAttribute="topMargin" id="gE2-Ab-6DT"/>
                                                 <constraint firstItem="5OH-Ht-0w3" firstAttribute="bottom" secondItem="RjS-kE-uLm" secondAttribute="bottomMargin" id="gf2-mb-nVh"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="KEZ-Fc-kXb" secondAttribute="trailing" id="jz8-Dy-WCa"/>
+                                                <constraint firstItem="5OH-Ht-0w3" firstAttribute="trailingMargin" secondItem="KEZ-Fc-kXb" secondAttribute="trailing" constant="30" id="jz8-Dy-WCa"/>
                                                 <constraint firstItem="5OH-Ht-0w3" firstAttribute="trailing" secondItem="RjS-kE-uLm" secondAttribute="trailingMargin" id="wdI-B2-bU0"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -103,6 +103,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="New York Times" id="qVq-oW-2En">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="favorites" id="GHu-WZ-fSy">
+                            <color key="tintColor" red="1" green="0.22572666750000001" blue="0.40745575420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="2te-4V-LaB" kind="show" id="i3p-nA-W1G"/>
                             </connections>

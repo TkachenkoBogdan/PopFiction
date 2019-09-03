@@ -9,9 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-
-
-//typealias completionHandler = () -> [String]
+import CoreData
 
 class ArticleService {
     
@@ -113,12 +111,31 @@ class ArticleService {
                     article.id = id
                     article.url = url
                     article.imageUrl = imageUrl
+                    synchronizeFavorite(with: article)
+                    
                     articles.append(article)
                 }
             }
             return articles
         }
         return nil
+    }
+    
+    func synchronizeFavorite(with article: Article) {
+        
+        DispatchQueue.main.async {
+            let id = article.id
+            
+            guard let stack = (UIApplication.shared.delegate
+                as? AppDelegate)?.coreDataStack else { return }
+            
+            let request: NSFetchRequest<Article> = Article.fetchRequest()
+            request.predicate = NSPredicate(
+                format: "%K = %@", argumentArray: [#keyPath(Article.id), id])
+            
+            guard let hit = try? stack.persistentContext.fetch(request), let art = hit.first else { return }
+            article.isFavorite = art.isFavorite
+        }
     }
     
 }
