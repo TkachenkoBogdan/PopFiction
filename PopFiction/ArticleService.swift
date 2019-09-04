@@ -32,11 +32,11 @@ class ArticleService {
             var image: UIImage?
                 switch self {
                 case .mostEmailed:
-                    image = UIImage(named: "emailed"); 
+                    image = R.image.emailed()
                 case .mostShared:
-                    image = UIImage(named: "shared")
+                    image = R.image.shared()
                 case .mostViewed:
-                    image = UIImage(named: "viewed")
+                    image = R.image.viewed()
                 }
             return image ?? UIImage()
         }
@@ -139,10 +139,7 @@ class ArticleService {
     }
     
     func synchronizeFavorite(with article: Article) {
-        
-        DispatchQueue.main.async {
             let id = article.id
-            
             guard let stack = (UIApplication.shared.delegate
                 as? AppDelegate)?.coreDataStack else { return }
             
@@ -152,7 +149,6 @@ class ArticleService {
             
             guard let hit = try? stack.persistentContext.fetch(request), let art = hit.first else { return }
             article.isFavorite = art.isFavorite
-        }
     }
     
 }
