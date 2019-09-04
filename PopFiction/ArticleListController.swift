@@ -11,8 +11,7 @@ import CoreData
 
 class ArticleListController: UIViewController {
    
-    private let coreDataStack = (UIApplication.shared.delegate
-        as? AppDelegate)?.coreDataStack
+    var coreDataStack: CoreDataStack?
     
     @IBOutlet private var tableView: UITableView?
     
@@ -21,15 +20,16 @@ class ArticleListController: UIViewController {
     let control = UIRefreshControl()
     
     // MARK: - Lifecycle:
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-           control.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        
+        control.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
            self.tableView?.refreshControl = control
+        
            self.navigationController?.navigationBar.barTintColor = .clear
            self.navigationController?.navigationBar.barStyle = .black
            self.navigationController?.navigationBar.isTranslucent = true
-            
+        
            self.tableView?.dataSource = self.dataSource
            self.tableView?.delegate = self
         

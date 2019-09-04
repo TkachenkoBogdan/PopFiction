@@ -104,7 +104,6 @@
 		BD31DC2E231827E3002523AC /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				BD86961E231818EC00D248E9 /* AppDelegate.swift */,
 				BD869628231818ED00D248E9 /* Assets.xcassets */,
 				BD31DC31231828A6002523AC /* .swiftlint.yml */,
 				BD86962A231818ED00D248E9 /* LaunchScreen.storyboard */,
@@ -160,6 +159,7 @@
 		BD86961D231818EC00D248E9 /* PopFiction */ = {
 			isa = PBXGroup;
 			children = (
+				BD86961E231818EC00D248E9 /* AppDelegate.swift */,
 				BDB4AD1323182CC6004FF50B /* ArticleService.swift */,
 				BD31DC2B231827C2002523AC /* Controller */,
 				BD31DC33231828C5002523AC /* CoreData */,
