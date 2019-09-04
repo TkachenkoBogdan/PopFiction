@@ -30,16 +30,14 @@ class ArticleListController: UIViewController {
         refreshButton?.addTarget(self, action: #selector(refreshData(_:)), for: .touchUpInside)
         
            self.tableView?.refreshControl = control
-        
            self.navigationController?.navigationBar.barTintColor = .clear
            self.navigationController?.navigationBar.barStyle = .black
            self.navigationController?.navigationBar.isTranslucent = true
         
            self.tableView?.dataSource = self.dataSource
            self.tableView?.delegate = self
+           tableView?.isHidden = isDataSourceEmpty
         
-        guard let dataSource = self.dataSource else { return }
-        tableView?.isHidden = dataSource.articles.isEmpty ? true : false
 
     }
     
@@ -68,9 +66,17 @@ class ArticleListController: UIViewController {
                               animations: {
                                 tableView.isHidden = false
                                 tableView.reloadData()
-                                
             })
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [unowned self] in
+            if self.isDataSourceEmpty {
+            self.refreshButton?.fadeTransition(withDuration: 0.8)
+            self.refreshButton?.isHidden = false
+            }
+        }
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,7 +87,11 @@ class ArticleListController: UIViewController {
 
 // MARK: - Helpers:
 extension ArticleListController {
-
+    
+    private var isDataSourceEmpty: Bool {
+        guard let dataSource = self.dataSource else { return true }
+        return dataSource.articles.isEmpty ? true : false
+    }
     
     private func setFavorite(_ article: Article) {
         let attKeys = article.entity.attributesByName.keys
@@ -94,8 +104,7 @@ extension ArticleListController {
         if let persistantContext = self.coreDataStack?.persistentContext {
             let newArticle = Article(context: persistantContext)
             newArticle.setValuesForKeys(attributes)
-            print(newArticle)
-            
+   
             guard let coreDataStack = (UIApplication.shared.delegate
                 as? AppDelegate)?.coreDataStack else { return }
             coreDataStack.saveContext()
@@ -121,17 +130,13 @@ extension ArticleListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let article = self.dataSource?.articles[indexPath.row] else { return }
         if let url = article.url {
-            UIApplication.shared.open(url) { _ in
-                print("opened URL: \(url)")
-            }
+            UIApplication.shared.open(url)
         }
     }
     
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let article = self.dataSource?.articles[indexPath.row] else { return nil }
-        
-        let title = article.isFavorite ? "Unfavorite": "Favorite"
         
         let action = UIContextualAction(style: .normal, title: title,
                                         handler: { [unowned self] _, _, completionHandler in
@@ -145,7 +150,7 @@ extension ArticleListController: UITableViewDelegate {
             completionHandler(true)
         })
         
-        action.image = UIImage(named: "heart")
+        action.image = R.image.heart()
         action.backgroundColor = article.isFavorite ? unfavoriteColor : favoriteColor
         let configuration = UISwipeActionsConfiguration(actions: [action])
         return configuration

@@ -26,7 +26,7 @@ class ArticleDataSource: NSObject, UITableViewDataSource {
     }
     
     func fetchArticles(_ completion: Completion?) {
-        ArticleService.shared.loadArticles(for: self.category, completionHandler: { result in
+        ArticleService.shared.fetchArticles(for: self.category, completionHandler: { result in
             switch result {
             case .success(let articles):
                 self.articles = articles

@@ -9,8 +9,6 @@
 import Foundation
 import Alamofire
 
-
-/// Used to fetch data from network
 final class ArticleNetworkService {
     
     private let baseURL = "https://api.nytimes.com/svc/mostpopular/v2"
@@ -37,7 +35,6 @@ final class ArticleNetworkService {
                     completion(Result.success(data))
         }
     }
-    
     private func makeURL(forCategory category: ArticleCategory) -> URL? {
         switch category {
         case .mostEmailed:
