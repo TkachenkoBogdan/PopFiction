@@ -32,6 +32,10 @@ class ArticleListController: UIViewController {
             
            self.tableView?.dataSource = self.dataSource
            self.tableView?.delegate = self
+        
+        guard let dataSource = self.dataSource else { return }
+        tableView?.isHidden = dataSource.articles.isEmpty ? true : false
+
     }
     
     @objc private func refreshData(_ sender: Any) {
@@ -51,6 +55,7 @@ class ArticleListController: UIViewController {
                               duration: 0.35,
                               options: .transitionCrossDissolve,
                               animations: {
+                                tableView.isHidden = false
                                 tableView.reloadData()
                                 
             })
