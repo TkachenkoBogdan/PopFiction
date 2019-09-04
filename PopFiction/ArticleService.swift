@@ -14,47 +14,32 @@ import Rswift
 
 class ArticleService {
     
+    private let networkService: ArticleNetworkService
+    
     public static let shared = ArticleService()
+    
+    init(networkService: ArticleNetworkService = ArticleNetworkService()) {
+        self.networkService = networkService
+    }
     
     private let context = (UIApplication.shared.delegate
         as? AppDelegate)?.coreDataStack.managedContext
     
-    private init() {
-    }
-    
+ 
     func loadArticles(for category: ArticleCategory = .mostViewed,
                       completionHandler: @escaping (Result<[Article], Error>) -> Void) {
-        var url: URL?
         
-        switch category {
-        case .mostEmailed:
-            url = URL(string: BASE_URL.appending("/emailed/30.json"))
-        case .mostShared(let shareType):
-            url = URL(string: BASE_URL.appending("/shared/30/\(shareType.rawValue).json"))
-        case .mostViewed:
-            url = URL(string: BASE_URL.appending("/viewed/30.json"))
-        }
-        
-        let parameters: Parameters = ["api-key": API_Key]
-        let queue = DispatchQueue(label: "com.articleService.fetch",
-                                  qos: .background,
-                                  attributes: .concurrent)
-        
-        guard let validURL = url  else { return }
-        AF.request(validURL, method: .get,
-                   parameters: parameters,
-                   encoding: URLEncoding.default,
-                   headers: HEADER).responseJSON(queue: queue) { responce in
-                    
-                    guard responce.error == nil, let data = responce.data else {
-                        completionHandler(Result.failure(responce.error ?? NSError()))
-                        return
-                    }
-                    
-                    DispatchQueue.main.async {
-                        guard let articlesArray = self.parseArticles(from: data) else { return }
-                        completionHandler(Result.success(articlesArray))
-                    }
+        networkService.fetchArticles(forCategory: category) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    guard let articles = self.parseArticles(from: data) else { return }
+                    completionHandler(Result.success(articles))
+                case .failure(let error):
+                    completionHandler(Result.failure(error))
+                    return
+                }
+            }
         }
     }
     
@@ -106,17 +91,23 @@ class ArticleService {
         return nil
     }
     
-    func synchronizeFavorite(with article: Article) {
-            let id = article.id
-            guard let stack = (UIApplication.shared.delegate
-                as? AppDelegate)?.coreDataStack else { return }
-            
-            let request: NSFetchRequest<Article> = Article.fetchRequest()
-            request.predicate = NSPredicate(
-                format: "%K = %@", argumentArray: [#keyPath(Article.id), id])
-            
-            guard let hit = try? stack.persistentContext.fetch(request), let art = hit.first else { return }
-            article.isFavorite = art.isFavorite
+   
+    
+}
+
+extension ArticleService {
+    
+   private func synchronizeFavorite(with article: Article) {
+        let id = article.id
+        guard let stack = (UIApplication.shared.delegate
+            as? AppDelegate)?.coreDataStack else { return }
+        
+        let request: NSFetchRequest<Article> = Article.fetchRequest()
+        request.predicate = NSPredicate(
+            format: "%K = %@", argumentArray: [#keyPath(Article.id), id])
+        
+        guard let hit = try? stack.persistentContext.fetch(request), let art = hit.first else { return }
+        article.isFavorite = art.isFavorite
     }
     
 }
