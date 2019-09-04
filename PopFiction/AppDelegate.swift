@@ -19,9 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setRootController()
         
-        let selectedColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: selectedColor],
-                                                         for: .selected)
+       
 
         return true
     }
@@ -36,12 +34,15 @@ extension AppDelegate {
     
     private func setRootController() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-      
+        
         let tabBarController = UITabBarController()
         tabBarController.tabBar.barStyle = .black
         self.window?.rootViewController = tabBarController
         self.window?.backgroundColor = .white
         self.window?.makeKeyAndVisible()
+        
+        UITabBarItem.appearance().setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
         
         setTabBarControllers()
     }
@@ -50,13 +51,14 @@ extension AppDelegate {
         if let root = window?.rootViewController as? UITabBarController {
             
             let mostEmailed = ArticleControllerFactory.makeControllerFor(category: .mostEmailed)
-                .embeddedInNavigatioController()
             let mostShared = ArticleControllerFactory.makeControllerFor(category: .mostShared(.facebook))
-                .embeddedInNavigatioController()
             let mostViewed = ArticleControllerFactory.makeControllerFor(category: .mostViewed)
-                .embeddedInNavigatioController()
             
-            root.viewControllers = [mostEmailed, mostShared, mostViewed]
+            let controllers: [UINavigationController] = [mostEmailed, mostShared, mostViewed].map { vc in
+                vc.coreDataStack = self.coreDataStack
+                return vc.embeddedInNavigatioController()
+            }
+            root.viewControllers = controllers
         }
     }
 }

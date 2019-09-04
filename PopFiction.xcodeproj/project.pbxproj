@@ -15,6 +15,7 @@
 		BD62CFB8231D1B0D009E78EA /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62CFB7231D1B0D009E78EA /* FavoritesViewController.swift */; };
 		BD62CFC1231D42BD009E78EA /* PopFiction.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD62CFBF231D42BD009E78EA /* PopFiction.xcdatamodeld */; };
 		BD62CFC3231D42FD009E78EA /* ArticleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62CFC2231D42FD009E78EA /* ArticleDataSource.swift */; };
+		BD749C6D231FD0B900285AB8 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD749C6C231FD0B900285AB8 /* UIView+Extension.swift */; };
 		BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD86961E231818EC00D248E9 /* AppDelegate.swift */; };
 		BD869624231818EC00D248E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD869622231818EC00D248E9 /* Main.storyboard */; };
 		BD869629231818ED00D248E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD869628231818ED00D248E9 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		BD62CFB7231D1B0D009E78EA /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		BD62CFC0231D42BD009E78EA /* PopFiction.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PopFiction.xcdatamodel; sourceTree = "<group>"; };
 		BD62CFC2231D42FD009E78EA /* ArticleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDataSource.swift; sourceTree = "<group>"; };
+		BD749C6C231FD0B900285AB8 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		BD86961B231818EC00D248E9 /* PopFiction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopFiction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86961E231818EC00D248E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD869623231818EC00D248E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,9 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				BD869622231818EC00D248E9 /* Main.storyboard */,
-				BDDE43EF231E4B06001AD156 /* BaseArticleCell.swift */,
-				BDBBC6742319542F006F8C02 /* ArticleCell.swift */,
-				BDDE43ED231E453F001AD156 /* FavoritesCell.swift */,
+				BD749C6B231FC9DA00285AB8 /* Cells */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -138,6 +138,24 @@
 			name = DataSources;
 			sourceTree = "<group>";
 		};
+		BD749C6A231FC9B500285AB8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BDB4AD1323182CC6004FF50B /* ArticleService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		BD749C6B231FC9DA00285AB8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BDDE43EF231E4B06001AD156 /* BaseArticleCell.swift */,
+				BDBBC6742319542F006F8C02 /* ArticleCell.swift */,
+				BDDE43ED231E453F001AD156 /* FavoritesCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		BD869612231818EC00D248E9 = {
 			isa = PBXGroup;
 			children = (
@@ -160,13 +178,13 @@
 			isa = PBXGroup;
 			children = (
 				BD86961E231818EC00D248E9 /* AppDelegate.swift */,
-				BDB4AD1323182CC6004FF50B /* ArticleService.swift */,
+				BD749C6A231FC9B500285AB8 /* Services */,
+				BD31DC2D231827DE002523AC /* View */,
 				BD31DC2B231827C2002523AC /* Controller */,
 				BD31DC33231828C5002523AC /* CoreData */,
 				BD554703231A4FDC00804DCA /* Factories */,
-				BD31DC2E231827E3002523AC /* Support */,
 				BDDE43EA231E42E7001AD156 /* Utilities */,
-				BD31DC2D231827DE002523AC /* View */,
+				BD31DC2E231827E3002523AC /* Support */,
 			);
 			path = PopFiction;
 			sourceTree = "<group>";
@@ -183,6 +201,7 @@
 		BDDE43EA231E42E7001AD156 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				BD749C6C231FD0B900285AB8 /* UIView+Extension.swift */,
 				BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */,
 				BDDE43EB231E432F001AD156 /* UIViewController+Ext.swift */,
 				BD0A0F5D231F719800EB6B95 /* R.generated.swift */,
@@ -378,6 +397,7 @@
 				BD554702231A4A0900804DCA /* UIStoryboard+Ext.swift in Sources */,
 				BDB4AD1423182CC6004FF50B /* ArticleService.swift in Sources */,
 				BDBBC672231948DD006F8C02 /* CoreDataStack.swift in Sources */,
+				BD749C6D231FD0B900285AB8 /* UIView+Extension.swift in Sources */,
 				BD554705231A500100804DCA /* ControllerFactory.swift in Sources */,
 				BD62CFC3231D42FD009E78EA /* ArticleDataSource.swift in Sources */,
 				BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */,

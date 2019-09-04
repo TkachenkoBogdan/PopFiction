@@ -18,7 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ER9-Ua-zft">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sO3-Gh-soy">
+                                <rect key="frame" x="162.66666666666666" y="381" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6yw-So-M7T"/>
+                                    <constraint firstAttribute="width" constant="50" id="ss2-yp-TJB"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="refresh"/>
+                            </button>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ER9-Ua-zft">
                                 <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="690-HE-Rgx"/>
@@ -99,10 +107,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="sO3-Gh-soy" firstAttribute="centerX" secondItem="XJH-RA-Lbq" secondAttribute="centerX" id="EhU-9R-JoK"/>
                             <constraint firstItem="ER9-Ua-zft" firstAttribute="top" secondItem="d9L-Uy-GJe" secondAttribute="top" id="IDb-0Z-JOs"/>
                             <constraint firstItem="ER9-Ua-zft" firstAttribute="trailing" secondItem="d9L-Uy-GJe" secondAttribute="trailing" id="VcZ-OO-oqT"/>
                             <constraint firstItem="ER9-Ua-zft" firstAttribute="leading" secondItem="d9L-Uy-GJe" secondAttribute="leading" id="fmp-7t-6GP"/>
                             <constraint firstAttribute="bottom" secondItem="ER9-Ua-zft" secondAttribute="bottom" id="gdV-0f-etT"/>
+                            <constraint firstItem="sO3-Gh-soy" firstAttribute="centerY" secondItem="XJH-RA-Lbq" secondAttribute="centerY" id="rAz-cf-kPM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="d9L-Uy-GJe"/>
                     </view>
@@ -118,11 +128,12 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="TableView" destination="ER9-Ua-zft" id="BE4-OB-oxv"/>
+                        <outlet property="refreshButton" destination="sO3-Gh-soy" id="xLN-UU-RbG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pio-La-an3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="538" y="108"/>
+            <point key="canvasLocation" x="536.79999999999995" y="107.88177339901478"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="sAx-zq-cps">
@@ -279,6 +290,7 @@
         <image name="heart_empty" width="25" height="25"/>
         <image name="img_placeholder" width="97" height="97"/>
         <image name="placeholder_large" width="220" height="148.5"/>
+        <image name="refresh" width="50" height="50"/>
     </resources>
     <color key="tintColor" red="1" green="0.22572666750000001" blue="0.40745575420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

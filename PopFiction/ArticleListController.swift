@@ -12,18 +12,23 @@ import CoreData
 class ArticleListController: UIViewController {
    
     var coreDataStack: CoreDataStack?
+    var dataSource: ArticleDataSource?
     
     @IBOutlet private var tableView: UITableView?
+    @IBOutlet private var refreshButton: UIButton?
     
-    var dataSource: ArticleDataSource?
-    var notificationToken: NSObjectProtocol?
     let control = UIRefreshControl()
+   
+    var notificationToken: NSObjectProtocol?
+   
     
     // MARK: - Lifecycle:
     override func viewDidLoad() {
         super.viewDidLoad()
         
         control.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        refreshButton?.addTarget(self, action: #selector(refreshData(_:)), for: .touchUpInside)
+        
            self.tableView?.refreshControl = control
         
            self.navigationController?.navigationBar.barTintColor = .clear
@@ -39,9 +44,15 @@ class ArticleListController: UIViewController {
     }
     
     @objc private func refreshData(_ sender: Any) {
+        self.refreshButton?.fadeTransition(withDuration: 0.7)
+        self.refreshButton?.alpha = 0
+        
         dataSource?.fetchArticles { success in
             DispatchQueue.main.async {
                 self.control.endRefreshing()
+                UIView.animate(withDuration: 2, animations: {
+                    self.refreshButton?.alpha = 1
+                })
             }
         }
     }
