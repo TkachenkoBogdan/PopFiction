@@ -26,6 +26,9 @@ class ArticleListController: UIViewController {
         super.viewDidLoad()
            control.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
            self.tableView?.refreshControl = control
+           self.navigationController?.navigationBar.barTintColor = .clear
+           self.navigationController?.navigationBar.barStyle = .black
+           self.navigationController?.navigationBar.isTranslucent = true
             
            self.tableView?.dataSource = self.dataSource
            self.tableView?.delegate = self
@@ -34,11 +37,6 @@ class ArticleListController: UIViewController {
     @objc private func refreshData(_ sender: Any) {
         dataSource?.fetchArticles { success in
             DispatchQueue.main.async {
-                if success {
-                    self.tableView?.reloadData()
-                }
-                // FIXME: - Add popup with alert message:
-                
                 self.control.endRefreshing()
             }
         }
@@ -47,8 +45,15 @@ class ArticleListController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         notificationToken = NotificationCenter.default.addObserver(forName: dataSourceDidChangeNotification,
                                                object: dataSource,
-                                               queue: nil) { [weak self] _ in
-            self?.tableView?.reloadData()
+                                               queue: nil) { [unowned self] _ in
+                                                guard let tableView = self.tableView else { return }
+            UIView.transition(with: tableView,
+                              duration: 0.35,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                                tableView.reloadData()
+                                
+            })
         }
     }
     

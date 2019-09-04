@@ -27,7 +27,7 @@ let dataSourceDidChangeNotification = Notification.Name(rawValue: "DataSourceDid
 
 //Color Literals:
 let favoriteColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-let unfavoriteColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
+let unfavoriteColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
 // Segues
 let TO_LOGIN = "toLogin"

@@ -68,7 +68,7 @@ class ArticleService {
         }
         
         let parameters: Parameters = ["api-key": API_Key]
-        let queue = DispatchQueue(label: "com.test.api",
+        let queue = DispatchQueue(label: "com.articleService.fetch",
                                   qos: .background,
                                   attributes: .concurrent)
         
