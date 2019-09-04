@@ -11,9 +11,9 @@ import UIKit
 class ArticleDataSource: NSObject, UITableViewDataSource {
     
     typealias Completion = ( (Bool) -> Void )
-    private let category: ArticleService.ArticleCategory
+    private let category: ArticleCategory
     
-    init(withCategory category: ArticleService.ArticleCategory) {
+    init(withCategory category: ArticleCategory) {
         self.category = category
         super.init()
         fetchArticles(nil)

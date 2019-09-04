@@ -47,7 +47,7 @@ class ArticleListController: UIViewController {
         self.refreshButton?.fadeTransition(withDuration: 0.7)
         self.refreshButton?.alpha = 0
         
-        dataSource?.fetchArticles { success in
+        dataSource?.fetchArticles { _ in
             DispatchQueue.main.async {
                 self.control.endRefreshing()
                 UIView.animate(withDuration: 2, animations: {

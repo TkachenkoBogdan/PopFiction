@@ -13,22 +13,19 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    lazy var  coreDataStack = CoreDataStack(modelName: "PopFiction")
+    lazy var coreDataStack = CoreDataStack(modelName: "PopFiction")
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setRootController()
-        
-       
-
         return true
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
         coreDataStack.saveContext()
     }
-
 }
+
 
 extension AppDelegate {
     

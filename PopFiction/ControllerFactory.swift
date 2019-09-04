@@ -10,7 +10,7 @@ import UIKit
 
 struct ArticleControllerFactory {
     
-    static func makeControllerFor(category: ArticleService.ArticleCategory) -> ArticleListController {
+    static func makeControllerFor(category: ArticleCategory) -> ArticleListController {
         let controller = UIStoryboard.main.instantiateViewController(ArticleListController.self)
         
         

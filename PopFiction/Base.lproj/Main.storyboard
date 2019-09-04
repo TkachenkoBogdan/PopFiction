@@ -21,10 +21,11 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sO3-Gh-soy">
                                 <rect key="frame" x="162.66666666666666" y="381" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="6yw-So-M7T"/>
-                                    <constraint firstAttribute="width" constant="50" id="ss2-yp-TJB"/>
+                                    <constraint firstAttribute="width" secondItem="sO3-Gh-soy" secondAttribute="height" multiplier="1:1" id="cKI-2E-msU"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="ss2-yp-TJB"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="refresh"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                                <state key="normal" image="refresh"/>
                             </button>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ER9-Ua-zft">
                                 <rect key="frame" x="0.0" y="88" width="375" height="724"/>
