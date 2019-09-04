@@ -37,6 +37,8 @@ class ArticleListController: UIViewController {
                 if success {
                     self.tableView?.reloadData()
                 }
+                // FIXME: - Add popup with alert message:
+                
                 self.control.endRefreshing()
             }
         }

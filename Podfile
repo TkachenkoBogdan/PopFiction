@@ -9,4 +9,5 @@ target 'PopFiction' do
    pod 'Alamofire', '~> 5.0.0-beta.5'
    pod 'SwiftyJSON'
    pod 'SDWebImage', '~> 5.0'
+   pod 'R.swift'
 end

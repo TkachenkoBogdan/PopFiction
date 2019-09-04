@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD0A0F5E231F719800EB6B95 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0A0F5D231F719800EB6B95 /* R.generated.swift */; };
 		BD31DC32231828A6002523AC /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BD31DC31231828A6002523AC /* .swiftlint.yml */; };
 		BD554700231A370E00804DCA /* ArticleListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5546FF231A370E00804DCA /* ArticleListController.swift */; };
 		BD554702231A4A0900804DCA /* UIStoryboard+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */; };
@@ -34,6 +35,7 @@
 		3C5B332B4ADDF3CF328B493F /* Pods-PopFiction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.debug.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.debug.xcconfig"; sourceTree = "<group>"; };
 		5F26293688AF7E63F6BEB2E2 /* Pods-PopFiction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PopFiction.release.xcconfig"; path = "Target Support Files/Pods-PopFiction/Pods-PopFiction.release.xcconfig"; sourceTree = "<group>"; };
 		899EC5F08F7DE3AA3D9B4639 /* Pods_PopFiction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PopFiction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD0A0F5D231F719800EB6B95 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		BD31DC31231828A6002523AC /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		BD5546FF231A370E00804DCA /* ArticleListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListController.swift; sourceTree = "<group>"; };
 		BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Ext.swift"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */,
 				BDDE43EB231E432F001AD156 /* UIViewController+Ext.swift */,
+				BD0A0F5D231F719800EB6B95 /* R.generated.swift */,
 				BDB4AD1623182DF7004FF50B /* Constants.swift */,
 			);
 			name = Utilities;
@@ -204,6 +207,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BD869630231818ED00D248E9 /* Build configuration list for PBXNativeTarget "PopFiction" */;
 			buildPhases = (
+				BD0A0F5C231F6F0F00EB6B95 /* ShellScript */,
 				95F1A286B105575852A5B4BF /* [CP] Check Pods Manifest.lock */,
 				BD869617231818EC00D248E9 /* Sources */,
 				BD869618231818EC00D248E9 /* Frameworks */,
@@ -278,6 +282,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-PopFiction/Pods-PopFiction-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -286,6 +291,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
@@ -315,6 +321,26 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BD0A0F5C231F6F0F00EB6B95 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"",
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 		BD31DC2A23181B79002523AC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -348,6 +374,7 @@
 				BDB4AD1E231836AA004FF50B /* Article+CoreDataClass.swift in Sources */,
 				BD554700231A370E00804DCA /* ArticleListController.swift in Sources */,
 				BDB4AD1723182DF7004FF50B /* Constants.swift in Sources */,
+				BD0A0F5E231F719800EB6B95 /* R.generated.swift in Sources */,
 				BD554702231A4A0900804DCA /* UIStoryboard+Ext.swift in Sources */,
 				BDB4AD1423182CC6004FF50B /* ArticleService.swift in Sources */,
 				BDBBC672231948DD006F8C02 /* CoreDataStack.swift in Sources */,

@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import CoreData
+import Rswift
 
 class ArticleService {
     
@@ -31,7 +32,7 @@ class ArticleService {
             var image: UIImage?
                 switch self {
                 case .mostEmailed:
-                    image = UIImage(named: "emailed")
+                    image = UIImage(named: "emailed"); 
                 case .mostShared:
                     image = UIImage(named: "shared")
                 case .mostViewed:
@@ -79,10 +80,11 @@ class ArticleService {
                     
                     guard responce.error == nil, let data = responce.data else {
                         completionHandler(Result.failure(responce.error ?? NSError()))
-                        return }
-                    guard let articlesArray = self.parseArticles(from: data) else { return }
+                        return
+                    }
                     
                     DispatchQueue.main.async {
+                        guard let articlesArray = self.parseArticles(from: data) else { return }
                         completionHandler(Result.success(articlesArray))
                     }
         }
@@ -119,13 +121,11 @@ class ArticleService {
                     article.url = url
                     article.imageUrl = thumbnailUrl
                     article.largeImageUrl = largeUrl
-                    
+        
                     // FIXME: - Refactor this:
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd"
                     if let date: Date = dateFormatter.date(from: publishDate) {
-                        dateFormatter.dateStyle = .short
-                        let shortDate = dateFormatter.date(from:)
                     article.publishedDate = date as NSDate
                     }
                     synchronizeFavorite(with: article)
