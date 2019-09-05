@@ -37,11 +37,11 @@ class CoreDataStack {
     self.modelName = modelName
   }
 
-  lazy var ephemeralContext: NSManagedObjectContext = {
+  lazy var ephemeralContext: NSManagedObjectContext = {//не самое удачное и очевидное имя для переменной
     return self.storeContainer.viewContext
   }()
     
-  lazy var persistentContext: NSManagedObjectContext = {
+  lazy var persistentContext: NSManagedObjectContext = {//тут получше, но я бы назвал `mainContext` и `savingContext`(хотя тут я не так уверен), но это субъективно
         return self.storeContainer.newBackgroundContext()
   }()
 
@@ -58,7 +58,7 @@ class CoreDataStack {
 
   func saveContext () {
     guard persistentContext.hasChanges else { return }
-
+ 
     do {
       try persistentContext.save()
     } catch let error as NSError {

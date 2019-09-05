@@ -14,7 +14,7 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
     
     private let service: ArticleService
     private let category: ArticleCategory
-    var onUpdateCompletion: ((Bool) -> Void)?
+    var onUpdateCompletion: ((Bool) -> Void)?// это не одно и то же c OnFetchedCompletion??
 
     init(with service: ArticleService, category: ArticleCategory) {
         self.service = service
@@ -42,7 +42,7 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
             for: indexPath) as? ArticleCell else { return UITableViewCell() }
         
         let article = articles[indexPath.row]
-        cell.configureWith(article: article)
+        cell.configureWith(article: article)//cell.configureWith(article: articles[indexPath.row]) так будет лучше
         return cell
     }
  
