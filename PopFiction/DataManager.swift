@@ -25,7 +25,7 @@ final class DataManager {
                      byline: String,
                      url: URL?,
                      id: Int64,
-                     publishDate: String,
+                     publishDate: NSDate?,
                      thumbnailURL: URL,
                      largeURL: URL ) -> Article {
         
@@ -35,12 +35,7 @@ final class DataManager {
         article.byline = byline
         article.url = url
         article.id = id
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        if let date: Date = dateFormatter.date(from: publishDate) {
-            article.publishedDate = date as NSDate
-        }
+        article.publishedDate = publishDate
         
         article.imageUrl = thumbnailURL
         article.largeImageUrl = largeURL

@@ -50,6 +50,10 @@ final class ArticleService {
             let id = article["id"].int64Value
             let publishDate = article["published_date"].stringValue
             
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let date = dateFormatter.date(from: publishDate)
+            
             guard let mediaContainer = article["media"].array?.first  else { return results}
             
             guard let thumbnailURLString = mediaContainer["media-metadata"][0]["url"].string,
@@ -60,7 +64,7 @@ final class ArticleService {
             
             let managedArticle = dataManager.makeArticle(withTitle: title, abstract: abstract,
                                              byline: byline, url: url, id: id,
-                                             publishDate: publishDate,
+                                             publishDate: date as NSDate?,
                                              thumbnailURL: thumbnailURL,
                                              largeURL: largeURL)
             results.append(managedArticle)

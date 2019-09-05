@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ArticleDataSource: NSObject, UITableViewDataSource {
-    typealias Completion = ((Bool) -> Void)
+final class ArticleDataSource: NSObject, UITableViewDataSource {
+    
+    typealias OnFetchedCompletion = ((Bool) -> Void)
     
     private let service: ArticleService
     private let category: ArticleCategory
@@ -29,14 +30,14 @@ class ArticleDataSource: NSObject, UITableViewDataSource {
         }
     }
     
-    func fetchArticles(_ completion: Completion?) {
+    func fetchArticles(_ completion: OnFetchedCompletion?) {
         service.fetchArticles(for: self.category, completionHandler: { result in
             switch result {
             case .success(let articles):
                 self.articles = articles
                 completion?(true)
             case .failure:
-                print("Failure to fetch articles.")
+                print("Failed to fetch articles.")
                 completion?(false)
             }
         })

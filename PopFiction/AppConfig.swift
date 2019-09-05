@@ -14,4 +14,3 @@ struct AppConfig {
   static let apiKey = "ZDGO1GbINnwODAofUGwMWYOeKl7GOT76"
     
 }
-

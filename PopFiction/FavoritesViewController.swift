@@ -11,7 +11,6 @@ import UIKit
 final class FavoritesViewController: UIViewController {
     
     var manager: DataManager?
-    
     @IBOutlet private var tableView: UITableView!
     
     var articles: [Article] = [] {
@@ -19,8 +18,6 @@ final class FavoritesViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-
-   
     // MARK: - Lifecycle:
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,11 +56,8 @@ extension FavoritesViewController: UITableViewDataSource {
 extension FavoritesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let article = self.articles[indexPath.row]
-        if let url = article.url {
-            UIApplication.shared.open(url) { _ in
-                print("opened URL: \(url)")
-            }
+        if let url = self.articles[indexPath.row].url {
+            UIApplication.shared.open(url)
         }
     }
     

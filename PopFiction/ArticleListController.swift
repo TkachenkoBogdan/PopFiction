@@ -24,17 +24,6 @@ final class ArticleListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        
-        self.dataSource?.onUpdateCompletion = { [unowned self] _ in
-            guard let tableView = self.tableView else { return }
-            UIView.transition(with: tableView,
-                              duration: 0.35,
-                              options: .transitionCrossDissolve,
-                              animations: {
-                                tableView.isHidden = false
-                                tableView.reloadData()
-            })
-        }
     }
     
     @objc private func refreshData(_ sender: Any) {
@@ -52,6 +41,9 @@ final class ArticleListController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if let indexPath = tableView?.indexPathForSelectedRow {
+            tableView?.deselectRow(at: indexPath, animated: true)
+        }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [unowned self] in
             if self.isDataSourceEmpty {
@@ -62,65 +54,30 @@ final class ArticleListController: UIViewController {
     }
 }
 
-// MARK: - Navigation:
-extension ArticleListController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == R.segue.articleListController.toFavorites.identifier,
-        let nav = segue.destination as? UINavigationController,
-            let destination = nav.topViewController as? FavoritesViewController
-            else { return }
-        destination.manager = self.manager
-    }
-}
-
-// MARK: - Helpers:
-
-extension ArticleListController {
-    private var isDataSourceEmpty: Bool {
-        guard let dataSource = self.dataSource else { return true }
-        return dataSource.articles.isEmpty ? true : false
-    }
-    private func setUp() {
-        self.navigationController?.navigationBar.barTintColor = .clear
-        self.navigationController?.navigationBar.barStyle = .black
-        self.navigationController?.navigationBar.isTranslucent = true
-        
-        control.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-        refreshButton?.addTarget(self, action: #selector(refreshData(_:)), for: .touchUpInside)
-        
-        self.tableView?.refreshControl = control
-        tableView?.isHidden = isDataSourceEmpty
-        
-        self.tableView?.dataSource = self.dataSource
-        self.tableView?.delegate = self
-    }
-}
-
 // MARK: - UITableViewDelegate:
 extension ArticleListController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let article = self.dataSource?.articles[indexPath.row] else { return }
-        if let url = article.url {
+        guard let url = self.dataSource?.articles[indexPath.row].url else { return }
             UIApplication.shared.open(url)
-        }
     }
     
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let article = self.dataSource?.articles[indexPath.row] else { return nil }
-        guard let manager = self.manager else { return nil }
-        
+        guard let article = self.dataSource?.articles[indexPath.row],
+              let manager = self.manager else { return nil }
+
         let action = UIContextualAction(style: .normal, title: title,
-                                        handler: { [unowned self] _, _, completionHandler in
-            article.isFavorite.toggle()
-            self.tableView?.reloadRows(at: [indexPath], with: .none)
-            if article.isFavorite {
-                manager.setFavorite(article)
-            } else {
-                manager.deleteArticle(withID: article.id)
-            }
-            completionHandler(true)
+                                        handler: { [unowned self] _, _, handler in
+                article.isFavorite.toggle()
+                self.tableView?.reloadRows(at: [indexPath], with: .none)
+                
+                if article.isFavorite {
+                    manager.setFavorite(article)
+                } else {
+                    manager.deleteArticle(withID: article.id)
+                }
+                handler(true)
         })
         
         action.image = R.image.heart_empty()
@@ -130,5 +87,53 @@ extension ArticleListController: UITableViewDelegate {
         
         let configuration = UISwipeActionsConfiguration(actions: [action])
         return configuration
+    }
+}
+
+// MARK: - Navigation:
+extension ArticleListController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == R.segue.articleListController.toFavorites.identifier,
+            let navController = segue.destination as? UINavigationController,
+            let destination = navController.topViewController as? FavoritesViewController
+            else { return }
+        destination.manager = self.manager
+    }
+}
+
+// MARK: - Helpers:
+extension ArticleListController {
+    
+    private var isDataSourceEmpty: Bool {
+        guard let dataSource = self.dataSource else { return true }
+        return dataSource.articles.isEmpty ? true : false
+    }
+    
+    private func setUp() {
+        
+        self.dataSource?.onUpdateCompletion = { [unowned self] _ in
+            guard let tableView = self.tableView else { return }
+            UIView.transition(with: tableView,
+                              duration: 0.35,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                                tableView.isHidden = false
+                                tableView.reloadData()
+            })
+        }
+
+        control.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        refreshButton?.addTarget(self, action: #selector(refreshData(_:)), for: .touchUpInside)
+        
+        self.tableView?.refreshControl = control
+        tableView?.isHidden = isDataSourceEmpty
+        
+        self.tableView?.dataSource = self.dataSource
+        self.tableView?.delegate = self
+
+        
+        self.navigationController?.navigationBar.barTintColor = .clear
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.isTranslucent = true
     }
 }

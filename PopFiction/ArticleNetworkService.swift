@@ -14,6 +14,10 @@ final class ArticleNetworkService {
     private let baseURL = "https://api.nytimes.com/svc/mostpopular/v2"
     private let parameters: Parameters = ["api-key": AppConfig.apiKey]
     
+    enum NetworkError: Error {
+        case unknownError
+    }
+    
     func fetchArticles(forCategory category: ArticleCategory,
                        completion:  @escaping (Result<Data, Error>) -> Void) {
         
@@ -28,7 +32,7 @@ final class ArticleNetworkService {
                    .responseJSON(queue: queue) { responce in
                 
                     guard responce.error == nil, let data = responce.data else {
-                        completion(Result.failure(responce.error ?? NSError()))
+                        completion(Result.failure(responce.error ?? NetworkError.unknownError))
                         return
                     }
                     completion(Result.success(data))

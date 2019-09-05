@@ -18,5 +18,5 @@ class BaseCell: UITableViewCell {
         self.titleLabel?.text = article.title
         self.bylineLabel?.text = article.byline
     }
-    
+
 }
