@@ -17,7 +17,7 @@
 		BD62CFC3231D42FD009E78EA /* ArticleDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD62CFC2231D42FD009E78EA /* ArticleDataSource.swift */; };
 		BD749C6D231FD0B900285AB8 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD749C6C231FD0B900285AB8 /* UIView+Extension.swift */; };
 		BD749C72231FD90A00285AB8 /* ArticleCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD749C71231FD90A00285AB8 /* ArticleCategory.swift */; };
-		BD749C75231FDA5B00285AB8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD749C74231FDA5B00285AB8 /* NetworkService.swift */; };
+		BD749C75231FDA5B00285AB8 /* ArticleNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD749C74231FDA5B00285AB8 /* ArticleNetworkService.swift */; };
 		BD86961F231818EC00D248E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD86961E231818EC00D248E9 /* AppDelegate.swift */; };
 		BD869624231818EC00D248E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD869622231818EC00D248E9 /* Main.storyboard */; };
 		BD869629231818ED00D248E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD869628231818ED00D248E9 /* Assets.xcassets */; };
@@ -48,7 +48,7 @@
 		BD62CFC2231D42FD009E78EA /* ArticleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDataSource.swift; sourceTree = "<group>"; };
 		BD749C6C231FD0B900285AB8 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		BD749C71231FD90A00285AB8 /* ArticleCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCategory.swift; sourceTree = "<group>"; };
-		BD749C74231FDA5B00285AB8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		BD749C74231FDA5B00285AB8 /* ArticleNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleNetworkService.swift; sourceTree = "<group>"; };
 		BD86961B231818EC00D248E9 /* PopFiction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopFiction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD86961E231818EC00D248E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD869623231818EC00D248E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,10 +108,10 @@
 		BD31DC2E231827E3002523AC /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				BD869628231818ED00D248E9 /* Assets.xcassets */,
 				BD31DC31231828A6002523AC /* .swiftlint.yml */,
-				BD86962A231818ED00D248E9 /* LaunchScreen.storyboard */,
+				BD869628231818ED00D248E9 /* Assets.xcassets */,
 				BD86962D231818ED00D248E9 /* Info.plist */,
+				BD86962A231818ED00D248E9 /* LaunchScreen.storyboard */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -145,9 +145,9 @@
 		BD749C6A231FC9B500285AB8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BD749C71231FD90A00285AB8 /* ArticleCategory.swift */,
-				BD749C74231FDA5B00285AB8 /* NetworkService.swift */,
+				BD749C74231FDA5B00285AB8 /* ArticleNetworkService.swift */,
 				BDB4AD1323182CC6004FF50B /* ArticleService.swift */,
+				BD749C71231FD90A00285AB8 /* ArticleCategory.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -401,7 +401,7 @@
 				BDB4AD1723182DF7004FF50B /* Constants.swift in Sources */,
 				BD0A0F5E231F719800EB6B95 /* R.generated.swift in Sources */,
 				BD554702231A4A0900804DCA /* UIStoryboard+Ext.swift in Sources */,
-				BD749C75231FDA5B00285AB8 /* NetworkService.swift in Sources */,
+				BD749C75231FDA5B00285AB8 /* ArticleNetworkService.swift in Sources */,
 				BDB4AD1423182CC6004FF50B /* ArticleService.swift in Sources */,
 				BDBBC672231948DD006F8C02 /* CoreDataStack.swift in Sources */,
 				BD749C6D231FD0B900285AB8 /* UIView+Extension.swift in Sources */,

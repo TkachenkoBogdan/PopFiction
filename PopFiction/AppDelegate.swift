@@ -13,7 +13,9 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    lazy var coreDataStack = CoreDataStack(modelName: "PopFiction")
+    
+    private var coreDataStack = CoreDataStack(modelName: "PopFiction")
+    private lazy var service = ArticleService(networkService: ArticleNetworkService(), stack: coreDataStack )
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -47,9 +49,10 @@ extension AppDelegate {
     private func setTabBarControllers() {
         if let root = window?.rootViewController as? UITabBarController {
             
-            let mostEmailed = ArticleControllerFactory.makeControllerFor(category: .mostEmailed)
-            let mostShared = ArticleControllerFactory.makeControllerFor(category: .mostShared(.facebook))
-            let mostViewed = ArticleControllerFactory.makeControllerFor(category: .mostViewed)
+            let factory = ArticleControllerFactory(withService: service)
+            let mostEmailed = factory.makeControllerFor(category: .mostEmailed)
+            let mostShared = factory.makeControllerFor(category: .mostShared(.facebook))
+            let mostViewed = factory.makeControllerFor(category: .mostViewed)
             
             let controllers: [UINavigationController] = [mostEmailed, mostShared, mostViewed].map { vc in
                 vc.coreDataStack = self.coreDataStack

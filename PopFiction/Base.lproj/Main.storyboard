@@ -121,7 +121,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="favorites" id="GHu-WZ-fSy">
                             <color key="tintColor" red="1" green="0.22572666750000001" blue="0.40745575420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="Uu0-5i-xSZ" kind="presentation" id="i3p-nA-W1G"/>
+                                <segue destination="Uu0-5i-xSZ" kind="presentation" identifier="transitionToFavorites" id="i3p-nA-W1G"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

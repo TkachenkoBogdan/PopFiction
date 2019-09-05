@@ -37,7 +37,7 @@ class CoreDataStack {
     self.modelName = modelName
   }
 
-  lazy var managedContext: NSManagedObjectContext = {
+  lazy var ephemeralContext: NSManagedObjectContext = {
     return self.storeContainer.viewContext
   }()
     

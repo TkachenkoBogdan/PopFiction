@@ -11,8 +11,7 @@ import CoreData
 
 class FavoritesViewController: UIViewController {
     
-    private let persistentContext = (UIApplication.shared.delegate
-        as? AppDelegate)?.coreDataStack.persistentContext
+    var persistentContext: NSManagedObjectContext?
     
     var fetchRequest: NSFetchRequest<Article>?
     var articles: [Article] = [] {

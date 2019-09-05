@@ -17,16 +17,4 @@ extension UIView {
         animation.duration = duration
         layer.add(animation, forKey: CATransitionType.fade.rawValue)
     }
-    
-    func shake() {
-        self.transform = CGAffineTransform(translationX: 40, y: 0)
-        UIView.animate(withDuration: 1.8, delay: 0, usingSpringWithDamping: 0.1,
-                       initialSpringVelocity: 2.2,
-                       options: .curveLinear,
-                       animations: {
-            self.transform = CGAffineTransform.identity
-        }, completion: nil)
-    }
-    
-    
 }

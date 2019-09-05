@@ -8,6 +8,11 @@
 import UIKit
 
 enum ArticleCategory {
+    
+    enum ShareType: String {
+        case email, facebook, twitter
+    }
+    
     case mostEmailed, mostShared(ShareType), mostViewed
     
     var title: String {
@@ -33,8 +38,4 @@ enum ArticleCategory {
         }
         return image ?? UIImage()
     }
-}
-
-enum ShareType: String {
-    case email, facebook, twitter
 }

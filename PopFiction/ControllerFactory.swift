@@ -10,14 +10,20 @@ import UIKit
 
 struct ArticleControllerFactory {
     
-    static func makeControllerFor(category: ArticleCategory) -> ArticleListController {
+    private let articleService: ArticleService
+    
+    init(withService service: ArticleService) {
+        self.articleService = service
+    }
+    
+     func makeControllerFor(category: ArticleCategory) -> ArticleListController {
         let controller = UIStoryboard.main.instantiateViewController(ArticleListController.self)
         
         
         let item = UITabBarItem(title: category.title,
                                 image: category.image,
                                 selectedImage: nil)
-        controller.dataSource = ArticleDataSource(withCategory: category)
+        controller.dataSource = ArticleDataSource(with: articleService, category: category)
         controller.tabBarItem = item
         
         return controller

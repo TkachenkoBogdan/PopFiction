@@ -85,6 +85,18 @@ class ArticleListController: UIViewController {
 
 }
 
+// MARK: - Navigation:
+extension ArticleListController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == R.segue.articleListController.transitionToFavorites.identifier,
+        let nav = segue.destination as? UINavigationController,
+            let destination = nav.topViewController as? FavoritesViewController
+            else { return }
+        destination.persistentContext = coreDataStack?.persistentContext
+        
+    }
+}
+
 // MARK: - Helpers:
 extension ArticleListController {
     
@@ -105,8 +117,7 @@ extension ArticleListController {
             let newArticle = Article(context: persistantContext)
             newArticle.setValuesForKeys(attributes)
    
-            guard let coreDataStack = (UIApplication.shared.delegate
-                as? AppDelegate)?.coreDataStack else { return }
+            guard let coreDataStack = coreDataStack else { return }
             coreDataStack.saveContext()
         }
     }
