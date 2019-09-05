@@ -75,11 +75,7 @@ final class DataManager {
         newArticle.setValuesForKeys(attributes)
         saveContext()
         
-        NotificationCenter.default.post(name: favoriteStatusDidChangeNotification,
-                                        object: nil,
-                                        userInfo: ["idChanged": newArticle.id,
-                                                   "newValue": true])
-                                    
+         postStatusChange(for: newArticle.id, value: true)
     }
     
     func unfavoriteArticle(withID id: Int64) {
@@ -92,12 +88,16 @@ final class DataManager {
             stack.persistentContext.delete(article)
             saveContext()
             
-            NotificationCenter.default.post(name: favoriteStatusDidChangeNotification,
-                                            object: nil,
-                                            userInfo: ["idChanged": id,
-                                                       "newValue": false])
+            postStatusChange(for: id, value: false)
         }
         
     
+    }
+    
+    private func postStatusChange(for id: Int64, value: Bool) {
+        NotificationCenter.default.post(name: favoriteStatusDidChangeNotification,
+                                        object: nil,
+                                        userInfo: [updateFavoriteIDKey: id,
+                                                   updateFavoriteStatusKey: value])
     }
 }

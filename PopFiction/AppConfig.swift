@@ -17,3 +17,7 @@ struct AppConfig {
 
 //Notifications:
 let favoriteStatusDidChangeNotification = Notification.Name(rawValue: "favoriteStatusDidChange")
+
+//Notification keys:
+    let updateFavoriteStatusKey = "favoriteStatus"
+    let updateFavoriteIDKey = "id"

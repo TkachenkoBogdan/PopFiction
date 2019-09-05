@@ -15,48 +15,20 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
     private let service: ArticleService
     private let category: ArticleCategory
     var onUpdateCompletion: ((Bool) -> Void)?
-   // private var token: NSObjectProtocol
 
-    
     init(with service: ArticleService, category: ArticleCategory) {
         self.service = service
         self.category = category
         super.init()
         fetchArticles(nil)
-       NotificationCenter.default.addObserver(self,
-                                              selector: #selector(refreshArticles),
-                                               name: favoriteStatusDidChangeNotification,
-                                               object: nil)
-    }
-    
-    @objc func refreshArticles(notification: Notification) {
-        if let id = notification.userInfo?["idChanged"] as? Int64,
-            let isFavorite = notification.userInfo?["newValue"] as? Bool {
-             let art = self.articles.first { $0.id == id }
-            guard let article = art else { return }
-            article.isFavorite = isFavorite
-            onUpdateCompletion?(true)
-        }
         
+        registerFavoriteUpdateNotification()
     }
     
     private(set) var articles = [Article]() {
         didSet {
             onUpdateCompletion?(true)
         }
-    }
-    
-    func fetchArticles(_ completion: OnFetchedCompletion?) {
-        service.fetchArticles(for: self.category, completionHandler: { result in
-            switch result {
-            case .success(let articles):
-                self.articles = articles
-                completion?(true)
-            case .failure:
-                print("Failed to fetch articles.")
-                completion?(false)
-            }
-        })
     }
     
     // MARK: - TableViewDataSource:
@@ -72,5 +44,38 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
         let article = articles[indexPath.row]
         cell.configureWith(article: article)
         return cell
+    }
+ 
+}
+
+extension ArticleDataSource {
+    func fetchArticles(_ completion: OnFetchedCompletion?) {
+        service.fetchArticles(for: self.category, completionHandler: { result in
+            switch result {
+            case .success(let articles):
+                self.articles = articles
+                completion?(true)
+            case .failure:
+                print("Failed to fetch articles.")
+                completion?(false)
+            }
+        })
+    }
+    
+    @objc private func refreshArticles(notification: Notification) {
+        guard let id = notification.userInfo?[updateFavoriteIDKey] as? Int64,
+            let isFavorite = notification.userInfo?[updateFavoriteStatusKey] as? Bool else { return }
+        
+        if let article = self.articles.first(where: { $0.id == id }) {
+            article.isFavorite = isFavorite
+            onUpdateCompletion?(true)
+        }
+    }
+    
+    private func registerFavoriteUpdateNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(refreshArticles),
+                                               name: favoriteStatusDidChangeNotification,
+                                               object: nil)
     }
 }
