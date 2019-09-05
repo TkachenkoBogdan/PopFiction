@@ -15,13 +15,6 @@ typealias CompletionHandler = (_ Success: Bool) -> Void
 let BASE_URL = "https://api.nytimes.com/svc/mostpopular/v2"
 let API_Key = "ZDGO1GbINnwODAofUGwMWYOeKl7GOT76"
 
-//SB identifiers:
-let articleListControllerIdentifier = "articleListNavigationController"
-
-// Cell Identifiers:
-let articleCellIdentifier = "articleCell"
-let favoritesArticleCellIdentifier = "favoritesCell"
-
 //Notifications:
 let dataSourceDidChangeNotification = Notification.Name(rawValue: "DataSourceDidChange")
 

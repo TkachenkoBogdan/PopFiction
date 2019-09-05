@@ -9,9 +9,8 @@
 import UIKit
 
 class ArticleDataSource: NSObject, UITableViewDataSource {
+    typealias Completion = ((Bool) -> Void)
     
-    
-    typealias Completion = ( (Bool) -> Void )
     private let service: ArticleService
     private let category: ArticleCategory
     
@@ -41,7 +40,6 @@ class ArticleDataSource: NSObject, UITableViewDataSource {
         })
     }
     
-    
     // MARK: - TableViewDataSource:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articles.count
@@ -49,7 +47,8 @@ class ArticleDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: articleCellIdentifier, for: indexPath) as? ArticleCell else { return UITableViewCell() }
+            withIdentifier: R.reuseIdentifier.articleCell.identifier,
+            for: indexPath) as? ArticleCell else { return UITableViewCell() }
         
         let article = articles[indexPath.row]
         cell.configureWith(article: article)

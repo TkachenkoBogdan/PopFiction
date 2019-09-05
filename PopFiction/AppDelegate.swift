@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    private var coreDataStack = CoreDataStack(modelName: "PopFiction")
-    private lazy var service = ArticleService(networkService: ArticleNetworkService(), stack: coreDataStack )
+    private var dataManager = DataManager.shared
+    private lazy var service = ArticleService(networkService: ArticleNetworkService())
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        coreDataStack.saveContext()
+        dataManager.saveContext()
     }
 }
 
@@ -55,7 +55,7 @@ extension AppDelegate {
             let mostViewed = factory.makeControllerFor(category: .mostViewed)
             
             let controllers: [UINavigationController] = [mostEmailed, mostShared, mostViewed].map { vc in
-                vc.coreDataStack = self.coreDataStack
+                vc.manager = self.dataManager
                 return vc.embeddedInNavigatioController()
             }
             root.viewControllers = controllers

@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import CoreData
 
 class ArticleListController: UIViewController {
    
-    var coreDataStack: CoreDataStack?
+    var manager: DataManager?
     var dataSource: ArticleDataSource?
     
     @IBOutlet private var tableView: UITableView?
@@ -75,8 +74,6 @@ class ArticleListController: UIViewController {
             self.refreshButton?.isHidden = false
             }
         }
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,46 +89,17 @@ extension ArticleListController {
         let nav = segue.destination as? UINavigationController,
             let destination = nav.topViewController as? FavoritesViewController
             else { return }
-        destination.persistentContext = coreDataStack?.persistentContext
+        destination.manager = self.manager
         
     }
 }
 
 // MARK: - Helpers:
+
 extension ArticleListController {
-    
     private var isDataSourceEmpty: Bool {
         guard let dataSource = self.dataSource else { return true }
         return dataSource.articles.isEmpty ? true : false
-    }
-    
-    private func setFavorite(_ article: Article) {
-        let attKeys = article.entity.attributesByName.keys
-            .map {
-                String($0)
-        }
-        
-        let attributes = article.dictionaryWithValues(forKeys: attKeys)
-        
-        if let persistantContext = self.coreDataStack?.persistentContext {
-            let newArticle = Article(context: persistantContext)
-            newArticle.setValuesForKeys(attributes)
-   
-            guard let coreDataStack = coreDataStack else { return }
-            coreDataStack.saveContext()
-        }
-    }
-    
-    private func deleteArticle(withID id: Int64) {
-        let request: NSFetchRequest<Article> = Article.fetchRequest()
-        request.predicate = NSPredicate(
-            format: "%K = %@", argumentArray: [#keyPath(Article.id), id])
-        
-        if let artToDelete = try? self.coreDataStack?.persistentContext.fetch(request).first,
-            let coreDataStack = coreDataStack {
-            coreDataStack.persistentContext.delete(artToDelete)
-            coreDataStack.saveContext()
-        }
     }
 }
 
@@ -148,15 +116,16 @@ extension ArticleListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let article = self.dataSource?.articles[indexPath.row] else { return nil }
+        guard let manager = self.manager else { return nil }
         
         let action = UIContextualAction(style: .normal, title: title,
                                         handler: { [unowned self] _, _, completionHandler in
             article.isFavorite.toggle()
             self.tableView?.reloadRows(at: [indexPath], with: .automatic)
             if article.isFavorite {
-                self.setFavorite(article)
+                manager.setFavorite(article)
             } else {
-               self.deleteArticle(withID: article.id)
+                manager.deleteArticle(withID: article.id)
             }
             completionHandler(true)
         })

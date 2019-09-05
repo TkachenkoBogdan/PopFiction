@@ -8,19 +8,16 @@
 
 import Foundation
 import SwiftyJSON
-import CoreData
 import Rswift
 
 final class ArticleService {
     
     private let networkService: ArticleNetworkService
-    private let stack: CoreDataStack
+    private let dataManager = DataManager.shared
     
-    init(networkService: ArticleNetworkService, stack: CoreDataStack) {
+    init(networkService: ArticleNetworkService) {
         self.networkService = networkService
-        self.stack = stack
     }
-    
     
     func fetchArticles(for category: ArticleCategory = .mostViewed,
                        completionHandler: @escaping (Result<[Article], Error>) -> Void) {
@@ -61,7 +58,7 @@ final class ArticleService {
             guard let largeURLString = mediaContainer["media-metadata"][2]["url"].string,
                 let largeURL = URL(string: largeURLString) else { return results }
             
-            let managedArticle = makeArticle(withTitle: title, abstract: abstract,
+            let managedArticle = dataManager.makeArticle(withTitle: title, abstract: abstract,
                                              byline: byline, url: url, id: id,
                                              publishDate: publishDate,
                                              thumbnailURL: thumbnailURL,
@@ -69,47 +66,5 @@ final class ArticleService {
             results.append(managedArticle)
         }
         return results
-    }
-    
-}
-
-extension ArticleService {
-    
-    private func synchronizeFavorite(for article: Article) {
-        let request: NSFetchRequest<Article> = Article.fetchRequest()
-        request.predicate = NSPredicate(
-            format: "%K = %@", argumentArray: [#keyPath(Article.id), article.id])
-        
-        guard let favoriteArticle = try? stack.persistentContext.fetch(request).first else { return }
-        article.isFavorite = favoriteArticle.isFavorite
-    }
-    
-    private func makeArticle(withTitle title: String,
-                             abstract: String,
-                             byline: String,
-                             url: URL?,
-                             id: Int64,
-                             publishDate: String,
-                             thumbnailURL: URL,
-                             largeURL: URL ) -> Article {
-        
-        let article = Article(context: stack.ephemeralContext)
-        article.title = title
-        article.abstract = abstract
-        article.byline = byline
-        article.url = url
-        article.id = id
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        if let date: Date = dateFormatter.date(from: publishDate) {
-            article.publishedDate = date as NSDate
-        }
-        
-        article.imageUrl = thumbnailURL
-        article.largeImageUrl = largeURL
-        
-        synchronizeFavorite(for: article)
-        return article
     }
 }

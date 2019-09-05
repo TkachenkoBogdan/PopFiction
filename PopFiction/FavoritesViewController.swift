@@ -7,34 +7,30 @@
 //
 
 import UIKit
-import CoreData
 
 class FavoritesViewController: UIViewController {
     
-    var persistentContext: NSManagedObjectContext?
+    var manager: DataManager?
     
-    var fetchRequest: NSFetchRequest<Article>?
+    @IBOutlet private var tableView: UITableView!
+    
     var articles: [Article] = [] {
         didSet {
             self.tableView.reloadData()
         }
     }
 
-    @IBOutlet private var tableView: UITableView!
-    
+   
+    // MARK: - Lifecycle:
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        
-        fetchRequest = Article.fetchRequest()
-        
-        guard let request = fetchRequest,
-            let persistentContext = persistentContext else { return }
-        if let articles = try? persistentContext.fetch(request) {
-            self.articles = articles
+        if let manager = manager {
+            self.articles = manager.fetchFavorites()
         }
+
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
@@ -50,7 +46,7 @@ extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: favoritesArticleCellIdentifier,
+            withIdentifier: R.reuseIdentifier.favoritesCell.identifier,
             for: indexPath) as? ArticleCell else { return UITableViewCell() }
         
         let article = articles[indexPath.row]
