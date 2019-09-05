@@ -15,5 +15,3 @@ struct AppConfig {
     
 }
 
-//Notifications:
-let dataSourceDidChangeNotification = Notification.Name(rawValue: "DataSourceDidChange")

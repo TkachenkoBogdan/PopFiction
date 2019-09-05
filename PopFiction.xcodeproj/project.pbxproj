@@ -113,6 +113,7 @@
 		BD31DC2E231827E3002523AC /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				BD0A0F5D231F719800EB6B95 /* R.generated.swift */,
 				BD3F7A172320E0630033264A /* Assets.xcassets */,
 				BD3F7A192320E1FC0033264A /* Colors.xcassets */,
 				BD31DC31231828A6002523AC /* .swiftlint.yml */,
@@ -142,6 +143,14 @@
 			name = App;
 			sourceTree = "<group>";
 		};
+		BD3F7A1E2320E52C0033264A /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				BD749C71231FD90A00285AB8 /* ArticleCategory.swift */,
+			);
+			name = Enums;
+			sourceTree = "<group>";
+		};
 		BD554703231A4FDC00804DCA /* Factories */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,7 +172,7 @@
 			children = (
 				BD749C74231FDA5B00285AB8 /* ArticleNetworkService.swift */,
 				BDB4AD1323182CC6004FF50B /* ArticleService.swift */,
-				BD749C71231FD90A00285AB8 /* ArticleCategory.swift */,
+				BD3F7A1E2320E52C0033264A /* Enums */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -225,7 +234,6 @@
 				BD749C6C231FD0B900285AB8 /* UIView+Extension.swift */,
 				BD554701231A4A0900804DCA /* UIStoryboard+Ext.swift */,
 				BDDE43EB231E432F001AD156 /* UIViewController+Ext.swift */,
-				BD0A0F5D231F719800EB6B95 /* R.generated.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";

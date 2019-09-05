@@ -13,6 +13,8 @@ class ArticleDataSource: NSObject, UITableViewDataSource {
     
     private let service: ArticleService
     private let category: ArticleCategory
+    var onUpdateCompletion: ((Bool) -> Void)?
+
     
     init(with service: ArticleService, category: ArticleCategory) {
         self.service = service
@@ -23,7 +25,7 @@ class ArticleDataSource: NSObject, UITableViewDataSource {
     
     private(set) var articles = [Article]() {
         didSet {
-            NotificationCenter.default.post(name: dataSourceDidChangeNotification, object: self)
+            onUpdateCompletion?(true)
         }
     }
     
