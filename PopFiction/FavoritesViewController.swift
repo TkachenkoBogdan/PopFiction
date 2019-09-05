@@ -20,6 +20,8 @@ final class FavoritesViewController: UIViewController {
     }
     
      @IBOutlet private var tableView: UITableView?
+     @IBOutlet private var favoritesCount: UILabel?
+    
     
     // MARK: - Lifecycle:
     override func viewDidLoad() {
@@ -27,14 +29,20 @@ final class FavoritesViewController: UIViewController {
         
         self.tableView?.dataSource = self
         self.tableView?.delegate = self
-        if let manager = manager {
-            self.articles = manager.fetchFavorites()
-        }
-
+        
+        setUp()
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
       dismissFavorites()
+    }
+    
+    private func setUp() {
+        if let manager = manager {
+            self.articles = manager.fetchFavorites()
+            let count = manager.favoritesCount()
+            favoritesCount?.text = "Favorites Count: \(count)"
+        }
     }
 }
 

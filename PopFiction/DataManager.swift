@@ -60,11 +60,21 @@ final class DataManager {
 
         var request: NSFetchRequest<Article>
         request = Article.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "publishedDate",
+                                                    ascending: false)]
 
         guard let results =  try? stack.persistentContext.fetch(request) else {
              return [Article]()
         }
         return results
+    }
+    
+    func favoritesCount() -> Int {
+        var request: NSFetchRequest<Article>
+        request = Article.fetchRequest()
+        request.resultType = .countResultType
+       
+        return (try? stack.persistentContext.count(for: request)) ?? 0
     }
     
     func favorite(_ article: Article) {
