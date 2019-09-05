@@ -12,7 +12,7 @@ import Alamofire
 final class ArticleNetworkService {
     
     private let baseURL = "https://api.nytimes.com/svc/mostpopular/v2"
-    private let parameters: Parameters = ["api-key": API_Key]
+    private let parameters: Parameters = ["api-key": AppConfig.apiKey]
     
     func fetchArticles(forCategory category: ArticleCategory,
                        completion:  @escaping (Result<Data, Error>) -> Void) {
@@ -24,10 +24,9 @@ final class ArticleNetworkService {
                                   attributes: .concurrent)
         
         AF.request(url, method: .get,
-                   parameters: parameters,
-                   encoding: URLEncoding.default,
-                   headers: HEADER).responseJSON(queue: queue) { responce in
-                    
+                   parameters: parameters)
+                   .responseJSON(queue: queue) { responce in
+                
                     guard responce.error == nil, let data = responce.data else {
                         completion(Result.failure(responce.error ?? NSError()))
                         return

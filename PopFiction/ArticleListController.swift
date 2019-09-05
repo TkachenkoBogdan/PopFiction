@@ -85,7 +85,7 @@ class ArticleListController: UIViewController {
 // MARK: - Navigation:
 extension ArticleListController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == R.segue.articleListController.transitionToFavorites.identifier,
+        guard segue.identifier == R.segue.articleListController.toFavorites.identifier,
         let nav = segue.destination as? UINavigationController,
             let destination = nav.topViewController as? FavoritesViewController
             else { return }
@@ -130,8 +130,11 @@ extension ArticleListController: UITableViewDelegate {
             completionHandler(true)
         })
         
-        action.image = R.image.heart()
-        action.backgroundColor = article.isFavorite ? unfavoriteColor : favoriteColor
+        action.image = R.image.heart_empty()
+        action.backgroundColor = article.isFavorite
+            ? R.color.unfavorite()
+            : R.color.favorite()
+        
         let configuration = UISwipeActionsConfiguration(actions: [action])
         return configuration
     }
