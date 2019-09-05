@@ -56,7 +56,6 @@ final class DataManager {
     
     
     // MARK: - Controllers:
-    
     func fetchFavorites() -> [Article] {
 
         var request: NSFetchRequest<Article>
@@ -68,16 +67,22 @@ final class DataManager {
         return results
     }
     
-    func setFavorite(_ article: Article) {
+    func favorite(_ article: Article) {
         let attKeys = article.entity.attributesByName.keys.map { String($0) }
         let attributes = article.dictionaryWithValues(forKeys: attKeys)
         
         let newArticle = Article(context: stack.persistentContext)
         newArticle.setValuesForKeys(attributes)
         saveContext()
+        
+        NotificationCenter.default.post(name: favoriteStatusDidChangeNotification,
+                                        object: nil,
+                                        userInfo: ["idChanged": newArticle.id,
+                                                   "newValue": true])
+                                    
     }
     
-    func deleteArticle(withID id: Int64) {
+    func unfavoriteArticle(withID id: Int64) {
         let request: NSFetchRequest<Article> = Article.fetchRequest()
         request.predicate = NSPredicate(
             format: "%K = %@",
@@ -86,6 +91,13 @@ final class DataManager {
         if let article = try? stack.persistentContext.fetch(request).first {
             stack.persistentContext.delete(article)
             saveContext()
+            
+            NotificationCenter.default.post(name: favoriteStatusDidChangeNotification,
+                                            object: nil,
+                                            userInfo: ["idChanged": id,
+                                                       "newValue": false])
         }
+        
+    
     }
 }

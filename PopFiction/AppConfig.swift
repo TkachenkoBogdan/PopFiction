@@ -14,3 +14,6 @@ struct AppConfig {
   static let apiKey = "ZDGO1GbINnwODAofUGwMWYOeKl7GOT76"
     
 }
+
+//Notifications:
+let favoriteStatusDidChangeNotification = Notification.Name(rawValue: "favoriteStatusDidChange")

@@ -15,6 +15,7 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
     private let service: ArticleService
     private let category: ArticleCategory
     var onUpdateCompletion: ((Bool) -> Void)?
+   // private var token: NSObjectProtocol
 
     
     init(with service: ArticleService, category: ArticleCategory) {
@@ -22,6 +23,21 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
         self.category = category
         super.init()
         fetchArticles(nil)
+       NotificationCenter.default.addObserver(self,
+                                              selector: #selector(refreshArticles),
+                                               name: favoriteStatusDidChangeNotification,
+                                               object: nil)
+    }
+    
+    @objc func refreshArticles(notification: Notification) {
+        if let id = notification.userInfo?["idChanged"] as? Int64,
+            let isFavorite = notification.userInfo?["newValue"] as? Bool {
+             let art = self.articles.first { $0.id == id }
+            guard let article = art else { return }
+            article.isFavorite = isFavorite
+            onUpdateCompletion?(true)
+        }
+        
     }
     
     private(set) var articles = [Article]() {

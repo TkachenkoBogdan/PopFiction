@@ -73,9 +73,9 @@ extension ArticleListController: UITableViewDelegate {
                 self.tableView?.reloadRows(at: [indexPath], with: .none)
                 
                 if article.isFavorite {
-                    manager.setFavorite(article)
+                    manager.favorite(article)
                 } else {
-                    manager.deleteArticle(withID: article.id)
+                    manager.unfavoriteArticle(withID: article.id)
                 }
                 handler(true)
         })
