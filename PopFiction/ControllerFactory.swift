@@ -19,7 +19,6 @@ struct ArticleControllerFactory {
      func makeControllerFor(category: ArticleCategory) -> ArticleListController {
         let controller = UIStoryboard.main.instantiateViewController(ArticleListController.self)
         
-        
         let item = UITabBarItem(title: category.title,
                                 image: category.image,
                                 selectedImage: nil)

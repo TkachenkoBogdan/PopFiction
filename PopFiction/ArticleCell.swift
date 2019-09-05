@@ -17,11 +17,11 @@ class ArticleCell: BaseCell {
     override func configureWith(article: Article) {
         super.configureWith(article: article)
         self.favoriteImageView?.image = article.isFavorite ?
-            UIImage(named: "heart_filled") : nil
+            R.image.heart_filled() : nil
         
         guard let imageURL = article.imageUrl else { return }
         self.thumnailImageView?.sd_setImage(with: imageURL,
-                                            placeholderImage: UIImage(named: "img_placeholder"))
+                                            placeholderImage: R.image.img_placeholder())
     }
 
 }

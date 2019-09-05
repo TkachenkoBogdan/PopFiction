@@ -15,10 +15,7 @@ final class ArticleListController: UIViewController {
     
     @IBOutlet private var tableView: UITableView?
     @IBOutlet private var refreshButton: UIButton?
-    
     private let control = UIRefreshControl()
-    private var notificationToken: NSObjectProtocol?
-   
     
     // MARK: - Lifecycle:
     override func viewDidLoad() {
@@ -75,7 +72,7 @@ extension ArticleListController: UITableViewDelegate {
                 if article.isFavorite {
                     manager.favorite(article)
                 } else {
-                    manager.unfavoriteArticle(withID: article.id)
+                    manager.unfavorite(article: article.id)
                 }
                 handler(true)
         })
@@ -110,7 +107,6 @@ extension ArticleListController {
     }
     
     private func setUp() {
-        
         self.dataSource?.onUpdateCompletion = { [unowned self] _ in
             guard let tableView = self.tableView else { return }
             UIView.transition(with: tableView,
@@ -130,7 +126,6 @@ extension ArticleListController {
         
         self.tableView?.dataSource = self.dataSource
         self.tableView?.delegate = self
-
         
         self.navigationController?.navigationBar.barTintColor = .clear
         self.navigationController?.navigationBar.barStyle = .black

@@ -78,7 +78,7 @@ final class DataManager {
          postStatusChange(for: newArticle.id, value: true)
     }
     
-    func unfavoriteArticle(withID id: Int64) {
+    func unfavorite(article id: Int64) {
         let request: NSFetchRequest<Article> = Article.fetchRequest()
         request.predicate = NSPredicate(
             format: "%K = %@",

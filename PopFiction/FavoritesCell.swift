@@ -17,18 +17,17 @@ class FavoritesCell: ArticleCell {
     
     override func configureWith(article: Article) {
         super.configureWith(article: article)
-        self.dateLabel?.text = dateToString(article.publishedDate as Date? ?? Date())
+        self.dateLabel?.text = dateToString(article.publishedDate as Date?)
         self.summaryLabel?.text = article.abstract
         
         guard let imageURL = article.largeImageUrl else { return }
         self.largeImageView?.sd_setImage(with: imageURL,
-                                         placeholderImage: UIImage(named: "placeholder_large"))
-        
+                                         placeholderImage: R.image.placeholder_large())
    }
-    
-    
-   private func dateToString(_ date: Date) -> String {
-        let formatter = DateFormatter()
+
+   private func dateToString(_ date: Date?) -> String {
+    guard let date = date else { return ""}
+    let formatter = DateFormatter()
         formatter.dateStyle = .long
         return formatter.string(from: date )
     }

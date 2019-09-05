@@ -11,19 +11,22 @@ import UIKit
 final class FavoritesViewController: UIViewController {
     
     var manager: DataManager?
-    @IBOutlet private var tableView: UITableView!
+   
     
-    var articles: [Article] = [] {
+    private var articles: [Article] = [] {
         didSet {
-            self.tableView.reloadData()
+            self.tableView?.reloadData()
         }
     }
+    
+     @IBOutlet private var tableView: UITableView?
+    
     // MARK: - Lifecycle:
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        self.tableView?.dataSource = self
+        self.tableView?.delegate = self
         if let manager = manager {
             self.articles = manager.fetchFavorites()
         }
