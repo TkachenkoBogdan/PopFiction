@@ -60,9 +60,7 @@ final class DataManager {
 
         var request: NSFetchRequest<Article>
         request = Article.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "publishedDate",
-                                                    ascending: false)]
-
+       
         guard let results =  try? stack.persistentContext.fetch(request) else {
              return [Article]()
         }

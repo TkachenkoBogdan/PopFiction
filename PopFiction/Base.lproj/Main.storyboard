@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -119,7 +120,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="New York Times" id="qVq-oW-2En">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="favorites" id="GHu-WZ-fSy">
-                            <color key="tintColor" red="1" green="0.22572666750000001" blue="0.40745575420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="favorite"/>
                             <connections>
                                 <segue destination="Uu0-5i-xSZ" kind="presentation" identifier="toFavorites" id="i3p-nA-W1G"/>
                             </connections>
@@ -134,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pio-La-an3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="536.79999999999995" y="107.88177339901478"/>
+            <point key="canvasLocation" x="583" y="108"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="sAx-zq-cps">
@@ -144,25 +145,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VA8-RX-M31">
-                                <rect key="frame" x="0.0" y="737" width="375" height="75"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorites Count:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvO-tM-cka">
-                                        <rect key="frame" x="66" y="15.666666666666629" width="243" height="44"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="36"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.22572666750000001" blue="0.40745575420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="UPe-LV-BOt"/>
-                                    <constraint firstItem="yvO-tM-cka" firstAttribute="centerX" secondItem="VA8-RX-M31" secondAttribute="centerX" id="Xc9-vV-yWl"/>
-                                    <constraint firstItem="yvO-tM-cka" firstAttribute="centerY" secondItem="VA8-RX-M31" secondAttribute="centerY" id="fwO-dB-zqK"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9rD-UL-UgY">
-                                <rect key="frame" x="0.0" y="88" width="375" height="649"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="Ggm-ss-dTW"/>
                                 <color key="separatorColor" red="0.1215686277" green="0.1294117719" blue="0.1411764771" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -236,20 +220,51 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VA8-RX-M31" userLabel="BottomBar">
+                                <rect key="frame" x="0.0" y="737" width="375" height="75"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7E-8l-ZWY">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0zi-gZ-Gto">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="dark"/>
+                                    </visualEffectView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="HdQ-LN-4K6">
+                                        <rect key="frame" x="62" y="23.666666666666629" width="251" height="29"/>
+                                        <segments>
+                                            <segment title="By Date Published"/>
+                                            <segment title="Alphabetically"/>
+                                        </segments>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="favorite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="x7E-8l-ZWY" secondAttribute="trailing" id="Cmu-0I-z3C"/>
+                                    <constraint firstItem="x7E-8l-ZWY" firstAttribute="leading" secondItem="VA8-RX-M31" secondAttribute="leading" id="NYD-mN-b9v"/>
+                                    <constraint firstAttribute="height" constant="75" id="UPe-LV-BOt"/>
+                                    <constraint firstItem="HdQ-LN-4K6" firstAttribute="centerY" secondItem="VA8-RX-M31" secondAttribute="centerY" id="Udb-jf-OxL"/>
+                                    <constraint firstItem="x7E-8l-ZWY" firstAttribute="top" secondItem="VA8-RX-M31" secondAttribute="top" id="eHI-rZ-7J1"/>
+                                    <constraint firstItem="HdQ-LN-4K6" firstAttribute="centerX" secondItem="VA8-RX-M31" secondAttribute="centerX" id="foc-ed-2nA"/>
+                                    <constraint firstAttribute="bottom" secondItem="x7E-8l-ZWY" secondAttribute="bottom" id="rtu-sd-CoN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="9rD-UL-UgY" secondAttribute="bottom" id="0OC-Vb-2dv"/>
                             <constraint firstItem="VA8-RX-M31" firstAttribute="trailing" secondItem="zEu-lC-hvi" secondAttribute="trailing" id="29h-eX-M5b"/>
                             <constraint firstItem="9rD-UL-UgY" firstAttribute="leading" secondItem="zEu-lC-hvi" secondAttribute="leading" id="2Ca-HX-WOP"/>
                             <constraint firstAttribute="bottom" secondItem="VA8-RX-M31" secondAttribute="bottom" id="Jqo-x3-vkD"/>
                             <constraint firstItem="VA8-RX-M31" firstAttribute="leading" secondItem="zEu-lC-hvi" secondAttribute="leading" id="caT-n2-53C"/>
                             <constraint firstItem="9rD-UL-UgY" firstAttribute="top" secondItem="zEu-lC-hvi" secondAttribute="top" id="gm5-Ht-vRP"/>
-                            <constraint firstItem="VA8-RX-M31" firstAttribute="top" secondItem="9rD-UL-UgY" secondAttribute="bottom" id="q1V-OL-JbT"/>
                             <constraint firstItem="9rD-UL-UgY" firstAttribute="trailing" secondItem="zEu-lC-hvi" secondAttribute="trailing" id="xpF-Yb-LN5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zEu-lC-hvi"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Favorites" id="iTv-fT-5SM">
+                    <navigationItem key="navigationItem" title="Favorites" largeTitleDisplayMode="always" id="iTv-fT-5SM">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="CAs-pj-ysf">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -259,13 +274,12 @@
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="favoritesCount" destination="yvO-tM-cka" id="r4n-ck-cgz"/>
                         <outlet property="tableView" destination="9rD-UL-UgY" id="nFy-fa-yju"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggQ-D5-FE9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1984.8" y="107.88177339901478"/>
+            <point key="canvasLocation" x="2045.5999999999999" y="107.88177339901478"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="43k-hb-ZQq">
@@ -284,7 +298,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LxP-uD-lxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1260" y="108"/>
+            <point key="canvasLocation" x="1318" y="108"/>
         </scene>
     </scenes>
     <resources>
@@ -293,6 +307,9 @@
         <image name="img_placeholder" width="97" height="97"/>
         <image name="placeholder_large" width="220" height="148.5"/>
         <image name="refresh" width="50" height="50"/>
+        <namedColor name="favorite">
+            <color red="0.93199998140335083" green="0.31099998950958252" blue="0.38699999451637268" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
     <color key="tintColor" red="1" green="0.22572666750000001" blue="0.40745575420000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
