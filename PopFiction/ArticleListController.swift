@@ -23,32 +23,10 @@ final class ArticleListController: UIViewController {
         setUp()
     }
     
-    @objc private func refreshData(_ sender: Any) {
-        self.refreshButton?.fadeTransition(withDuration: 0.7)
-        self.refreshButton?.alpha = 0
-        
-        dataSource?.fetchArticles { _ in
-            DispatchQueue.main.async {
-                self.control.endRefreshing()
-                UIView.animate(withDuration: 2, animations: {
-                    self.refreshButton?.alpha = 1
-                })
-            }
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        showRefreshView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if let indexPath = tableView?.indexPathForSelectedRow {
-            tableView?.deselectRow(at: indexPath, animated: true)
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { [unowned self] in
-            if self.isDataSourceEmpty {
-                self.refreshButton?.fadeTransition(withDuration: 0.8)
-                self.refreshButton?.isHidden = false
-            }
-        }
-    }
 }
 
 // MARK: - UITableViewDelegate:
@@ -101,9 +79,35 @@ extension ArticleListController {
 // MARK: - Helpers:
 extension ArticleListController {
     
+    @objc private func refreshData(_ sender: Any) {
+        self.refreshButton?.fadeTransition(withDuration: 0.7)
+        self.refreshButton?.alpha = 0
+        
+        dataSource?.fetchArticles { success in
+            DispatchQueue.main.async {
+                self.control.endRefreshing()
+                if !success {
+                    UIView.animate(withDuration: 2, animations: {
+                        self.refreshButton?.alpha = 1
+                    })
+                }
+            }
+        }
+    }
+    
     private var isDataSourceEmpty: Bool {
         guard let dataSource = self.dataSource else { return true }
         return dataSource.articles.isEmpty ? true : false
+    }
+    
+    
+    private func showRefreshView() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [unowned self] in
+            if self.isDataSourceEmpty {
+                self.refreshButton?.fadeTransition(withDuration: 0.8)
+                self.refreshButton?.isHidden = false
+            }
+        }
     }
     
     private func setUp() {
