@@ -21,6 +21,7 @@ extension Article {
     @NSManaged public var byline: String?//byLine
     @NSManaged public var publishedDate: NSDate?
     @NSManaged public var title: String?
+  
     @NSManaged public var url: URL?
     @NSManaged public var id: Int64
     @NSManaged public var imageUrl: URL?//smallImageUrl
@@ -28,4 +29,3 @@ extension Article {
     @NSManaged public var isFavorite: Bool
 
 
-}

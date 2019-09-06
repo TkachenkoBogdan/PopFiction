@@ -25,7 +25,7 @@ final class DataManager {
                      byline: String,
                      url: URL?,
                      id: Int64,
-                     publishDate: NSDate?,
+                     publishDate: NSDate,
                      thumbnailURL: URL,
                      largeURL: URL ) -> Article {
         
@@ -62,7 +62,7 @@ final class DataManager {
         request = Article.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "publishedDate",
                                                     ascending: false)]
-        
+       
         guard let results =  try? stack.persistentContext.fetch(request) else {
             return [Article]()
         }

@@ -11,16 +11,14 @@ import UIKit
 final class FavoritesViewController: UIViewController {
     
     var manager: DataManager?
-   
-    
+
     private var articles: [Article] = [] {
         didSet {
             self.tableView?.reloadData()
         }
     }
-    
      @IBOutlet private var tableView: UITableView?
-     @IBOutlet private var favoritesCount: UILabel?
+     @IBOutlet private var bottomBarView: UIView?
     
     
     // MARK: - Lifecycle:
@@ -33,6 +31,38 @@ final class FavoritesViewController: UIViewController {
         setUp()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // FIXME: - Refactor this:
+        guard var barHeight = self.bottomBarView?.bounds.height else { return }
+        let inset = barHeight - (self.view.bounds.height / 40)
+        tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
+        tableView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
+    }
+    
+    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        let index = sender.selectedSegmentIndex
+        switch index {
+        case 0:
+            self.articles.sort { (art1, art2) -> Bool in
+                return (art1.publishedDate as Date) > (art2.publishedDate as Date)
+            }
+        case 1:
+            self.articles.sort { (art1, art2) -> Bool in
+                return art1.title < art2.title
+            }
+        default:
+            break
+        }
+        guard let tableView = tableView else { return }
+        UIView.transition(with: tableView,
+                          duration: 0.35,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            tableView.reloadData()
+        })
+    }
+    
     @IBAction func backButtonPressed(_ sender: Any) {
       dismissFavorites()
     }
@@ -41,7 +71,7 @@ final class FavoritesViewController: UIViewController {
         if let manager = manager {
             self.articles = manager.fetchFavorites()
             let count = manager.favoritesCount()
-            favoritesCount?.text = "Favorites Count: \(count)"
+                self.navigationItem.title = "Favorites: \(count)"
         }
     }
 }
