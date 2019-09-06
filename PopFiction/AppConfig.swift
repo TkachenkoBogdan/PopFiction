@@ -18,6 +18,12 @@ struct AppConfig {
 //Notifications:
 let favoriteStatusDidChangeNotification = Notification.Name(rawValue: "favoriteStatusDidChange")
 
+extension Notification.Name {
+    static let FavoriteStatusDidChange = Notification.Name(rawValue: "favoriteStatusDidChange")
+}// Такой подход выглядит более нативным, вообще погугли Notification.Name как использовать там кажется вообще с большой буквы именование
+
 //Notification keys:
     let updateFavoriteStatusKey = "favoriteStatus"
     let updateFavoriteIDKey = "id"
+//я против глобальных переменных, я считаю это очень херовым подходом
+
