@@ -54,7 +54,13 @@ final class FavoritesViewController: UIViewController {
         default:
             break
         }
-        self.tableView?.reloadData()
+        guard let tableView = tableView else { return }
+        UIView.transition(with: tableView,
+                          duration: 0.35,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            tableView.reloadData()
+        })
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
