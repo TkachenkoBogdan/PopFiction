@@ -21,7 +21,7 @@ class ArticleCell: BaseCell {
         
         guard let imageURL = article.smallImageUrl else { return }
         self.thumnailImageView?.sd_setImage(with: imageURL,
-                                            placeholderImage: R.image.img_placeholder())
+                                            placeholderImage: R.image.placeholder_small())
     }
 
 }

@@ -20,11 +20,11 @@ extension Article {
     @NSManaged public var title: String
     @NSManaged public var summary: String
     @NSManaged public var byline: String
+    
     @NSManaged public var publishedDate: NSDate
-
-  
     @NSManaged public var url: URL?
     @NSManaged public var id: Int64
+    
     @NSManaged public var smallImageUrl: URL?
     @NSManaged public var largeImageUrl: URL?
     @NSManaged public var isFavorite: Bool

@@ -14,7 +14,6 @@ final class DataManager {
     private let stack = CoreDataStack(modelName: "PopFiction")
     static let shared = DataManager()
     
-    
     func saveContext () {
         self.stack.saveContext()
     }
@@ -44,7 +43,7 @@ final class DataManager {
     }
     
     private func synchronize(article: Article) {
-        let request: NSFetchRequest<Article> = Article.fetchRequest()
+        let request = makeRequest()
         request.predicate = NSPredicate(
             format: "%K = %@",
             argumentArray: [#keyPath(Article.id), article.id])
@@ -55,20 +54,19 @@ final class DataManager {
     
     
     // MARK: - Controllers:
+    
     func fetchFavorites() -> [Article]? {
-        var request: NSFetchRequest<Article>
-        request = Article.fetchRequest()
+        let request = makeRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "publishedDate",
                                                     ascending: false)]
-        guard let results =  try? stack.mainContext.fetch(request) else {
+        guard let results = try? stack.mainContext.fetch(request) else {
             return nil
         }
         return results
     }
     
     func favoritesCount() -> Int {
-        var request: NSFetchRequest<Article>
-        request = Article.fetchRequest()
+        let request = makeRequest()
         request.resultType = .countResultType
         return (try? stack.mainContext.count(for: request)) ?? 0
     }
@@ -85,7 +83,7 @@ final class DataManager {
     }
     
     func makeUnfavorite(article id: Int64) {
-        let request: NSFetchRequest<Article> = Article.fetchRequest()
+        let request = makeRequest()
         request.predicate = NSPredicate(
             format: "%K = %@",
             argumentArray: [#keyPath(Article.id), id])
@@ -98,23 +96,28 @@ final class DataManager {
         }
     }
     
+    private func makeRequest() -> NSFetchRequest<Article> {
+        return Article.fetchRequest()
+    }
+}
 
+
+
+//// MARK: - : Notifications:
+extension DataManager {
     private func postStatusChange(for id: Int64, value: Bool) {
         NotificationCenter.default.post(name: .FavoriteStatusDidChange,
                                         object: nil,
                                         userInfo: [Keys.updateFavoriteIDKey: id,
                                                    Keys.updateFavoriteStatusKey: value])
     }
-
     //Notification keys:
     struct Keys {
         static let updateFavoriteStatusKey = "favoriteStatus"
         static let updateFavoriteIDKey = "id"
     }
-
 }
 
-//Notifications:
 extension Notification.Name {
     static let FavoriteStatusDidChange = Notification.Name(rawValue: "favoriteStatusDidChange")
 }

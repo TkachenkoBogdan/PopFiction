@@ -13,11 +13,15 @@ extension UIViewController {
     func dismissFavorites() {
         let transition = CATransition()
         transition.duration = 0.5
-        transition.type = CATransitionType.reveal // `.reveal`
-        transition.subtype = CATransitionSubtype.fromBottom  // `.fromBottom`
+        transition.type = .reveal 
+        transition.subtype = .fromBottom
         self.view.window?.layer.add(transition, forKey: kCATransition)
         
         self.dismiss(animated: false)
     }
 
+    func embeddedInNavigatioController() -> UINavigationController {
+        return UINavigationController(rootViewController: self)
+    }
 }
+
