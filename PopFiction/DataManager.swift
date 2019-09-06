@@ -25,7 +25,7 @@ final class DataManager {
                      byline: String,
                      url: URL?,
                      id: Int64,
-                     publishDate: NSDate?,
+                     publishDate: NSDate,
                      thumbnailURL: URL,
                      largeURL: URL ) -> Article {
         

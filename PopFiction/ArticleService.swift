@@ -52,7 +52,8 @@ final class ArticleService {
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            let date = dateFormatter.date(from: publishDate)
+            guard let date = dateFormatter.date(from: publishDate) as NSDate? else { return results }
+            
             
             guard let mediaContainer = article["media"].array?.first  else { return results}
             
@@ -64,7 +65,7 @@ final class ArticleService {
             
             let managedArticle = dataManager.makeArticle(withTitle: title, abstract: abstract,
                                              byline: byline, url: url, id: id,
-                                             publishDate: date as NSDate?,
+                                             publishDate: date,
                                              thumbnailURL: thumbnailURL,
                                              largeURL: largeURL)
             results.append(managedArticle)
