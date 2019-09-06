@@ -111,8 +111,15 @@ extension ArticleListController {
     }
     
     private func setUp() {
-        self.dataSource?.onUpdateCompletion = { [unowned self] _ in
-            guard let tableView = self.tableView else { return }
+        guard let tableView = self.tableView else { return }
+        self.dataSource?.onUpdateCompletion = { indexPath in
+            UIView.performWithoutAnimation {
+                tableView.beginUpdates()
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+                tableView.endUpdates()
+            }
+        }
+        self.dataSource?.onFetchCompletion = { _ in
             UIView.transition(with: tableView,
                               duration: 0.35,
                               options: .transitionCrossDissolve,
@@ -125,11 +132,11 @@ extension ArticleListController {
         control.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         refreshButton?.addTarget(self, action: #selector(refreshData(_:)), for: .touchUpInside)
         
-        self.tableView?.refreshControl = control
-        tableView?.isHidden = isDataSourceEmpty
+        tableView.refreshControl = control
+        tableView.isHidden = isDataSourceEmpty
         
-        self.tableView?.dataSource = self.dataSource
-        self.tableView?.delegate = self
+        tableView.dataSource = self.dataSource
+        tableView.delegate = self
         
         self.navigationController?.navigationBar.barTintColor = .clear
         self.navigationController?.navigationBar.barStyle = .black

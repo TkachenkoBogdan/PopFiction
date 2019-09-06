@@ -14,7 +14,8 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
     
     private let service: ArticleService
     private let category: ArticleCategory
-    var onUpdateCompletion: CompletionHandler?
+    var onUpdateCompletion: ((IndexPath) -> Void)?
+    var onFetchCompletion: CompletionHandler?
 
     init(with service: ArticleService, category: ArticleCategory) {
         self.service = service
@@ -27,7 +28,7 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
     
     private(set) var articles = [Article]() {
         didSet {
-            onUpdateCompletion?(true)
+            onFetchCompletion?(true)
         }
     }
     
@@ -68,7 +69,11 @@ extension ArticleDataSource {
         
         if let article = self.articles.first(where: { $0.id == id }) {
             article.isFavorite = isFavorite
-            onUpdateCompletion?(true)
+            
+            if let index = self.articles.indexDistance(of: article) {
+                let indexPath = IndexPath(row: index, section: 0)
+                onUpdateCompletion?(indexPath)
+            } 
         }
     }
     private func registerFavoriteUpdateNotification() {
@@ -76,5 +81,13 @@ extension ArticleDataSource {
                                                selector: #selector(refreshArticles),
                                                name: .FavoriteStatusDidChange,
                                                object: nil)
+    }
+}
+
+
+extension Collection where Element: Equatable {
+    func indexDistance(of element: Element) -> Int? {
+        guard let index = firstIndex(of: element) else { return nil }
+        return distance(from: startIndex, to: index)
     }
 }
