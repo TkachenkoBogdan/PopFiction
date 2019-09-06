@@ -19,7 +19,7 @@ class ArticleCell: BaseCell {
         self.favoriteImageView?.image = article.isFavorite ?
             R.image.heart_filled() : nil
         
-        guard let imageURL = article.imageUrl else { return }
+        guard let imageURL = article.smallImageUrl else { return }
         self.thumnailImageView?.sd_setImage(with: imageURL,
                                             placeholderImage: R.image.img_placeholder())
     }

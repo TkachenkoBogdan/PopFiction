@@ -12,7 +12,7 @@ import SDWebImage
 class BaseCell: UITableViewCell {
     
     @IBOutlet private var titleLabel: UILabel?
-    @IBOutlet private var bylineLabel: UILabel?//byLine
+    @IBOutlet private var bylineLabel: UILabel?
     
     func configureWith(article: Article) {
         self.titleLabel?.text = article.title

@@ -34,13 +34,13 @@ final class FavoritesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         // FIXME: - Refactor this:
-        guard var barHeight = self.bottomBarView?.bounds.height else { return }
+        guard let barHeight = self.bottomBarView?.bounds.height else { return }
         let inset = barHeight - (self.view.bounds.height / 40)
         tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
         tableView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
     }
     
-    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+    @IBAction private func segmentedControlChanged(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         switch index {
         case 0:
@@ -63,18 +63,18 @@ final class FavoritesViewController: UIViewController {
         })
     }
     
-    @IBAction func backButtonPressed(_ sender: Any) {
+    @IBAction private func backButtonPressed(_ sender: Any) {
       dismissFavorites()
     }
     
     private func setUp() {
-        if let manager = manager {
-            self.articles = manager.fetchFavorites()
+        guard let manager = manager, let favorites = manager.fetchFavorites() else { return }
+            self.articles = favorites
             let count = manager.favoritesCount()
                 self.navigationItem.title = "Favorites: \(count)"
         }
     }
-}
+
 
 extension FavoritesViewController: UITableViewDataSource {
     

@@ -18,7 +18,7 @@ class FavoritesCell: ArticleCell {
     override func configureWith(article: Article) {
         super.configureWith(article: article)
         self.dateLabel?.text = dateToString(article.publishedDate as Date?)
-        self.summaryLabel?.text = article.abstract
+        self.summaryLabel?.text = article.summary
         
         guard let imageURL = article.largeImageUrl else { return }
         self.largeImageView?.sd_setImage(with: imageURL,

@@ -44,7 +44,7 @@ final class ArticleService {
         
         for article in topContainer {
             let title = article["title"].stringValue
-            let abstract = article["abstract"].stringValue
+            let summary = article["abstract"].stringValue
             let byline = article["byline"].stringValue
             let url = article["url"].url
             let id = article["id"].int64Value
@@ -63,7 +63,7 @@ final class ArticleService {
             guard let largeURLString = mediaContainer["media-metadata"][2]["url"].string,
                 let largeURL = URL(string: largeURLString) else { return results }
             
-            let managedArticle = dataManager.makeArticle(withTitle: title, abstract: abstract,
+            let managedArticle = dataManager.makeArticle(withTitle: title, abstract: summary,
                                              byline: byline, url: url, id: id,
                                              publishDate: date,
                                              thumbnailURL: thumbnailURL,

@@ -11,8 +11,7 @@ import CoreData
 
 final class DataManager {
     
-    private(set) var stack = CoreDataStack(modelName: "PopFiction")// а зачем здесь var если ты нигде не меняешь его?
-    
+    private let stack = CoreDataStack(modelName: "PopFiction")
     static let shared = DataManager()
     
     
@@ -29,42 +28,40 @@ final class DataManager {
                      thumbnailURL: URL,
                      largeURL: URL ) -> Article {
         
-        let article = Article(context: stack.ephemeralContext)
+        let article = Article(context: stack.inMemoryContext)
         article.title = title
-        article.abstract = abstract
+        article.summary = abstract
         article.byline = byline
         article.url = url
         article.id = id
         article.publishedDate = publishDate
         
-        article.imageUrl = thumbnailURL
+        article.smallImageUrl = thumbnailURL
         article.largeImageUrl = largeURL
         
-        synchronizeFavorite(for: article)
+        synchronize(article: article)
         return article
     }
     
-    private func synchronizeFavorite(for article: Article) {//не очень удачное название, напр: synchronize(article: Article) будет лучше, как по мне
+    private func synchronize(article: Article) {
         let request: NSFetchRequest<Article> = Article.fetchRequest()
         request.predicate = NSPredicate(
             format: "%K = %@",
             argumentArray: [#keyPath(Article.id), article.id])
         
-        guard let favoriteArticle = try? stack.persistentContext.fetch(request).first else { return }
+        guard let favoriteArticle = try? stack.mainContext.fetch(request).first else { return }
         article.isFavorite = favoriteArticle.isFavorite
     }
     
     
     // MARK: - Controllers:
-    func fetchFavorites() -> [Article] {//Ну по хорошему если у тебя нет `favorites`, то метод должен возвращать не пустой массив, а nil
-        
+    func fetchFavorites() -> [Article]? {
         var request: NSFetchRequest<Article>
         request = Article.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "publishedDate",
                                                     ascending: false)]
-       
-        guard let results =  try? stack.persistentContext.fetch(request) else {
-            return [Article]()
+        guard let results =  try? stack.mainContext.fetch(request) else {
+            return nil
         }
         return results
     }
@@ -73,41 +70,51 @@ final class DataManager {
         var request: NSFetchRequest<Article>
         request = Article.fetchRequest()
         request.resultType = .countResultType
-        
-        return (try? stack.persistentContext.count(for: request)) ?? 0
+        return (try? stack.mainContext.count(for: request)) ?? 0
     }
     
-    func favorite(_ article: Article) {// `makeFavorite`
-        let attKeys = article.entity.attributesByName.keys.map { String($0) }//`attributesKeys`
-        let attributes = article.dictionaryWithValues(forKeys: attKeys)
+    func makeFavorite(_ article: Article) {
+        let attributeKeys = article.entity.attributesByName.keys.map { String($0) }
+        let attributes = article.dictionaryWithValues(forKeys: attributeKeys)
         
-        let newArticle = Article(context: stack.persistentContext)
+        let newArticle = Article(context: stack.mainContext)
         newArticle.setValuesForKeys(attributes)
         saveContext()
         
         postStatusChange(for: newArticle.id, value: true)
     }
     
-    func unfavorite(article id: Int64) {//`makeUnforite`
+    func makeUnfavorite(article id: Int64) {
         let request: NSFetchRequest<Article> = Article.fetchRequest()
         request.predicate = NSPredicate(
             format: "%K = %@",
             argumentArray: [#keyPath(Article.id), id])
         
-        if let article = try? stack.persistentContext.fetch(request).first {
-            stack.persistentContext.delete(article)
+        if let article = try? stack.mainContext.fetch(request).first {
+            stack.mainContext.delete(article)
             saveContext()
-            
+
             postStatusChange(for: id, value: false)
         }
-        //переносы строки лишние
-        //
     }
     
+
     private func postStatusChange(for id: Int64, value: Bool) {
-        NotificationCenter.default.post(name: favoriteStatusDidChangeNotification,
+        NotificationCenter.default.post(name: .FavoriteStatusDidChange,
                                         object: nil,
-                                        userInfo: [updateFavoriteIDKey: id,
-                                                   updateFavoriteStatusKey: value])
+                                        userInfo: [Keys.updateFavoriteIDKey: id,
+                                                   Keys.updateFavoriteStatusKey: value])
     }
+
+    //Notification keys:
+    struct Keys {
+        static let updateFavoriteStatusKey = "favoriteStatus"
+        static let updateFavoriteIDKey = "id"
+    }
+
+}
+
+//Notifications:
+extension Notification.Name {
+    static let FavoriteStatusDidChange = Notification.Name(rawValue: "favoriteStatusDidChange")
 }

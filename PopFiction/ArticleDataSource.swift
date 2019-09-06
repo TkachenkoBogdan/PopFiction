@@ -10,18 +10,18 @@ import UIKit
 
 final class ArticleDataSource: NSObject, UITableViewDataSource {
     
-    typealias OnFetchedCompletion = ((Bool) -> Void)
+    typealias CompletionHandler = ((Bool) -> Void)
     
     private let service: ArticleService
     private let category: ArticleCategory
-    var onUpdateCompletion: ((Bool) -> Void)?// это не одно и то же c OnFetchedCompletion??
+    var onUpdateCompletion: CompletionHandler?
 
     init(with service: ArticleService, category: ArticleCategory) {
         self.service = service
         self.category = category
         super.init()
-        fetchArticles(nil)
         
+        fetchArticles(nil)
         registerFavoriteUpdateNotification()
     }
     
@@ -41,15 +41,14 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
             withIdentifier: R.reuseIdentifier.articleCell.identifier,
             for: indexPath) as? ArticleCell else { return UITableViewCell() }
         
-        let article = articles[indexPath.row]
-        cell.configureWith(article: article)//cell.configureWith(article: articles[indexPath.row]) так будет лучше
+        cell.configureWith(article: articles[indexPath.row])
         return cell
     }
  
 }
 
 extension ArticleDataSource {
-    func fetchArticles(_ completion: OnFetchedCompletion?) {
+    func fetchArticles(_ completion: CompletionHandler?) {
         service.fetchArticles(for: self.category, completionHandler: { result in
             switch result {
             case .success(let articles):
@@ -62,22 +61,20 @@ extension ArticleDataSource {
         })
     }
     
-    
-    //Favorite Status Update Notifications:
+    // MARK: - Favorite Status Update Notifications::
     @objc private func refreshArticles(notification: Notification) {
-        guard let id = notification.userInfo?[updateFavoriteIDKey] as? Int64,
-            let isFavorite = notification.userInfo?[updateFavoriteStatusKey] as? Bool else { return }
+        guard let id = notification.userInfo?[DataManager.Keys.updateFavoriteIDKey] as? Int64,
+            let isFavorite = notification.userInfo?[DataManager.Keys.updateFavoriteStatusKey] as? Bool else { return }
         
         if let article = self.articles.first(where: { $0.id == id }) {
             article.isFavorite = isFavorite
             onUpdateCompletion?(true)
         }
     }
-    
     private func registerFavoriteUpdateNotification() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refreshArticles),
-                                               name: favoriteStatusDidChangeNotification,
+                                               name: .FavoriteStatusDidChange,
                                                object: nil)
     }
 }
