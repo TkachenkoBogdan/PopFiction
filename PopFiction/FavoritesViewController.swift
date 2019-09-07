@@ -125,12 +125,14 @@ extension FavoritesViewController: UITableViewDelegate {
                                             
                                             article.isFavorite.toggle()
                                             manager.makeUnfavorite(article: article.id)
+                    
+                                            UIView.performWithoutAnimation {
+                                                self.tableView?.beginUpdates()
+                                                self.articles.remove(at: indexPath.row)
+                                                self.tableView?.deleteRows(at: [indexPath], with: .none)
+                                                self.tableView?.endUpdates()
+                                            }
                                             
-                                            self.tableView?.beginUpdates()
-                                            self.articles.remove(at: indexPath.row)
-                                            self.tableView?.deleteRows(at: [indexPath], with: .none)
-                                            self.tableView?.endUpdates()
-                                    
                                             handler(true)
         })
         
