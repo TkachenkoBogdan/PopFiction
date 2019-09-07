@@ -27,15 +27,15 @@ enum ArticleCategory {
     }
     
     var image: UIImage {
-        var image: UIImage?
+        var image: UIImage
         switch self {
         case .mostEmailed:
-            image = R.image.emailed()
+            image = #imageLiteral(resourceName: "emailed")
         case .mostShared:
-            image = R.image.shared()
+            image = #imageLiteral(resourceName: "shared")
         case .mostViewed:
-            image = R.image.viewed()
+            image = #imageLiteral(resourceName: "viewed")
         }
-        return image ?? UIImage()
+        return image
     }
 }
