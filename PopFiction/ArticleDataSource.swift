@@ -14,7 +14,7 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
     
     private let service: ArticleService
     private let category: ArticleCategory
-    var onUpdateCompletion: ((IndexPath) -> Void)?
+    
     var onFetchCompletion: CompletionHandler?
 
     init(with service: ArticleService, category: ArticleCategory) {
@@ -65,17 +65,14 @@ extension ArticleDataSource {
     // MARK: - Favorite Status Update Notifications::
     @objc private func refreshArticles(notification: Notification) {
         guard let id = notification.userInfo?[DataManager.Keys.updateFavoriteIDKey] as? Int64,
-            let isFavorite = notification.userInfo?[DataManager.Keys.updateFavoriteStatusKey] as? Bool else { return }
+            let isFavorite = notification.userInfo?[DataManager.Keys.updateFavoriteStatusKey] as? Bool
+            else { return }
         
         if let article = self.articles.first(where: { $0.id == id }) {
             article.isFavorite = isFavorite
-            
-            if let index = self.articles.indexDistance(of: article) {
-                let indexPath = IndexPath(row: index, section: 0)
-                onUpdateCompletion?(indexPath)
-            } 
         }
     }
+    
     private func registerFavoriteUpdateNotification() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refreshArticles),

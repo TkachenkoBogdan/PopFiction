@@ -43,15 +43,19 @@ extension ArticleListController: UITableViewDelegate {
               let manager = self.manager else { return nil }
 
         let action = UIContextualAction(style: .normal, title: title,
-                                        handler: { [unowned self] _, _, handler in
+                                        handler: { _, _, handler in
                 article.isFavorite.toggle()
-                self.tableView?.reloadRows(at: [indexPath], with: .none)
-                
+                                           
                 if article.isFavorite {
                     manager.makeFavorite(article)
                 } else {
                     manager.makeUnfavorite(article: article.id)
                 }
+    
+                UIView.performWithoutAnimation {
+                    tableView.reloadRows(at: [indexPath], with: .none)
+                }
+                                           
                 handler(true)
         })
         
@@ -112,13 +116,7 @@ extension ArticleListController {
     
     private func setUp() {
         guard let tableView = self.tableView else { return }
-        self.dataSource?.onUpdateCompletion = { indexPath in
-            UIView.performWithoutAnimation {
-                tableView.beginUpdates()
-                tableView.reloadRows(at: [indexPath], with: .automatic)
-                tableView.endUpdates()
-            }
-        }
+
         self.dataSource?.onFetchCompletion = { _ in
             UIView.transition(with: tableView,
                               duration: 0.35,
