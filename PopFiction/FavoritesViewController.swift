@@ -15,7 +15,7 @@ final class FavoritesViewController: UIViewController {
     private var articles: [Article] = [] {
         didSet {
             self.tableView?.reloadData()
-            self.navigationItem.title = "Favorites: \(articles.count)"
+            self.updateTitle()
         }
     }
     
@@ -51,6 +51,14 @@ final class FavoritesViewController: UIViewController {
 
 // MARK: - Helpers:
 extension FavoritesViewController {
+    
+    private func setUp() {
+        guard let manager = manager, let favorites = manager.fetchFavorites() else { return }
+        self.articles = favorites
+        self.tableView?.dataSource = self
+        self.tableView?.delegate = self
+    }
+    
     private func sort(by index: Int) {
         switch index {
         case 0:
@@ -61,19 +69,23 @@ extension FavoritesViewController {
         }
     }
     
+    private func updateTitle() {
+        switch articles {
+        case _ where !articles.isEmpty :
+            self.navigationItem.title = "Favorites: \(articles.count)"
+        default:
+            self.navigationItem.title = "Swipe left to right to add a favorite."
+        }
+        
+    }
+    
     private func adjustInsets() {
         guard let barHeight = self.bottomBarView?.bounds.height else { return }
         let inset = barHeight - (self.view.bounds.height / 45 - 10)
         tableView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
         tableView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
     }
-    
-    private func setUp() {
-        guard let manager = manager, let favorites = manager.fetchFavorites() else { return }
-        self.articles = favorites
-        self.tableView?.dataSource = self
-        self.tableView?.delegate = self
-    }
+
 }
 
 
