@@ -16,7 +16,7 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
     private let category: ArticleCategory
     
     var onFetchCompletion: CompletionHandler?
-
+    
     init(with service: ArticleService, category: ArticleCategory) {
         self.service = service
         self.category = category
@@ -40,12 +40,12 @@ final class ArticleDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: R.reuseIdentifier.articleCell.identifier,
-            for: indexPath) as? ArticleCell else { return UITableViewCell() }
+            for: indexPath) as? ArticleCell else { preconditionFailure() }
         
         cell.configureWith(article: articles[indexPath.row])
         return cell
     }
- 
+    
 }
 
 extension ArticleDataSource {

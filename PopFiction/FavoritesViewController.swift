@@ -98,7 +98,7 @@ extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: R.reuseIdentifier.favoritesCell.identifier,
-            for: indexPath) as? ArticleCell else { return UITableViewCell() }
+            for: indexPath) as? ArticleCell else { preconditionFailure() }
         
         let article = articles[indexPath.row]
         cell.configureWith(article: article)
@@ -122,18 +122,17 @@ extension FavoritesViewController: UITableViewDelegate {
     
         let action = UIContextualAction(style: .normal, title: title,
                                         handler: { [unowned self] _, _, handler in
-                                            
-                                            article.isFavorite.toggle()
-                                            manager.makeUnfavorite(article: article.id)
-                    
-                                            UIView.performWithoutAnimation {
-                                                self.tableView?.beginUpdates()
-                                                self.articles.remove(at: indexPath.row)
-                                                self.tableView?.deleteRows(at: [indexPath], with: .none)
-                                                self.tableView?.endUpdates()
-                                            }
-                                            
-                                            handler(true)
+            article.isFavorite.toggle()
+            manager.makeUnfavorite(article: article.id)
+            
+            UIView.performWithoutAnimation {
+                self.tableView?.beginUpdates()
+                self.articles.remove(at: indexPath.row)
+                self.tableView?.deleteRows(at: [indexPath], with: .none)
+                self.tableView?.endUpdates()
+            }
+            
+            handler(true)
         })
         
         action.image = R.image.heart_empty()
@@ -142,5 +141,5 @@ extension FavoritesViewController: UITableViewDelegate {
         let configuration = UISwipeActionsConfiguration(actions: [action])
         return configuration
     }
-    
+
 }
